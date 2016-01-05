@@ -1,0 +1,52 @@
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/Css/buy_confirm.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+        
+	<include file="Public:header" />
+        <div class="contianer">
+		<!--订单提交成功，尽快付款的页面-->
+			<div class="con_top">
+				<div class="con_top_left">
+					<span class="succ_span">Order is submitted Success. Please finish your payment as soon as possible</span>
+					<span>Please complete the payment within 24 hours,otherwisw the order will be cancelled</span>
+				</div>
+				<div class="con_top_right">
+					<span>Price:<span>￥</span><span><{$ordtotal_fee}></span></span>
+					<a href="__APP__/order/order_info/ordid/<{$trade_no}>" target="_blank">Order's  Information</a>
+				</div>
+			</div>
+
+		<!--选择银行卡的div-->
+		<div class="bank_sel">
+		<!--选择银行卡或者支付宝-->
+			<div class="sel_way">
+				<div class="selected_way">Alipay</div>
+			</div>
+
+            <div class="bank_con">
+            <div class="bank_con_ul">
+                    <div class="open_bank">
+                        <!--<span>网上银行 （需要开通网银，跳转银行页面）<a href="#">选择银行></a></span>-->
+                    </div>
+                </div>
+			<form action="__APP__/Pay/doalipay" method="post" style="width:200px;margin:10px auto;">
+				<input name="trade_no" type="hidden" value="<{$trade_no}>"/>
+				<input name="ordsubject" type="hidden" value="<{$ordsubject}>"/>
+				<input name="ordtotal_fee" type="hidden" value="<{$ordtotal_fee}>"/>
+				<input size="30" name="ordbody" type="hidden"/>
+				<input size="30" name="ordshow_url" type="hidden"/>
+				<input type="submit" name="submit" value="Confirm" class="next_step" style="border:0;"/>
+			</form>
+            </div>
+
+		</div>
+		</div>
+<include file="Public/footer" />
+</body>
+</html>

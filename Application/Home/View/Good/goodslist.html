@@ -1,0 +1,373 @@
+<!doctype html>
+<html>
+	<meta charset="utf-8" />
+	<head>
+		<title>Items List</title>
+		<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+		<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<link href="__PUBLIC__/Css/list.css" type="text/css" rel="stylesheet" />
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+		<script src="__PUBLIC__/Js/list/list.js" type="text/javascript"></script>
+		<script>
+		$(function(){
+			$("#search").click(function(){
+				var name=$(this).prev("input").val();
+				if($.trim(name)==""){
+					alert("Please input any key word");
+				}else{
+					window.location.href="__APP__/good/search/n/"+name;
+				}
+			});
+			
+			function speDiv(){
+				
+				//特殊的div的样式
+				$("div.right_bot_body").find(".right_bot_con:nth-child(4n+1)").css("borderLeft","0");
+				$("div.right_bot_body").find("div.right_bot_con:last-child").css("borderRight","solid 1px #ccc");
+				$("div.right_bot_body").find("div.right_bot_con:nth-child(4n)").css("borderRight","0");
+			}
+			
+			$(".change").click(function(){
+				var type=$(this).attr("name");
+				var cur=parseInt($(".current").text());
+				var max=parseInt($(".maxnum").text());
+				if(type=="prev"&&cur<=1){
+					return false;
+				}else if(type=="next"&&cur>=max){
+					return false;
+				}else{
+					$.ajax({
+						url:"__APP__/good/goodslistchange",
+						data:type+"="+cur,
+						type:"POST",
+						dataType:"json",
+						success:function(msg){	
+							//在这里把数据替换
+							//alert(msg);
+							var div="";
+							for(var i in msg){
+								div+="<div class=right_bot_con><div class=right_img_div><a href=__APP__/good/index/id/"+msg[i]["id"]+"><img src="+msg[i]["image_url"]
+								+"></a></div><div class=right_title><a href=__APP__/good/index/id/"+msg[i]["id"]+">"+msg[i]["name"]+"</a></div>"+
+								"<div class=right_span><span class=price><span>Hot Price ￥</span><span style=font-size:24px;>"+msg[i]["price"]+"</span></span>";
+								div+="</div></div>";
+							}
+							//添加div的事件
+							$(".right_bot_body").html("");
+							$(".right_bot_body").append(div);
+							speDiv();
+							//alert(div);
+							
+							if(type=="prev"){
+								$(".current").text(parseInt($(".current").text())-1);	
+							}else{
+								$(".current").text(parseInt($(".current").text())+1);
+							}
+						}
+					})				
+				}
+			});
+			$(".order").click(function(){
+				var sort=$(this).attr("name");
+					$.ajax({
+						url:"__APP__/good/goodslistorder",
+						data:"o="+sort,
+						type:"POST",
+						dataType:"json",
+						success:function(msg){
+							var div="";
+							for(var i in msg["list"]){
+								div+="<div class=right_bot_con><div class=right_img_div><a href=__APP__/good/index/id/"+msg["list"][i]["id"]+"><img src="+msg["list"][i]["image_url"]
+								+"></a></div><div class=right_title><a href=__APP__/good/index/id/"+msg["list"][i]["id"]+">"+msg["list"][i]["name"]+"</a></div>"+
+								"<div class=right_span><span class=price><span>Hot Price ￥</span><span style=font-size:24px;>"+msg["list"][i]["price"]+"</span></span>";
+								div+="</div></div>";
+							}
+							// alert(div);
+							// alert(msg["sum"]);
+							// alert(msg["pagenum"]);
+							//添加div的事件
+							$(".right_bot_body").html("");
+							$(".right_bot_body").append(div);
+							speDiv();
+							
+						}
+					});
+			});
+
+			$(".confirm").click(function(){
+				var begin=$("input[name='begin']").val();
+				var end=$("input[name='end']").val();
+				if(!(isNaN(begin)||isNaN(end))){
+					$.ajax({
+					url:"__APP__/good/goodslistorder",
+					data:"qj=1&begin="+begin+"&end="+end,
+					dataType:"json",
+					type:"POST",
+					success:function(msg){
+							var div="";
+							for(var i in msg["list"]){
+								div+="<div class=right_bot_con><div class=right_img_div><a href=__APP__/good/index/id/"+msg["list"][i]["id"]+"><img src="+msg["list"][i]["image_url"]
+								+"></a></div><div class=right_title><a href=__APP__/good/index/id/"+msg["list"][i]["id"]+">"+msg["list"][i]["name"]+"</a></div>"+
+								"<div class=right_span><span class=price><span>Hot Price ￥</span><span style=font-size:24px;>"+msg["list"][i]["price"]+"</span></span>";
+								div+="</div></div>";
+							}
+							// alert(div);
+							// alert(msg["sum"]);
+							// alert(msg["pagenum"]);
+							//添加div的事件
+							$(".right_bot_body").html("");
+							$(".right_bot_body").append(div);
+							speDiv();
+						}
+					})
+					
+				}else{
+					alert("Please input a available number");
+				}
+				
+			});
+			
+			var name=[];
+			var data=[];
+			var iNow=0;
+			$(".submit").click(function(){
+				var value=parseInt($(this).parents("div.brand").find("span.left_name").attr("value"))+1;
+				var length=$(this).parent().siblings("li").find("input:checked").length;
+				var oTxt="";
+				var flag=true;
+				
+				$(this).parent().siblings("li").find("input").each(function(){
+				if(flag){
+					if($(this).is(":checked")){
+						oTxt="'"+$(this).next().text()+"'";
+						flag=false;
+						
+					}
+				}else{
+					if($(this).is(":checked")){
+						oTxt=oTxt+",'"+$(this).next().text()+"'";
+						
+					}
+				}
+				});
+				
+				data.push(oTxt);
+				if(length>0){
+				name.push("type"+value);
+				$(this).parents("div.brand").hide();
+				$("#ul1").append("<li>"+$(this).parents("div.brand").find("span.left_name").text()+data[iNow]+"</li>");
+				iNow++;
+				}else{
+					alert("Please choose a condition");
+				}
+				var len=name.length;
+				var su="";
+				for(var i=0;i<len;i++){
+					su+="&"+name[i]+"="+data[i];
+				}
+				$.ajax({
+					url:"__APP__/good/goodslistorder",
+					data:"type=1"+su,
+					dataType:"json",
+					type:"POST",
+					success:function(msg){
+							var div="";
+							for(var i in msg["list"]){
+								div+="<div class=right_bot_con><div class=right_img_div><a href=__APP__/good/index/id/"+msg["list"][i]["id"]+"><img src="+msg["list"][i]["image_url"]
+								+"></a></div><div class=right_title><a href=__APP__/good/index/id/"+msg["list"][i]["id"]+">"+msg["list"][i]["name"]+"</a></div>"+
+								"<div class=right_span><span class=price><span>Hot Price ￥</span><span style=font-size:24px;>"+msg["list"][i]["price"]+"</span></span>";
+								div+="</div></div>";
+							}
+							//添加div的事件
+							$(".right_bot_body").html("");
+							$(".right_bot_body").append(div);
+							speDiv();
+							$("#goods_num").text(msg["sum"]);
+							$(".maxnum").text(msg["pagenum"]);		
+							//alert(div);
+							//alert(msg["sum"]);
+							//alert(msg["pagenum"]);		
+					}				
+				})
+			})
+			
+		})
+		</script>
+	</head>
+	<body>
+	<include file="Public/header" />
+	<div class="container">
+		<!--logo和搜索框-->
+		<div class="logo_search">
+			<div class="logo"><a href="__APP__/index/index"><img src="<{$array['pics']}>" /></a></div>
+			<div class="search">
+				<input type="text" name=""/>
+				<input type="button" id="search" value="Search" style="background-color:#E3007F;"/>
+			</div>
+			<div class="shopCar_img">
+			<a href="__APP__/order/cart"><img src="__PUBLIC__/image/good_info/shopcar.jpg" />
+				<!--这段代码是显示购物车数量的-->
+				<div>
+					<empty name="Think.cookie.num">
+					0
+				<else/>
+					<{$Think.cookie.num}>
+				</empty>
+				</div>
+			</a>
+			</div>
+			<ul>
+				<foreach name="keyword" item="vo">
+					<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+				</foreach>
+			</ul>
+		</div>
+		
+			<!--上面的路线图-->
+			<div class="route">
+				<ul>
+					<li><a href="__APP__/index/index">Home</a></li>
+					<li>><a href="__APP__/good/goodslist/f/<{$goods_type1_info['id']}>"><{$goods_type1_info["name"]}></a></li>
+					<empty name="goods_type2_info">
+					<else/>
+					<li>><a href="__APP__/good/goodslist/s/<{$goods_type2_info['id']}>"><{$goods_type2_info["name"]}></a></li>					
+					</empty>
+					<empty name="goods_type3_info">
+					<else/>
+					<li>><a href="__APP__/good/goodslist/type/<{$goods_type3_info[id]}>"><{$goods_type3_info["name"]}></a></li>					
+					</empty>
+				</ul>
+			</div>
+			<!--下面的商品展示区-->
+			<div class="bot_con">
+				<div class="left">
+					<div class="left_top">
+						<h3><a href="__APP__/good/goodslist/f/<{$goods_type1_info['id']}>"><{$goods_type1_info["name"]}></a></h3>
+						<!--第一个分类-->
+						<!--左边的-->
+						<foreach name="result" item="vo">
+							<div class="left_top_con">
+								<h4>
+									<span class="add_des">+</span>
+									<span class="title"><a href="__APP__/good/goodslist/s/<{$vo.id}>"><{$vo.name}></a></span>
+								</h4>
+								<ul class="son_ul">
+									<foreach name="vo[goods_type3]" item="vi">
+										<li><a href="__APP__/good/goodslist/type/<{$vi.id}>"><{$vi.name}></a></li>
+									</foreach>
+								</ul>
+							</div>
+						</foreach>
+					</div>
+					<!--商品热卖-->
+					<div class="left_bot">
+						<h3>Popular Items</h3>
+						<!--第一个商品-->
+						<foreach name="goods_result" item="vo">
+							<div class="hot_goods">
+								<div class="img_div"><a href="__APP__/good/index/id/<{$vo.id}>"><img src="<{$vo.image_url}>" alt="<{$vo.name}>"/></a></div>
+								<div class="img_text">
+									<a href="__APP__/good/index/id/<{$vo.id}>" title="<{$vo.name}>"><{$vo.name}></a>
+									<span>￥<span><{$vo.price}></span></span>
+								</div>
+							</div>
+						</foreach>
+					</div>
+				</div>
+				<div class="right">
+					<div class="right_top">
+						<div class="top_title">
+							<span class="name"><{$goods_type1_info["name"]}></span>
+							<span><span>Searched</span><span style="color:#E34700" id="goods_num"><{$sum}></span><span>similar</span></span>
+						</div>
+						<empty name="goods_attr">
+						<else/>
+							<div class="brand">
+								<span class="left_name">Selected:</span>
+								<ul id="ul1">
+								</ul>
+								<a href="javascript:void(0)" style="white-space:nowrap; " id="reset">Reset Filter</a>
+							</div>
+							<foreach name="goods_attr" item="vo">
+								<div class="brand">
+									<span class="left_name" value="<{$key}>"><{$vo.name}>:</span>
+									<ul class="ul1">
+										<volist name="vo.value" id="vi">
+											<li><a href="javascript:void(0);"><{$vi}></a></li>
+										</volist>
+									</ul>
+									<ul class="ul2">
+										<volist name="vo.value" id="vi">
+											<li><input type="checkbox"><label><{$vi}></label></li>
+										</volist>
+										<div class="sub">
+											<input type="button" class="submit" value="Commit"/>
+											<input type="button" value="Cancel"/>
+										</div>
+									</ul>
+									<!--更多的
+									<ul class="ul3">
+										<volist name="vo.value" id="vi">
+											<li><a href="#"><{$vi}></a></li>
+										</volist>
+									</ul>
+									-->
+									<div class="choose">+Multiple</div>
+								</div>
+							</foreach>
+						</empty>
+					</div>
+					<!--右边中间的额部分-->
+					<div class="right_mild">
+						<div>
+							<ul id="cho_sta">
+								<li class="order" name="d"><a href="javascript:void(0)">Default</a></li>
+								<li class="order" name="s"><a href="javascript:void(0)">Sales</a></li>
+								<li class="order" name="c"><a href="javascript:void(0)">Evaluation</a></li>
+								<li class="sort_price" ><a href="javascript:void(0)">Price</a>
+									<div class="up_down">
+										<div class="order" name="pu">Increasing</div>
+										<div class="order" name="pd">Decreasing</div>
+									</div>
+								</li>
+							</ul>
+							<div class="from_to">
+								<input type="text" value="" name="begin"><span>-</span><input type="text" value="" name="end"/>
+								<input type="button" value="Confirm" class="confirm" style="display:none;height:32px;background-color:orange;margin-left:10px;"/>
+							</div>
+							<div class="next_prev">
+								<span class="current"><{$current_page}></span>/<span class="maxnum"><{$pagenum}></span>
+								<span class="change" name="prev"><</span>
+								<span class="change" name="next">></span>
+							</div>
+						</div>
+					</div>
+					<div class="right_bot">
+						<!--第一个板块-->
+						<div class="right_bot_body" style="border-top:solid 2px red">
+						<!--底下的每个商品-->
+							<foreach name="goods_list" item="vo">
+								<div class="right_bot_con">
+										<div class="right_img_div"><a href="__APP__/good/index/id/<{$vo.id}>"><img src="<{$vo.image_url}>"></a></div>
+										<div class="right_title"><a href="__APP__/good/index/id/<{$vo.id}>" title="<{$vo.name}>"><{$vo.name}></a></div>
+										<div class="right_span">
+											<span class="price"><span>Hot Price￥</span><span style="font-size:24px;"><{$vo.price}></span></span>
+											<!--<if condition="$vo[original_price] gt 0">
+												<span class="line-thro"><span>原价</span><span><{$vo.original_price}></span><span>元</span></span>
+											</if>
+											-->
+										</div>
+								</div>
+							</foreach>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+	<include file="Public/footer" />
+	</body>
+</html>

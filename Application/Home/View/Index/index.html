@@ -1,0 +1,463 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta name="description" content='<{$array["description"]}>'>
+<meta name="keyword" content='<{$array["key_word"]}>'>
+<title><{$array["web_name"]}></title>
+<link href="__PUBLIC__/Css/shangchengindex.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+<!--<![endif]-->
+<script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/goods_change.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/header.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/select.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/middle.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/select_list_ul.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/right.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/showdate.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/floor_change.js"></script>
+<script type="text/javascript">
+var Public = "__PUBLIC__";
+$(function(){
+	
+	
+	
+	$("#select_mall").change(function(){
+		var id=$(this).val();
+        if(id=="--------Select--------"){
+            return false;
+        }else{
+            url="__APP__/mall/index/id/"+id;
+            document.location=url;
+        }
+
+	});
+	$("#baby_button").click(function(){
+		var data=$("#st").val();
+		var type=$(".right_top").find(":radio:checked").val();
+		$.ajax({
+			url:"__APP__/index/babyinfo",
+			type:"POST",
+			data:"babyinfo="+data+"&type="+type,
+			success:function(data){
+				alert(data);
+			}
+		});
+	});
+	/*
+	加载二级三级分类
+	*/
+	/*[{"id":"1",
+	"item":[{"id":"35","name":"\u6d4b\u8bd5",
+	"goods_type3":[{"id":"12","name":"\u6d4b\u8bd51"},{"id":"13","name":"\u6d4b\u8bd52"},{"id":"14","name":"\u6d4b\u8bd53"},{"id":"15","name":"\u6d4b\u8bd54"},{"id":"16","name":"\u6d4b\u8bd55"}]
+	},
+	{"id":"9","name":"\u79d1\u6280",
+	"goods_type3":[{"id":"7","name":"\u5386\u53f2\u6d4b\u8bd52"},{"id":"8","name":"\u5386\u53f2\u6d4b\u8bd54"},{"id":"11","name":"\u5386\u53f2\u6d4b\u8bd53"}]},{"id":"38","name":"\u5386\u53f2","goods_type3":[]},{"id":"39","name":"\u54f2\u5b66","goods_type3":[]}]
+	}]
+	*/
+	$.ajax({
+		type:"POST",
+		url:"__APP__/index/classify",
+		data:"belong=0",
+		dataType:"json",
+		success:function(data){
+			//alert(typeof(data));
+			var div="";
+			//alert(data.length);
+			for(var item in data){
+				div+="<div>";
+				var type2=data[item]["item"];
+				for(var vi in type2){
+					div+="<ul>";
+					var type3=type2[vi]["goods_type3"];
+					div+="<li class='li_first'><a href='__APP__/good/goodslist/s/"+type2[vi]["id"]+"'>"+type2[vi]["name"]+"</a>></li>";
+					//alert(type2[vi]["name"]);
+					for(var vo in type3){
+						div+="<li><a href='__APP__/good/goodslist/type/"+type3[vo]["id"]+"'>"+type3[vo]["name"]+"</a></li>";
+					}
+					div+="</ul>";
+					
+				}
+				div+="</div>";
+				
+			}
+			$("#div_list").append(div);
+			$("#div_list>div").height($(".list_adv").height()-$(".id_li_first").height()-6);
+			$("#div_list div").hover(function(){
+				var index=$(this).index();
+						
+				var li_index=index-1;
+				
+				var li=$("#list li");
+				
+				
+				var top=li.eq(li_index).offset().top+li.eq(li_index).height()/2;
+				
+				var left=li.eq(li_index).offset().left+li.eq(li_index).width();
+					
+				$("#list li").eq(li_index).addClass("addClass_cur");
+
+				$(this).show();
+				
+				$("#div_list span").show().offset({left:left,top:top});
+				
+			},function(){
+				
+				var index=$(this).index();
+				
+				var li_index=index-1;
+				
+				$("#list li").eq(li_index).removeClass("addClass_cur");
+
+				$(this).hide();
+				
+				$("#div_list span").hide();
+			});
+			//alert("1");
+			//$(".list_adv").append(div);
+			//alert(div);
+		}
+		
+	});
+ 
+	$("#right_bottom_text").blur(function(){
+		var v=$(this).val();
+		var reg= /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+		if(reg.test(v)){
+			$.ajax({
+				url:"__APP__/phone_ajax/info.php",
+				data:"tel="+v,
+				type:"GET",
+				dataType:"json",
+				success:function(msg){
+					$(".location").text();
+					$(".location").text(msg["carrier"]);
+				}
+			})		
+		}else{
+			alert("Please input accurate Phone Number");
+			$(this).val("");
+		}
+	});
+	$("#phone_price").change(function(){
+		var price=$(this).val();
+		var v=$("#right_bottom_text").val();
+		if(v=="Please input Phone Number"){
+			alert("Please input Phone Number");
+		}else{
+			$.ajax({
+				url:"__APP__/phone_ajax/price.php",
+				data:"tel="+v+"&denom="+price,
+				type:"GET",
+				dataType:"json",
+				success:function(msg){
+					$("#count_price span").text();
+					$("#count_price span").text(msg["price"]);
+				}
+			})
+		}
+	});
+	$(".right_bottom_btn").click(function(){
+		var price=$("#phone_price").val();
+		var v=$("#right_bottom_text").val();
+		if(v=="Please input Phone Number码"||v==""){
+			alert("Please input Phone Number");
+		}else{
+			window.location.href="__APP__/phone_ajax/buy.php?tel="+v+"&denom="+price;
+		}
+	})
+	
+	$("#right_bottom_text").focus(function(){
+		$(this).val("");
+	});
+	
+	
+	$("#search").click(function(){
+		var name=$(this).prev("input").val();
+		if($.trim(name)==""){
+			alert("Please input key word");
+		}else{
+			window.location.href="__APP__/good/search/n/"+name;
+		}
+	})
+})
+</script>
+</head>
+<body>
+	<!--登陆注册页面-->
+	<include file="Public:header" />
+	<div class="floor_change" id="floor_change">
+		<div class="flower" style="width:80px;height:63px;background:url(__PUBLIC__/image/shangcheng_image/floor_flower.jpg) no-repeat top;border:0px;top:0px;"></div>
+		<div style="background-color:#FD519D;">To Top</div>
+		<foreach name="floorid" item="vo">
+			<div style="background-color:<{$vo['background']}>;"><{$vo["name"]}></div>
+		</foreach>	
+		<div style="background-color:#FD519D;">To Button</div>
+	</div>
+	<!--最外层包围框-->
+<div class="container">
+	<!--广告区域-->
+	<div class="header_adv">
+		<a href="<{$adImage['top1']['link_url']}>"><img  style="width:<{$adImage['top1']['width']}>px ; height: <{$adImage['top1']['height']}>px ; " src="<{$adImage['top1']['img_path']}>" /></a>
+	</div>
+	
+	<!--logo和搜索框-->
+	<div class="logo_search">
+		<div class="logo"><a href="__APP__/index/index"><img src="<{$array['pics']}>" width=290px height=130px/></a></div>
+		<div class="search">
+			<input type="text" name=""/>
+			<input type="button" id="search" value="Search" style="background-color:#E3007F;"/>
+		</div>
+		<div class="shopCar">
+		<a href="__APP__/order/cart"><img src="__PUBLIC__/image/shangcheng_image/shopcar.jpg" />
+		<!--这段代码是显示购物车数量的-->
+		<div>
+		<empty name="Think.cookie.num">
+			0
+		<else/>
+			<{$Think.cookie.num}>
+		</empty>
+		</div>
+		</a>
+		</div>
+		<ul>
+			<foreach name="keyword" item="vo">
+				<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+			</foreach>
+		</ul>
+	</div>
+	<!--商品列表和广告幻灯片-->
+	<div class="list_adv">
+	<!--商品列表-->
+		<div class="list" style="position:relative;" id="div_list">
+			
+				<!--使用内部的style来定义背景图片-->
+			<ul id="list">
+				<li  class="id_li_first">All Good Classification</li>
+				<foreach name="type1" item="vo">
+					<li><img src="<{$vo.logo}>" /><a href="__APP__/good/goodslist/f/<{$vo.id}>"><{$vo.name}></a></li>
+					<!--<li><img src="__PUBLIC__/image/shangcheng_image/list10.jpg" /><a href="#">第一个物</a></li>-->
+				</foreach>
+			</ul>
+			
+			<span id="span_dis"><img src="__PUBLIC__/image/shangcheng_image/list_10.jpg"></span>
+		</div>
+		<!--选项卡-->
+			<div class="select_list">
+				<ul id="select_list_ul">
+					<li style="font-weight:900;font-size:20px;color:black;" class="li_spec">Main Page</li>
+					
+					<li><a href="__APP__/good/seckill" target="_blank" >SecKill</a></li>
+					<li><a href="__APP__/good/teambuy" target="_blank" >TeamBuy</a></li>
+					<li><a href="__APP__/good/trial" target="_blank" >Trial</a></li>
+					<li><a href="__APP__/good/book" target="_blank" >PreSell</a></li>
+				</ul>
+			</div>
+		<!--上面的广告和下拉框-->
+		<div class="select_adv">
+			<div class="select1">
+				<select id="select_mall">
+					<option select="selected">--------Select--------</option>
+					<foreach name="mall" item="row">
+						<option value="<{$row['id']}>"><{$row["name"]}></option>
+					</foreach>
+				</select>
+			</div>
+			<div class="left_adv">
+			<a href="<{$adImage['top2']['link_url']}>"><img  style="width:<{$adImage['top2']['width']}>px ; height: <{$adImage['top2']['height']}>px ; " src="<{$adImage['top2']['img_path']}>" /></a>
+			</div>
+		</div>
+		
+		<!--中间的幻灯片广告-->
+		<div class="middle_adv">
+			<ul id="middle_adv_ul">
+			    <?php  $k=0 ; ?>
+				<foreach name="homefocus" item="row">
+				<li><a href="<{$row['link_url']}>"><img src="<{$row['image_url']}>" /></a></li>
+				</foreach>
+			</ul>
+			<div id="to_right" style="display:none">></div>
+			<div id="to_left" style="display:none"><</div>
+			<div id="to_num"></div>
+		</div>
+		
+		<!--右边的便民服务项-->
+		<div class="right_adv">
+			<div class="right_top">
+				<input type="text" id="st" name="st" value="" onclick="return Calendar('st')" class="text"><br/>
+				<span>Gender</span><br/>
+				<div>
+				<input type="radio" name="radio" value="0"/>Male
+				<input type="radio" name="radio" value="1"/>Female
+				<input type="radio" name="radio" value="2"/>Unknow
+				</div>
+				<input type="button" value="Yes" class="right_top_btn" style="cursor:pointer;" id="baby_button"/> 
+			</div>
+			<div class="right_bottom">
+				<span class="right_bottom_top">Phone Charging</span>
+				<div class="phone_pri">
+					<div class="phone_num">
+						<label for="right_bottom_text">Phone</label>
+						<input type="text" value="Phone Number" id="right_bottom_text"/>
+					</div>
+					<span class="location"></span>
+					<div class="phone_num">
+						<label>Fee</label>
+						<select id="phone_price">
+						<option value="100">100</option>
+						<option value="50">50</option>
+						<option value="20">20</option>
+						<option value="10">10</option>						
+						</select>
+					</div>
+					<div id="count_price">
+						Price:<span></span>
+					</div>
+				<input type="button" value="Charging" class="right_bottom_btn"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--中间的商品列表-->
+		<!--中间的商品列表-->
+	<div class="middle_goods" id="middle_goods">
+		<span class="middle_goods_span"> Goods Recommodation</span>
+		<div class="middle_goods_left">
+		<foreach name="data" item="row">
+			<div>
+				<a href="__APP__/good/index/id/<{$row['goods_id']}>" class="a_img"><img src="<{$row['image_url']}>" width="225px" height="225px"></a>
+				<a href="__APP__/good/index/id/<{$row['goods_id']}>" class="a_title" title='<{$row["goods_name"]}>'><{$row["goods_name"]}><br/></a>
+				<span class="hot_price"><span>Hot Price ￥</span><span class="price"><{$row["price"]}></span>
+				<if condition="$row[discount] neq 10">
+					<span class="count"><img src="__PUBLIC__/image/shangcheng_image/cou.jpg" /><{$row["discount"]}>Off</span>
+				</if>
+				</span>
+			</div>
+		</foreach>
+		</div>
+		<span class="middle_goods_span middle_goods_span_right">Selling Rank</span>
+		<div class="middle_goods_right">
+			
+			<div class="middle_goods_right_first" id="first_goods">Goods</div>
+			<div class="middle_goods_right_second" id="second_goods">Goods</div>
+			<div class="bottom_first" id="bottom_first">
+				<for start="0" end="2">
+					<div>
+						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods1.jpg" class="posi_img"/></div>
+						<div class="div_img">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" ><img src="<{$data6[$i]['image_url']}>" /></a></div>
+						<div class="div_text">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" style="color:#666;font-size:13px;text-decoration:none;height:45px;overflow:hidden;width:100px;display:inline-block;" title="<{$data6[$i]["name"]}>"><{$data6[$i]["name"]}></a><br/>
+						<span style="color:red;font-size:18px;font-weight:bold;">￥<{$data6[$i]["price"]}></span><br/>
+						<if condition="$data6[$i][sell] neq 0">
+							<span style="color:#666;font-size:12px;">Sell<span style="color:red;"><{$data6[$i]["sell"]}></span></span>
+						</if>
+						</div>
+					</div>
+				</for>
+				<for start="2" end="3">
+					<div class="middle_goods_right_spec">
+						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods1.jpg" class="posi_img"/></div>
+						<div class="div_img">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" ><img src="<{$data6[$i]['image_url']}>" /></a></div>
+						<div class="div_text">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" style="color:#666;font-size:13px;text-decoration:none;height:45px;overflow:hidden;width:100px;display:inline-block;" title="<{$data6[$i]["name"]}>"><{$data6[$i]["name"]}></a><br/>
+						<span style="color:red;font-size:18px;font-weight:bold;">￥<{$data6[$i]["price"]}></span><br/>
+						<if condition="$data6[$i][sell] neq 0">
+							<span style="color:#666;font-size:12px;">Sell<span style="color:red;"><{$data6[$i]["sell"]}></span></span>
+						</if>
+						</div>
+					</div>
+				</for>
+			</div>
+			<!--改过-->
+			<div class="bottom_second" id="bottom_second" style="display:none;">
+				<for start="4" end="6">
+					<div>
+						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods1.jpg" class="posi_img"/></div>
+						<div class="div_img">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" ><img src="<{$data6[$i]['image_url']}>" /></a></div>
+						<div class="div_text">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" style="color:#666;font-size:13px;text-decoration:none;height:45px;overflow:hidden;width:100px;display:inline-block;" title="<{$data6[$i]["name"]}>"><{$data6[$i]["name"]}></a><br/>
+						<span style="color:red;font-size:18px;font-weight:bold;">￥<{$data6[$i]["price"]}></span><br/>
+						<if condition="$data6[$i][sell] neq 0">
+							<span style="color:#666;font-size:13px;text-decoration:none;height:45px;overflow:hidden;width:100px;display:inline-block;">Sell<span style="color:red;"><{$data6[$i]["sell"]}></span></span>
+						</if>
+						</div>
+					</div>
+				</for>
+				<for start="6" end="7">
+					<div class="middle_goods_right_spec">
+						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods1.jpg" class="posi_img"/></div>
+						<div class="div_img">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" ><img src="<{$data6[$i]['image_url']}>" /></a></div>
+						<div class="div_text">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" style="color:#666;font-size:15px;text-decoration:none;"><{$data6[$i]["name"]}></a><br/>
+						<span style="color:red;font-size:18px;font-weight:bold;">￥<{$data6[$i]["price"]}></span><br/>
+						<if condition="$data6[$i][sell] neq 0">
+							<span style="color:#666;font-size:12px;">Sell<span style="color:red;"><{$data6[$i]["sell"]}></span></span>
+						</if>
+						</div>
+					</div>
+				</for>
+			</div>
+		</div>
+	</div>
+	<?php  $i=0 ; ?>
+	<foreach name="floorid" item="row">
+		<!--B1上的广告区域-->  
+		
+		<div class="bottom_adv">
+		<?php
+		   
+		   echo "<a name='M$i'  href='".$adImage['f'.$i]['link_url']."'><img style='width:".$adImage['f'.$i]['width']."px;height:".$adImage['f'.$i]['height']."px;' src='".$adImage['f'.$i]['img_path']."'/></a>";
+		   $i++;
+		   
+		?>
+		
+
+		</div>
+			
+		<div class="floor">
+			<div class="floor_top" style="border-bottom:solid 2px red;border-bottom-color:<{$row['background']}>">
+				<ul>
+					<li style="color:<{$row['background']}>"><{$row["name"]}></li>
+					<!--background-color:<{$row['background']}>;color:white;-->
+					<foreach name="row['type']" item="vi">
+						<li style="background-color:<{$row['background']}>;color:white;"><{$vi[typename]}></li>
+					</foreach>
+				</ul>
+			</div>
+			<!--第一个floor_body-->
+			<foreach name="row[type]" item="vi">
+				<div class="floor_body">
+					<foreach name="vi[goods]" item="vo">
+					<div>
+						<div class="img_div"><img src='<{$vo["image_url"]}>' alt='<{$vo["goods_name"]}>'/></div>
+						<div class="name_div"><a href="__APP__/good/index/id/<{$vo[goods_id]}>" title='<{$vo["goods_name"]}>'><{$vo["goods_name"]}></a></div>
+						<div class="span_div">
+							<span  style="color:red;font-weight:bold;padding-left:10px;"><span style="font-size:14px;">Hot Price￥</span><span style="font-size:30px;"><{$vo["price"]}></span></span>
+							<if condition="$vo.original_price neq 0">
+							<span class="past_price">Original Price￥<{$vo["original_price"]}></span>
+							</if>
+							<!--<span>已有<span ><a href="#" style="color:#e3007f">20</a></span><span>评论</span></span>-->
+						</div>
+					</div>
+					</foreach>
+				</div>
+			</foreach>
+		</div>
+	</foreach>
+	</div>
+<include file="Public/footer" />
+</body>
+</html>

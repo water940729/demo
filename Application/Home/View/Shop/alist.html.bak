@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>商铺页面</title>
+<link href="__PUBLIC__/Css/shop.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+<script type="text/javascript" src="__PUBLIC__/Js/shop_js/header.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/shop_js/navigator.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".attention_collect").click(function(){
+            var shop_id = $(".shop_id").text();
+            $.post("../../../Widget/collect", {"type":"2", "id":shop_id}, function(data){
+                alert(data.status);
+                alert(data.msg);
+            }, 'json');
+        });
+    });
+</script>
+</head>
+<body>
+
+	<!--登陆注册页面-->
+<include file="Public/header" />
+	<!--logo和搜索框-->
+<div class="container">
+	<div class="logo_search">
+		<div class="logo"><a href="__APP__/mall/index/id/<{$mall_info[id]}>"><img src="<{$mall_info[image_url]}>" /></a></div>
+		<div class="logo_shop_name" style="width:100px;">
+			<span class="shop_name"><{$shop_info.name}></span>
+            <span class="shop_id" hidden><{$shop_info.id}></span>
+		</div>
+		<div class="search">
+			<input type="text" name=""/>
+			<input type="button" id="search" value="搜索" style="background-color:#E3007F;"/>
+		</div>
+		<div class="shopCar">
+		<a href="__APP__/order/cart"><img src="__PUBLIC__/image/shangcheng_image/shopcar.jpg" />
+		<!--这段代码是显示购物车数量的-->
+		<div>
+		<empty name="Think.cookie.num">
+			0
+		<else/>
+			<{$Think.cookie.num}>
+		</empty>
+		</div>
+		</a>
+		</div>
+		<ul>
+			<foreach name="keyword" item="vo">
+				<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+			</foreach>
+		</ul>
+	</div>
+	<!--呼噜宝贝-->
+	<div class="div_attention">
+		<div class="hulu_baby"><a href="#"><img src="<{$shop_info.logo}>" /></a></div>
+		<div class="attention_collect">
+			<span>收藏店铺</span>
+		</div>
+	</div>
+	<!--导航条-->
+	<div class="navigator">
+		<ul id="navigator_ul">
+			<li>首页</li>
+		</ul>
+	</div>
+	<!--中间的广告图片-->
+	<div class="middle_adv" id="middle_adv">
+    <empty name="pic">
+        <!--不存在店铺图片的时候，只显示一张默认图片 -->
+	    <a href="#" style="display:block;"><img src="__PUBLIC__/image/shop_image/mid_adv.jpg" /></a>
+    <else/>
+        <foreach name="pic" item="vo">
+	        <a href="<{$vo.link_url}>"><img src="<{$vo.image_url}>" /></a>
+        </foreach>
+    </empty>
+	</div>
+	
+	<h1><{$result_temp["title"]}></h1>
+	
+	<h2><{$result_temp["content"]}></h2>
+	
+</div>
+<include file="Public/footer" />
+</body>
+</html>

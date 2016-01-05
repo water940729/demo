@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Payment Success Page</title>
+		<link href="__PUBLIC__/Css/success.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<script src="__PUBLIC__/Js/success/success.js"></script>
+	</head>
+	<body>
+	<include file="Public:header" />
+		<!--这是logo和进度的部分-->
+		<div class="container">
+				<div class="logo_pro">
+			<div class="logo"><a href="__APP__/index/index"><img src="logo.jpg" /></a></div>
+				<div class="progrecess">
+					<ul>
+						<li class="pro_li_spec"><div class="pro_li_spec">1</div></li>
+						<li class="pro_li_spec"><div class="pro_li_spec">2</div></li>
+						<li class="pro_li_spec"><div class="pro_li_spec">3</div></li>
+						<li><div>4</div></li>
+						
+					</ul>
+					<div class="pro_div">
+					<span>My Shopping Cart</span>
+                <span>Confirm Order</span>
+                <span>Payment</span>
+                <span>Payment Fail</span>
+					</div>
+				</div>
+			</div>
+			<!--底下是内容content-->
+			<div class="content">
+				<div class="buy_suc">
+					<div class="suc_img"><img src="add.jpg" /></div>
+					<div class="suc_span">
+						<span class="suc">Payment Fail，Please check your network connection</span>
+						<span class="order">Trade_Number:<span class="order_num"><{$out_trade_no}></span></span>
+					</div>
+				</div>
+				<div class="suc_con">
+					Sorry about that pay not to be successful, Please contact our custopmer service
+					You also can go to “<a href="__APP__/order/order">My Orders</a>”to check Order's newest status。
+				</div>
+				<div class="go_cart">
+					<a href="__APP__/index/index" class="buy">Continue to Shopping</a>
+					<a href="#" class="go_cart">Continue to Pay</a>
+				</div>
+			</div>
+		</div>
+		
+<include file="Public/footer" />
+	</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title><{$array["web_name"]}>--Register</title>
+<link href="__PUBLIC__/Css/reg.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+<script>
+	//点击改变验证码，老版本的
+	/*$(function(){
+		$("#change").click(function(){
+			$(this).siblings("img").attr("src","__MODULE__/user/verify/time/"+Math.random());
+		});
+		$("#verify").focusout(function(){
+			var content=$(this).val();
+			//alert(content);
+			$.ajax({
+				type:"POST",
+				url:"check_verifys",
+				data:"verify="+content,
+				success:function(msg){
+					if(msg!=1){
+						alert("验证码错误");
+					}else{
+						$("#flag").attr("name","true");
+					}
+				}
+			});
+			return false;
+		});
+		*/
+	$(function(){
+		var iNow=60;
+		var timer=null;
+
+		function dec(){
+			iNow--;
+			
+			if(iNow<0){
+				$("#change").text("Send Again");
+				clearInterval(timer);
+			}else{
+				if(iNow<10){
+				iNow="0"+iNow;
+			}
+				$("#change").text(iNow+"s");
+			}
+
+			
+		}
+		$("#btn").click(function(){
+			var data=$(this).parents("form").serialize();
+			//var flag=$("#flag").attr("name");
+			//alert(data);
+			//alert(flag);
+				$.ajax({
+					type:"POST",
+					url:"do_register",
+					data:data,
+					success:function(msg){
+						if(msg==1){
+							location.href="login";
+						}else{
+							alert(msg);
+						}
+					}
+				});
+		});
+		
+		$("#change").click(function(){
+			var that=$(this);
+			var phone=$("#username").val()
+
+			if(that.text()=="Send"||that.text=="Resend"){
+				$.ajax({
+				type:"POST",
+				url:"sms",
+				data:"username="+phone,
+				success:function(msg){
+					if(msg==1){
+						if(iNow==0){
+							$(this).text("Resend");
+							clearInterval(timer);
+						}else{
+							timer=setInterval(dec,1000);
+						}
+						
+					}else{
+						alert(msg);
+						clearInterval(timer);
+						that.text("Send");
+					}
+				}
+			})
+			}else{
+				return false;
+			}
+			
+		});
+		
+		$(".form_div form input").keydown(function(ev){
+			if(ev.keyCode==13){
+				$("#btn").click();
+			}
+		});
+	});
+</script>
+</head>
+<body>
+<div class="container">
+	<!--logo区域-->
+		<div class="logo_container">
+			<img src="__PUBLIC__/image/reg_image/logo.png" />
+		</div>
+		
+		<div class="per_container">
+			<div class="per_div">Personal Account</div>
+			<span class="per_span">Already Register<a href="__APP__/user/login" style="color:#E30B82;text-decoration:none;">Login</a></span>
+		</div>
+		<!--主体区域-->
+		<div class="body_container">
+			<div class="form_div">
+			<form action="__APP__/user/sms" method="post">
+				<label><span>*</span>Phone Number</label>
+				<input type="text" name="username" id="username"><br/>
+				<label><span>*</span>Password</label>
+				<input type="password" name="password"></br/>
+				<label><span>*</span>Comfrim Password</label>
+				<input type="password" name="password2"></br/>
+				<input type="hidden" name="false" id="flag">
+				<label><span>*</span>Identifying Code</label>
+				<input type="text" id="verify" name="verify"/>
+				<!--<img src="__MODULE__/user/verify" alt="无法显示验证码，请刷新"/>-->
+				<a href="#" id="change">Send</a><br/>
+				
+				<input type="checkbox" ><label for="checkbox">I already read and agree with<a href="__APP__/article/alist/n/protocol">《Kuihua Mall User Registration Protocol》</a></label></br/>
+				
+				<input type="button" id="btn" value="Register Now" />
+			</form>
+			</div>
+			<div class="pic_div">
+				<img src="__PUBLIC__/image/reg_image/pic.png">
+			</div>
+		</div>
+		<!--footer区域-->
+		<div class="footer_container">
+			<div>
+						<a href="__APP__/article/alist/n/about">About Kuihua</a>|
+			<a href="__APP__/article/alist/n/contact">Contact Us</a>|
+			<a href="__APP__/article/alist/n/employ">Recruitment</a>|
+			<a href="__APP__/article/alist/n/tender">Kuihua Tenders</a>|
+			<a href="__APP__/article/alist/n/law">Legal Statement</a>|
+			<a href="__APP__/article/alist/n/custom">Support</a>|
+			<a href="__APP__/shop_manage/index.php">Merchant Login</a>|
+			<a href="__APP__/mall_manage/index.php">Mall Login</a>
+			</div>
+			<span><{$array.copyright}></span>
+			<ul>
+				<li><a href="#"><img src="__PUBLIC__/image/reg_image/footer1.jpg" /></a></li>
+				<li><a href="#"><img src="__PUBLIC__/image/reg_image/footer2.jpg" /></a></li>
+				<li><a href="#"><img src="__PUBLIC__/image/reg_image/footer3.jpg" /></a></li>
+				<li><a href="#"><img src="__PUBLIC__/image/reg_image/footer4.jpg" /></a></li> 
+			</ul>
+			</div>
+	</div>
+</body>

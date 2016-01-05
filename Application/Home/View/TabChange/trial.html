@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"!>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>my2</title>
+	<link href="__PUBLIC__/Css/order.css" ref="stylesheet" type="text/css">	
+</head>
+	<body>
+   	<div class="right_content">
+				<div class="right_top_ul">
+					<ul id="select_ul">
+						<li id="all" class="right_li_spec">All Orders</li><span>|</span>
+                        <!--
+						<li>充值订单</li><span>|</span>
+						<li>团购订单</li><span>|</span>
+                        -->
+						<li id="wait_pay">Wait Pay<span><{$wait_pay}></span></li><span>|</span>
+						<li id="wait_send">Wait Sen<span><{$wait_send}></span></li><span>|</span>
+						<li id="wait_take">Wait Take<span><{$wait_take}></span></li><span>|</span>
+						<li id="wait_comment">Wait Comment<span><{$wait_comment}></span></li>
+                        <li id="status" hidden>40</li>
+					</ul>
+				</div>
+				
+				<div class="query_order">
+					<select id="time_select">
+						<option value="5">ALL</option>
+						<option value="4">Last three Months Orders</option>
+						<option value="3">Last one Month Orders</option>
+						<option value="2">Last one Week Orders</option>
+						<option value="1">Last three Months Orders</option>
+					</select>
+					<div class="right_search">
+						<input id="search_text" type="text" value="Good's Name/Order Number"/>
+						<input id="search" type="button" value="Search" />
+					</div>
+				</div>
+                <div id="order_content_margin">  
+				<div id="order_content" class="order_content" style="display:block;">
+					<div class="order_content_top">
+						<ul>
+							<li class="order_li_spec">Order's Goods </li>
+							<li>Order Amount(yan)</li>
+							<li>Transaction Times</li>
+							<li class="status_li">Transaction status
+							</li>
+							<li class="status_li">Transaction Move
+							</li>
+						</ul>
+					</div>
+					<empty name="orderid">
+							<div class="information"><span>You do not have any Orders during this Period。</span></div>
+						<else/>
+							<foreach name="orderid" item="vo">
+								<div class="order_inform_top" style="color:#353535;font-family:microsoft yahei">
+										Order Number：<span><{$vo.ordid}></span>
+										<{$vo.shop_name}>
+                                        <if condition="$vo.ordstatus eq 0">
+                                            <input type="button" value="Cancel Order" class="trial_delete">
+											<input type="button" value="Pay Now" class="to_pay"><br/>
+                                        </if>
+								</div>
+								<foreach name="data" item="vi">
+									<eq name="vi.ordid" value="$vo.ordid">
+										<div class="order_inform">
+											
+										    <span class="ordid" hidden><{$vo.ordid}></span>	
+											<div class="order_inform_bottom">
+												<ul class="order_inform_bottom_ul">
+												<li class="order_li_spec">
+													<div class="img_div">
+														<img src="<{$vi.productimage}>"  />
+													</div>
+													<div>
+                                                        <span class="productid" hidden><{$vi.productid}></span>
+														<a href="__APP__/good/trialgoods/id/<{$vi.productid}>"><{$vi.productname}></a><br/>
+														<!--<span>备注：描述</span>-->
+													</div>
+												</li>
+												<li><span><{$vi.ordfee}><br/>
+												</li>
+												<li><span><{$vi.ordtime|date="y-m-d",###}></span>
+												</li>
+												<li>
+												<if condition="$vi.ordstatus eq 0">
+												Wait for Pay
+												<br/>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">Order's Detail</a></span>
+												</li>
+												<li style="border:0;">
+												</li>
+												<elseif condition="$vi.ordstatus eq 1"/>
+												Payment Success
+												<br/>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">Order's Detail</a></span>
+												</li>
+												<li style="border:0;">
+													<input type="button" value="Confirm Receipt" class="trial_confirm_rev"><br/>
+													<a href="__APP__/good/trialgoods/id/<{$vi.productid}>">Buy it Again</a><br/>
+												</li>
+                                                <elseif condition="$vi.ordstatus eq 3" />
+                                                  Receipted
+                                                </br>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">Order's Detail</a></span>
+                                                </li>
+                                                <li style="border:0;">
+                                                    <input type="button" value="Comment" class="order_comment"><br/>
+                                                    <input type="button" value="Return Goods" class="trial_return"><br/>
+                                                    <a href="__APP__/good/trialgoods/id/<{$vi.productid}>">Buy it Again<a></br>
+
+                                                <elseif condition="$vi.ordstatus eq 9" />
+                                                Already applyed Returnning , Please Return the Page to Submit your Detailed Information
+                                                </br>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">Order's Detail</a></span>
+                                                </li>
+                                                <li style="border:0;">
+                                                    <a href="__APP__/good/trialgoods/id/<{$vi.productid}>">Buy it Again<a></br>
+
+
+                                                </li>
+
+
+
+                                                 <elseif condition="$vi.ordstatus eq 8" />
+                                                Already Commented
+                                                </br>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">Order's Detail</a></span>
+                                                </li>
+                                                <li style="border:0;">
+                                                    <input type="button" value="Already Commented" class="commented"><br/>
+                                                    <a href="__APP__/good/trialgoods/id/<{$vi.productid}>">Buy it Again<a></br>
+                                                </li>
+                                               </li>
+												<else/>
+												Cancel
+												<br/>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">Order's Detail</a></span>
+												</li>
+												<li style="border:0;">
+													<a href="__APP__/good/trialgoods/id/<{$vi.productid}>">Buy it Again</a><br/>
+												</li>
+												</if>
+											</ul>
+											</div>
+										</div>
+									</eq>
+								</foreach>
+							</foreach>
+					</empty>				
+					</div>
+                    </div>
+				<!--全部订单-->
+				<div style="clear:both"></div>
+			</div>
+    <script src="__PUBLIC__/Js/order_js/tabChange/trial.js"></script>
+    <script src="__PUBLIC__/Js/jquery/load_jquery.js"></script>
+	</body>
+</html>

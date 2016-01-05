@@ -1,0 +1,389 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Shop Page</title>
+<link href="__PUBLIC__/Css/sec_shop.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+<script type="text/javascript" src="__PUBLIC__/Js/sec_shop/header.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/sec_shop/navigator.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#collect").click(function(){
+            alert("jh");
+        });
+    });
+</script>
+</head>
+<body>
+
+	<!--登陆注册页面-->
+<include file="Public/header" />
+	<!--logo和搜索框-->
+<div class="container">
+	<div class="logo_search">
+		<div class="logo"><a href="#"><img src="__PUBLIC__/image/shop_image/logo.jpg" /></a></div>
+		<div class="logo_shop_name">
+			<span class="shop_name">The Snoring Baby Flagship Store</span><br/>
+			<span class="shop_con">Contact Us</span>
+		</div>
+		<div class="search">
+			<input type="text" name=""/>
+			<input type="button" value="Search" style="background-color:#E3007F;"/>
+			<input type="button" value="Cancel" style="background-color:#5BC5EF;"/>
+		</div>
+		<div class="shopCar">
+		<a href="#"><img src="__PUBLIC__/image/shop_image/shopcar.jpg" /></a>
+		</div>
+		<ul>
+			<li><a href="#">Toy</a></li>
+			<li><a href="#">HUGGIES</a></li>
+			<li><a href="#">Wyeth</a></li>
+			<li><a href="#"><span style="color:#E3007F;">Baby Bed</span></a></li>
+			<li><a href="#">LeCute</a></li>
+		</ul>
+	</div>
+	<!--呼噜宝贝-->
+	<div class="div_attention">
+		<div class="hulu_baby"><a href="#"><img src="__PUBLIC__/image/shop_image/hulu.jpg" /></a></div>
+		<div class="attention_collect">
+			<span>+Attention</span>
+			<span>Collect Shop</span>
+		</div>
+	</div>
+	<!--导航条-->
+	<div class="navigator">
+		<ul id="navigator_ul">
+			<li>Main Page</li>
+		</ul>
+	</div>
+	<!--中间的广告图片-->
+	<div class="middle_adv" id="middle_adv">
+	<a href="ninin.html"><img src="__PUBLIC__/image/shop_image/mid_adv.jpg" /></a>
+	<a href="#"><img src="__PUBLIC__/image/shop_image/mid_adv2.jpg" /></a>
+	<a href="#"><img src="__PUBLIC__/image/shop_image/mid_adv3.jpg" /></a>
+	<a href="#"><img src="__PUBLIC__/image/shop_image/mid_adv4.jpg" /></a>
+	<a href="#"><img src="__PUBLIC__/image/shop_image/mid_adv5.jpg" /></a>
+	<a href="#"><img src="__PUBLIC__/image/shop_image/mid_adv6.jpg" /></a>
+	</div>
+	
+	<!--劲爆商品推荐广告-->
+	<div class="product_rec">German Aptamil</div>
+	<!--商品推荐列表-->
+	<div class="product_rec_list">
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#"> Nutrilon Powdered Milk NutrilonPowdered Milk NutrilonPowdered Milk Nutrilon <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">
+					￥<span class="num_span">800</span>.00
+					<span class="line_through">Original Price<span>1600</span>元</span></span>
+					<span class="over_span">Sell Out</span>
+					
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#"> Nutrilon Powdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Original<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out</span>
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#"> NutrilonPowdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Original Price<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out </span>
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#"> NutrilonPowdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Original Price<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out</span>
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#"> NutrilonPowdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Oringinal Price<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out</span>
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#">NutrilonPowdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Original Price<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out</span>
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#"> NutrilonPowdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Original Price<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out</span>
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#">NutrilonPowdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Original Price<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out</span>
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#">NutrilonPowdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Original Price<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out</span>
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#">NutrilonPowdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Original Price<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out</span>
+				</div>
+			</div>
+			
+			<div class="pro_con">
+				<div class="product_rec_img"><a href="#"><img src="__PUBLIC__/image/shop_image/pic2.jpg" /></a></div>
+				<div class="span_container">
+					<span class="title_span"><a href="#"> NutrilonPowdered Milk <span class="blue_span">2段（6-10 Months）850g</a></span></span>
+					<span class="red_span">￥<span class="num_span">800</span>.00
+					<span class="line_through">Original Price<span>1600</span>Yen</span>
+					</span>
+					<span class="over_span">Sell Out</span>
+				</div>
+			</div>
+	  </div>
+		<!--商品列表下面的广告-->
+		<div class="list_bottom_adv">
+			<a href="#"><img src="__PUBLIC__/image/shop_image/adv.jpg" /></a>
+		</div>
+		
+		<!--first-floor上的广告区域-->
+	<div class="bottom_adv">
+		<a href="#"><img src="__PUBLIC__/image/shop_image/网站首页_10.jpg" /></a>
+	</div>
+	
+	<!--first_floor-->
+	<div class="floor_con">
+	<!--上面的选项卡-->
+	<div class="floor_nav">
+		<ul>
+			<li>Sales volume</li>
+			<li>Price</li>
+			<li> good opinion degree</li>
+		</ul>
+	</div>
+	
+	<div class="floor">
+		<div class="floor_body_div">
+			<div class="floor_body_div_top">
+					<div class="image_div"	<a href="#"><img src="__PUBLIC__/image/shop_image/floorHot.jpg"></a></div>
+					<a href="#" class="title"> NutrilionPowdered Milk  2段(6-10 Months)850gNutrilionPowdered Milk 2段(6-10 Months)850g</a>
+					<div class="floor_span">
+						<span class="hot">Hot Price ￥<span class="price">800</span>.00</span>
+						<span style="text-decoration:line-through;">Original Price 1600元</span><br/>
+						<span>Have<span class="content"><a href="#">20</a></span>Comments<span class="name"><a href="#">Redbaby Mall</a></span></span>
+						<span class="count_num"><span>7.0</span>aCCount</span>
+					</div>
+			</div>
+			<div class="floor_body_div_bottom">
+				<div><a href="#">Add into Shopping Cart</a></div>
+				<div><a href="#">Compare</a></div>
+				<div class="floor_body_div_bottom_spec"><a href="#">Collection</a></div>
+			</div>
+		</div>
+		
+		<div class="floor_body_div">
+			<div class="floor_body_div_top">
+					<div class="image_div"	<a href="#"><img src="__PUBLIC__/image/shop_image/floorHot.jpg"></a></div>
+					<a href="#" class="title"> NutrilionPowdered Milk 2段(6-10 Months)850g NutrilionPowdered Milk 2段(6-10 Months)850g</a>
+					<div class="floor_span">
+						<span class="hot">Hot Price ￥<span class="price">800</span>.00</span>
+						<span style="text-decoration:line-through;">Original Price 1600元</span><br/>
+						<span>Have<span class="content"><a href="#">20</a></span>Comments<span class="name"><a href="#">Redbaby Mall</a></span></span>
+					</div>
+			</div>
+			<div class="floor_body_div_bottom">
+				<div><a href="#">Add into Shopping Cart</a></div>
+				<div><a href="#">Compare</a></div>
+				<div class="floor_body_div_bottom_spec"><a href="#">Collection</a></div>
+			</div>
+		</div>
+		
+		<div class="floor_body_div">
+			<div class="floor_body_div_top">
+					<div class="image_div"	<a href="#"><img src="__PUBLIC__/image/shop_image/floorHot.jpg"></a></div>
+					<a href="#" class="title"> NutrilionPowdered Milk 2段(6-10 Months)850g NutrilionPowdered Milk 2段(6-10 Months)850g</a>
+					<div class="floor_span">
+						<span class="hot">Hot Price  ￥<span class="price">800</span>.00</span>
+						<span style="text-decoration:line-through;">Original Price1600元</span><br/>
+						<span>Have<span class="content"><a href="#">20</a></span>Comments<span class="name"><a href="#">Redbaby Mall</a></span></span>
+					</div>
+			</div>
+			<div class="floor_body_div_bottom">
+				<div><a href="#">Add into Shopping Cart</a></div>
+				<div><a href="#">Compare</a></div>
+				<div class="floor_body_div_bottom_spec"><a href="#">Collection</a></div>
+			</div>
+		</div>
+		
+		<div class="floor_body_div">
+			<div class="floor_body_div_top">
+					<div class="image_div"	<a href="#"><img src="__PUBLIC__/image/shop_image/floorHot.jpg"></a></div>
+						<a href="#" class="title"> NutrilionPowdered Milk 2段(6-10 Months)850g NutrilionPowdered Milk 2段(6-10 Months)850g</a>
+					<div class="floor_span">
+						<span class="hot">Hot Price ￥<span class="price">800</span>.00</span>
+						<span style="text-decoration:line-through;">Original Price1600元</span><br/>
+						<span>Have<span class="content"><a href="#">20</a></span>Comments<span class="name"><a href="#">Redbaby Mall</a></span></span>
+					</div>
+			</div>
+			<div class="floor_body_div_bottom">
+				<div><a href="#">Add into Shopping Cart</a></div>
+				<div><a href="#">Compare</a></div>
+				<div class="floor_body_div_bottom_spec"><a href="#">Collection</a></div>
+			</div>
+		</div>
+		
+		<div class="floor_body_div">
+			<div class="floor_body_div_top">
+					<div class="image_div"	<a href="#"><img src="__PUBLIC__/image/shop_image/floorHot.jpg"></a></div>
+						<a href="#" class="title"> NutrilionPowdered Milk 2段(6-10 Months)850g NutrilionPowdered Milk 2段(6-10 Months)850g</a>
+					<div class="floor_span">
+						<span class="hot">Hot Price ￥<span class="price">800</span>.00</span>
+						<span style="text-decoration:line-through;">Original Price1600元</span><br/>
+						<span>Have<span class="content"><a href="#">20</a></span>Comments<span class="name"><a href="#">Redbaby Mall</a></span></span>
+					</div>
+			</div>
+			<div class="floor_body_div_bottom">
+				<div><a href="#">Add into Shopping Cart</a></div>
+				<div><a href="#">Compare</a></div>
+				<div class="floor_body_div_bottom_spec"><a href="#">Collection</a></div>
+			</div>
+		</div>
+		
+		<div class="floor_body_div">
+			<div class="floor_body_div_top">
+					<div class="image_div"	<a href="#"><img src="__PUBLIC__/image/shop_image/floorHot.jpg"></a></div>
+						<a href="#" class="title"> NutrilionPowdered Milk 2段(6-10 Months)850g NutrilionPowdered Milk 2段(6-10 Months)850g</a>
+					<div class="floor_span">
+						<span class="hot">Hot Price ￥<span class="price">800</span>.00</span>
+						<span style="text-decoration:line-through;">Original Price1600元</span><br/>
+						<span>Have<span class="content"><a href="#">20</a></span>Comments<span class="name"><a href="#">Redbaby Mall</a></span></span>
+					</div>
+			</div>
+			<div class="floor_body_div_bottom">
+				<div><a href="#">Add into Shopping Cart</a></div>
+				<div><a href="#">Compare</a></div>
+				<div class="floor_body_div_bottom_spec"><a href="#">Collection</a></div>
+			</div>
+		</div>
+		
+	</div>
+	<!--分页效果-->	
+	<div class="page_chos">
+		<span>上一页</span>
+		<div class="page_num">
+			<span>1</span>
+			<span>1</span>
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span>
+			<span>1</span>
+			<span>1</span>
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span> 
+			<span>1</span> 
+		</div>
+		<span>下一页</span>
+	</div>
+	</div>	
+	
+</div>
+<!--footer区域-->
+	<div class="footer" id="footer">
+	<div class="footer_container">
+	<div class="footer_left_div">
+		<div>
+			<a href="#">About Kuihua</a>|
+			<a href="#">Contact Us</a>|
+			<a href="#">Recruitment</a>|
+			<a href="#">Kuihua Tenders</a>|
+			<a href="#">Kuihua Alliance</a>|
+			<a href="#">Kuihua Tenders</a>|
+			<a href="#">Friendly Link</a>|
+			<a href="#">Legal Statement</a>|
+			<a href="#">Support</a>
+		</div>
+		<span>Copyright 2002-2015, 苏ICP备10207551号 苏B1-20130131 苏B1-20130131 苏B2-20130376</span>
+		<ul>
+			<li><a href="#"><img src="__PUBLIC__/image/shop_image/footer1.jpg" /></a></li>
+			<li><a href="#"><img src="__PUBLIC__/image/shop_image/footer2.jpg" /></a></li>
+			<li><a href="#"><img src="__PUBLIC__/image/shop_image/footer3.jpg" /></a></li>
+			<li><a href="#"><img src="__PUBLIC__/image/shop_image/footer4.jpg" /></a></li> 
+		</ul>
+	
+	</div>
+	<div class="footer_right_div">
+		<div class="first"><a href="#"><img src="__PUBLIC__/image/shop_image/footer5.jpg" /></a></div>
+		<div class="second">
+		<span><a href="#">Kuihua Arround Us</a></span>
+		<div class="second_div"><a href="#"><img src="__PUBLIC__/image/shop_image/footer6.jpg" /></a></div>
+		</div>
+	</div>
+	</div>
+</div>
+</body>
+</html>

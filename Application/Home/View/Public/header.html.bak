@@ -1,0 +1,35 @@
+	<!--登陆注册页面-->
+	<div class="header">
+		<div class="header_container">
+		<empty name="current">
+		<span class="go_index"><a href="__APP__/index/index">返回葵花主页</a></span>
+		</empty>
+		<div class="header_reg" >
+		<ul id="header_reg">
+		
+		<li>
+
+			<a href="__APP__/order/order">个人中心</a>
+		</li>
+		<li>
+			<a href="__APP__/order/order">我的订单</a>
+		</li>
+		<empty name="Think.session.username">
+			<li class="spec_li"><!-- __APP__/user/login -->
+				<a href="__APP__/user/login" style="color:#E3007F;background:none;">登录</a>
+			</li>
+			<li class="spec_li">
+				<a href="__APP__/user/register"style="background:none;">注册</a>
+			</li>
+		<else/>
+			<li class="spec_li">
+				<a href="__APP__/order/order" style="color:#E3007F;background:none;"><{$Think.session.username}></a>
+			</li>
+			<li class="spec_li">
+				<a href="__APP__/user/logout" style="background:none;">注销</a>
+			</li>
+		</empty>
+		</ul>
+		</div>
+		</div>
+	</div>

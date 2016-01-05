@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Trial Page</title>
+		<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+		<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<link href="__PUBLIC__/Css/trial.css" type="text/css" rel="stylesheet" />
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+		<script src="__PUBLIC__/Js/trial/trial.js"></script>
+		<script src="__PUBLIC__/Js/trial/header.js"></script>
+		<style>
+		.title_ul li{
+			cursor:pointer;
+		}
+		</style>
+		<script>
+		$(function(){
+			$("#search").click(function(){
+				var name=$(this).prev("input").val();
+				if($.trim(name)==""){
+					alert("Please input any key words");
+				}else{
+					window.location.href="__APP__/good/search/n/"+name;
+				}
+			})
+		})
+		</script>		
+	</head>
+	<body>
+	<include file="Public/header"/>
+		<!--logo和搜索框-->
+	<div class="logo_search">
+		<div class="logo"><a href="#"><img src="__PUBLIC__/image/trial/logo.jpg" /></a></div>
+		<div class="search">
+			<input type="text" name=""/>
+			<input type="button" id="search" value="Search" style="background-color:#E3007F;"/>
+		</div>
+		<ul>
+			<foreach name="keyword" item="vo">
+				<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+			</foreach>
+		</ul>
+	</div>
+	<!--上面的导航条以及图片幻灯片-->
+	<div class="ad_img">
+		<div class="navi_div">
+			<ul>
+				<li><a href="__APP__/index/index">Home</a></li>
+				<ul class="ul_right">
+					<li><a href="__APP__/order/cart"><img src="__PUBLIC__/image/teambuy/scar.jpg" />Cart<div id="shop_num">
+						<empty name="Think.cookie.num">
+							0
+						<else/>
+							<{$Think.cookie.num}>
+						</empty></div>
+					</a></li>
+				</ul>
+			</ul>
+			
+		</div>
+		<div class="img_div">
+			<a href="javascript:void(0)" id="to_left"><</a>
+			<a href="javascript:void(0)" id="to_right">></a>
+			<ul id="img_ul">
+				<foreach name="trial_focus" item="vo">
+					<li><a href="<{$vo.link_url}>"><img src="<{$vo.image_url}>"/></a></li>
+				</foreach>
+			</ul>
+			<div class="img_eq"></div>
+		</div>
+	</div>
+	
+	<!--主内容包含框-->
+	<div class="container">
+		<div class="top_title" style="background-color:red;">
+			<span>All Items</span>
+			<ul class="title_ul">
+				<foreach name="trial_goods_start" item="vo">
+					<empty name="vo.trial_goods">
+					<else/>
+					<li><a href="javascript:void(0)"><{$vo.typename}></a></li>
+					</empty>
+				</foreach>
+				<li><a href="javascript:void(0)">All Items></a></li>
+			</ul>
+		</div>
+		<!--商品包含框-->
+		<foreach name="trial_goods_start" item="vo">
+				<empty name="vo.trial_goods">
+				<else/>
+					<div class="top_con">
+					<!--每个小商品-->
+						<foreach name="vo.trial_goods" item="vi">
+								<div class="top_img_div">
+									<div class="img_div">
+										<div class="img_con"><a href="#"><img src="<{$vi.img_url}>" /></a></div>
+										<div class="mask_div"></div>
+										<div class="mask_time"><span>Limit</span><span class=""><{$vi.num}></span><span>Pieces</span></div>
+									</div>
+									<div class="img_span">
+										<span class="title"><a href="__APP__/good/trialgoods/id/<{$vi.id}>"><{$vi.goodsname}></a></span>
+										<span class="price">￥<span><{$vi.price}></span></span>
+									</div>
+									<div class="use_cho">Apply Trial</div>
+								</div>
+						</foreach>
+					</div>
+				</empty>
+		</foreach>
+
+        <div class="top_con">
+            <foreach name="trial_goods_start" item="vo">
+                <foreach name="vo.trial_goods" item="vi">
+    				<div class="top_img_div">
+							<div class="img_div">
+									<div class="img_con"><a href="#"><img src="<{$vi.img_url}>" /></a></div>
+									<div class="mask_div"></div>
+									<div class="mask_time"><span>Limit</span><span class=""><{$vi.num}></span><span>Pieces</span></div>
+									</div>
+									<div class="img_span">
+										<span class="title"><a href="__APP__/good/trialgoods/id/<{$vi.id}>"><{$vi.goodsname}></a></span>
+										<span class="price">￥<span><{$vi.price}></span></span>
+									</div>
+									<div class="use_cho">Apply Trial</div>
+								</div>
+                </foreach>
+            </foreach>
+        </div>
+	</div>
+	<include file="Public/footer" />
+	</body>
+	
+</html>

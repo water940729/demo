@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Score Page</title>
+    <link href="__PUBLIC__/Css/score.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+<style>
+	.feedback{margin:10px;float:left;overflow:hidden;}
+	.feedback img{float:left;width:70px;height:70px;margin-right:10px;}
+	.addpicContainer{float:left;}
+	.addpicContainer{margin-left:5px;}
+	.addpicContainer img{float: left;}
+	.loading{display:none;background:url("http://f7-preview.awardspace.com/zjmainstay.co.cc/jQueryExample/jquery_upload_image/files/ui-anim_basic_16x16.gif") no-repeat scroll 0 0 transparent;float: left;padding:8px;margin:18px 0 0 18px;}
+	div.user_time{height:40px;line-height:40px;float:left;}
+div.user_time span{display:inline-block;margin-left:10px;font-size:14px;color:#ccc;}
+div.user_time span.username{color:#3879D9}
+div.content2{padding:5px 10px;margin-bottom:10px;width:850px;float:left;clear:both;}
+div.img_con div.small_img{float:left;margin-left:10px;width:60px;height:60px;cursor:pointer;border:solid 1px #ccc;}
+div.img_con div.small_img img{width:59px;height:59px;}
+div.img_con div.big_img{width:200px;height:300px;border:solid 1px #ccc;display:none;padding:10px;margin-left:10px;clear:both;margin-bottom:5px;margin-top:2px;}
+div.img_con div.big_img img{width:200px;height:300px;}
+div.red{border:solid 1px red !important;}
+	</style>
+</head>
+<body>
+    <!--这是商品的包含框-->
+    <div class="score_con">
+        <!-- 标题-->
+        <div class="goods_top">
+            <div class="good_info">Goods Information</div>
+            <div>Buy Time</div>
+            <div>Comment Status</div>
+        </div>
+        <!-- 这是商品的具体信息-->
+    <foreach name="ordlist_to_score" item="vo">
+        <div class="goods_con">
+            <div class="goods_bot">
+                <div class="img_div">
+                    <a href="../../<{$vo.goodPrefix}>/id/<{$vo.productid}>"><img src="<{$vo.productimage}>" /></a>
+                </div>
+                <div class="goods_title">
+                    <a href="#" title="<{$vo.productname}>"><{$vo.productname}></a>
+                    <span hidden class="good_type_id"><{$vo.ordertype}></span>
+                    <span hidden class="good_id"><{$vo.productid}></span>
+                    <span hidden class="order_time"><{$vo.ordtime}></span>
+                </div>
+                <div><{$vo.ordtime|date="y-m-d",###}></div>
+                <div class="order_che">Comment this Order</div>
+            </div>
+            <!-- 这是每个商品下面对应的评价包含狂-->
+            <div class="score">
+                <div>
+                    <span>评分:</span>
+                    <div>
+                        <ul class="star">
+                            <li>★</li>
+                            <li>★</li>
+                            <li>★</li>
+                            <li>★</li>
+                            <li>★</li>
+                        </ul>
+                    </div>
+                    <span class="score_span" style="color:#e3007f"></span>
+                </div>
+                <div class="div_ul">
+                    <span>标签:</span>
+                    <div class="label_div">
+                        <ul class="label">
+                        <!--
+                            <li>
+                                <input type="checkbox"> <{vm}> </span>
+                            </li>
+                         -->
+                         <input type="text" class="txt"><label for="txt">按回车键提交</label>
+                        </ul>
+                        
+                    </div>
+                </div>
+                <div>
+                    <span>心得:</span>
+                    <textarea class="text" placeholder="商品是否给力？请给出你的评价"></textarea>
+                </div>
+               <div>
+                   <span style="clear:both;float:left;">晒单:</span>
+				   <div class="addpicContainer">
+					<!-- 利用multiple="multiple"属性实现添加多图功能 -->
+					<!-- position: absolute;left: 10px;top: 5px;只针对本用例将input隐至图片底下。-->
+					<!-- height:0;width:0;z-index: -1;是为了隐藏input，因为Chrome下不能使用display:none，否则无法添加文件 -->
+					<!-- onclick="getElementById('inputfile').click()" 点击图片时则点击添加文件按钮 -->
+					<div class="file_div" style="cursor:pointer;width:120px;height:30px;font-family:'microsoft yahei';color:white;line-height:30px;text-align:center;background-color:#e3007f;border-radius:5px;font-weight:bold;">点击添加图片</div>
+					<input type="file" multiple="multiple" class="inputfile" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;"/>
+					<span class="loading"></span>
+					<div class="feedback"></div>	<!-- 响应返回数据容器 -->
+                    </div>
+               </div>
+                <div style="clear:both;">
+                    <input type="button" value="评价"  class="score_btn" style="cursor:pointer;width:100px;height:30px;line-height:30px;">
+                </div>
+            </div>
+        </div>
+    </foreach>
+
+
+	<!--已评价-->
+    <foreach name="done_comment" item="vo">
+	<div class="goods_con">
+            <div class="goods_bot">
+                <div class="img_div">
+                    <a href="../../<{$vo.goodPrefix}>/id/<{$vo.productid}>"><img src="<{$vo.productimage}>" /></a>
+                </div>
+                <div class="goods_title">
+                    <a href="#" title=""><{$vo.productname}></a>
+                </div>
+                <div><{$vo.ordtime|date="y-m-d",###}></div>
+                <div class="order_che">已评价</div>
+            </div>
+            <!-- 这是每个商品下面对应的评价包含框-->
+            <div class="score">
+            <div style="width:940px;">
+			<div class="user_time">
+				<span><{$vo.comment_info.score}>分</span>
+			</div>
+			<div class="content2"><{$vo.comment_info.content}></div>
+			<div class="img_con">
+                <foreach name="vo.img" item="vt">
+
+				<div class="small_img"><img src="<{$vt}>" /></div>
+
+                </foreach>
+				<!--这个用来显示大图片的src不要设定-->
+				<div class="big_img"><img src="#" /></div>
+			</div>
+		 </div>
+            </div>
+        </div>
+        </foreach>
+
+
+
+    </div>
+   <!-- <script src="__PUBLIC__/Js/collect/jquery.js" ></script>-->
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery/load_jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/header.js"></script>
+    <script src="__PUBLIC__/Js/score/score.js"></script>
+ <script type="text/javascript">
+$(document).ready(function(){
+	
+    $(".file_div").click(function(){
+        $(this).next("input.inputfile").click();
+    })
+	//响应文件添加成功事件
+	$(".inputfile").each(function(index){
+        var that=$(this);
+        var iNow=0;
+        var data=null;
+        var index=index;
+       $(this).change(function(){
+        //创建FormData对象
+        if(iNow<3){
+        data = new FormData();
+        //为FormData对象添加数据
+        $.each($('.inputfile')[index].files, function(i, file) {
+            data.append('upload_file'+i, file);
+        });
+        $(".loading").show();   //显示加载图片
+        //发送数据
+            $.ajax({
+            url:'../Widget/upload_img',
+            type:'POST',
+            data:data,
+            cache: false,
+            contentType: false,     //不可缺参数
+            processData: false,     //不可缺参数
+            success:function(data){
+                data = $(data).html();
+                //第一个feedback数据直接append，其他的用before第1个（ .eq(0).before() ）放至最前面。
+                //data.replace(/&lt;/g,'<').replace(/&gt;/g,'>') 转换html标签，否则图片无法显示。
+                if(that.siblings("div.feedback").children('img').length == 0) {that.siblings("div.feedback").append(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));}
+                else {that.siblings("div.feedback").children('img').eq(0).before(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));}
+                $(".loading").hide();   //加载成功移除加载图片
+                iNow++;
+            },
+            error:function(){
+                alert('上传出错');
+                $(".loading").hide();   //加载失败移除加载图片
+            }
+        });}else{
+            alert("最多只能上传3张图片");
+            return false;
+        }
+        }); 
+    })
+	
+	//点击查看大图
+	$(".small_img").click(function(ev){
+		var src=$(this).children("img").attr("src");
+		$(this).addClass("red").siblings("div").removeClass("red");
+		$(this).parent("div.img_con").children("div.big_img").show("normal");
+		$(this).parent("div.img_con").children("div.big_img").children("img").attr("src",src);
+		ev.stopPropagation();
+	})
+	$(document).click(function(){
+		$("div.big_img").hide("normal");
+		$(".small_img").removeClass("red");
+	})
+	
+	$("#list_con span.time").each(function(){
+		var text=$(this).text();
+		$(this).text((new Date(parseInt(text))).toLocaleString());
+	})
+    
+});
+</script>
+</body>
+</html>

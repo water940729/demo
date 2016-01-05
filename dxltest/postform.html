@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>formpost</title>
+</head>
+
+<body>
+<form name = "form1" method = "POST" action="testPHP.php">
+输入姓名：<input name = "user_name" type = "text"></br></br>
+选择性别：<input name = "gender" type = "radio" value = "male">男
+           <input name = "gender" type = "radio" value = "female">女</br></br>
+兴趣爱好：<input name = "hobby[]" type = "checkbox" value = "reading">阅读
+           <input name = "hobby[]" type = "checkbox" value = "travel">旅游
+		   <input name = "hobby[]" type = "checkbox" value = "sport">运动
+		   <input name = "hobby[]" type = "checkbox" value = "internet">上网
+选择职业：
+<select name = "occupy">
+<option value = "engineer">工程师</option>
+<option value = "teacher">教师</option>
+<option value = "doctor">医生</option>
+<option value = "other">其他</option>
+</select></br></br>
+<input type = "submit" value = "提交数据">
+</form>
+</body>

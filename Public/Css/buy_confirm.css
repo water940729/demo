@@ -1,0 +1,40 @@
+*{padding:0;margin:0;font-family: microsoft yahei;}
+ul{list-style: none;}
+/*外包围框*/
+.contianer{width:1010px;height:auto;overflow:hidden;margin: 10px auto;}
+/*订单提交成功尽快付款页面*/
+.con_top{width:1010px;height:60px;margin-bottom:30px;}
+.con_top_left{width:500px;height:60px;float:left;}
+.con_top_left span{display:block;height:30px;line-height:30px;color:#353535;font-size:14px;}
+.con_top_left span.succ_span{font-size:18px;color:black;}
+.con_top_right{width:500px;height:60px;float:right;}
+.con_top_right>*{display:block;text-align:right;height:30px;line-height:30px;}
+.con_top_right>span{color:#353535;font-size:16px;font-weight:bold;}
+.con_top_right>span span{color:red;font-size:20px;}
+.con_top_right>a{text-decoration:none;font-size:14px;color:#00bfff;}
+/*图片包含框*/
+.bank_sel{width:1010px;}
+.sel_way{width:1010px;height:40px;}
+.sel_way div{width:100px;height:39px;border:solid 1px #ccc;border-bottom:0;text-align:center;line-height:38px;float:left;cursor:pointer;}
+.sel_way div.selected_way{border-top:5px #e3007f solid;height:35px;line-height:35px;background-color:white;}
+.sel_way div.right_bor{border-right:0;}
+.bank_con{border:solid 1px #ccc;width:1008px;margin-top:-1px;padding-bottom:30px;}
+.bank_con_ul{width:855px;margin:10px auto;border-bottom:solid 3px #e3007f;overflow: hidden;}
+.bank_con_ul ul{overflow:hidden;}
+.bank_con_ul ul li{float:left;width:180px;height:30px;border:solid 1px #ccc;margin:10px;margin-left:14px;overflow: hidden;}
+.bank_con_ul ul li.li_bor1{border:solid 1px #e3007f}
+.bank_con_ul ul li.li_bor2{border:solid 1px #FF6600}
+.open_bank{width:855px;height:40px;margin-top:20px;margin-bottom:20px;}
+.open_bank span{color:#353535;font-size:15px;}
+.open_bank a{text-decoration:none;color:#309DEF;margin-left:20px;}
+.next_step{width:100px;height:35px;line-height:35px;color:white;font-size:20px;border-radius: 5px;margin:20px auto;text-align:center;background-color:#e3007f;cursor:pointer;}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>用户登录</title>
+<style>
+.tbl{font-size:10pt;width:30%;text-align:center;background-color:#111000;}
+</style>
+<script>
+	function check_name()
+	{
+		if(login.user_name.value == "")
+		{
+			alert("请输入用户名！");
+			return false ;
+		}
+	}
+</script>
+
+</head>
+
+<body>
+<form name="login" action = "UserInput
+.php" method = "post" onsubmit = "return check_name()">
+	<table border = "0" width = "200px" align = "center">
+		<tr>
+			<td class = "tbl">用户名：</td><td><input type = "text" name = "user_name" ></td>
+		</tr>
+		<tr>
+			<td class = "tbl" align = "center"><input type = "submit" value = "登录系统"></td>
+		</tr>
+	</table> 
+</form>
+</body>
+</html>

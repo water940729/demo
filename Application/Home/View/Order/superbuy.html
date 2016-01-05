@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>确认订单</title>
+    <link href="__PUBLIC__/Css/confirm_order.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+    <script src="__PUBLIC__/Js/confirm_order/confirm_order.js"></script>
+    <script src="__PUBLIC__/Js/confirm_order/city.js"></script>
+	<script>
+		$(function(){
+			$(".submit").click(function(){
+				var address_id=$(".address :checked").val();
+				var cart_item=$(".cart_item").attr("value");
+				var message=$(".leave_message").val();
+				var num=$(".good_num span").text();
+				var type=$(".goodstype").text();
+                document.write('<form name=myForm><input type=hidden name=address_id><input type=hidden name=num><input type=hidden name=goodstype><input type=hidden name=cart_item><input type=hidden name=message></form>'); 
+                var myForm=document.forms['myForm']; 
+                myForm.action='__APP__/order/superbuy_confirm'; 
+                myForm.method='POST'; 
+                myForm.address_id.value=address_id; 
+				myForm.num.value=num; 
+				myForm.goodstype.value=JSON.stringify(type); 
+				myForm.cart_item.value=JSON.stringify(cart_item); 
+				myForm.message.value=JSON.stringify(message);
+				myForm.submit();
+			})
+		})
+	</script>
+</head>
+<body>
+<!--这是header区域-->
+<include file="Public:header" />
+<div class="container">
+    <!--这是logo和进度的部分-->
+    <div class="logo_pro">
+        <div class="logo"><img src="__PUBLIC__/image/confirm_order/logo.jpg" /></div>
+        <div class="shopCar"><img src="__PUBLIC__/image/confirm_order/shopCar.jpg" /></div>
+        <div class="progrecess">
+            <ul>
+                <li class="pro_li_spec"><div class="pro_li_spec">1</div></li>
+                <li class="pro_li_spec"><div class="pro_li_spec">2</div></li>
+                <li><div>3</div></li>
+                <li><div>4</div></li>
+            </ul>
+            <div class="pro_div">
+                <span>我的购物车</span>
+                <span>确认订单</span>
+                <span>付款</span>
+                <span>支付成功</span>
+            </div>
+        </div>
+    </div>
+    <div class="title">
+        配送信息
+    </div>
+    <div class="body_container">
+        <div class="address">
+			<input type="radio" name="radio1" checked="checked" value="<{$default['address_id']}>"><span><{$default["username"]}> <{$default["phone"]}> <{$default["address"]}></span><br/>
+			<foreach name="adddata" item="vo">
+				<input type="radio" name="radio1" value="<{$vo['address_id']}>">
+				<span><{$vo["username"]}> <{$vo["phone"]}> <{$vo["address"]}></span><br/>
+			</foreach>
+        </div>
+
+        <div class="add_address">
+            <span class="to_address">寄送至:</span>
+            <span class="add_new_address"><a href="#">添加新地址</a></span>
+        </div>
+
+        <div class="add_information">
+            <div class="info_div">
+                <label><span>*</span>收 货 人:</label>
+                <input type="text" value="姓名，如张三" name="username"/>
+            </div>
+
+            <div class="info_div">
+                <label><span>*</span>手机号码:</label>
+                <input type="text" value="请填写正确的11位手机号码" name="phone"/>
+            </div>
+            <div class="sel_address">
+                <label><span>*</span>所在地址:</label>
+                <select id="Province" runat="server" name="province" style="width: 90px;" ></select>
+                <select id="Country" runat="server" name="country" style="width: 90px;"></select>
+                <select id="Town" runat="server" name="town" style="width: 90px;"></select>
+            </div>
+            <div class="info_div">
+                <label><span>*</span>详细地址:</label>
+                <span id="detail_add"></span><input type="text" value="详细地址" name="address" id="cho_inp"/>
+            </div>
+
+            <div>
+                <input type="checkbox" class="set_address"/><label  class="set_address_label">设置为默认的收货地址</label>
+            </div>
+		<div class="confirm_info">
+            确认配货信息
+        </div>
+        </div>
+
+        
+
+    </div>
+
+        <!--底下是支付方式-->
+    <!--底下是商品信息及服务信息-->
+    <div class="title">
+        商品信息及服务信息
+        <a href="__APP__/order/cart">返回购物车修改商品</a>
+    </div>
+
+    <div class="goods_info">
+        <div class="goods_info_top">
+            <div class="goods_name">商品名称</div>
+            <div>商品单价(元)</div>
+            <div>数量</div>
+            <div>服务信息</div>
+        </div>
+			<span class="title_name"><{$result["shop_name"]}></span>
+			
+			<div class="shop_info"><!--每个商铺对应的一项内容-->
+						<div class="good_con">
+						<div class="cart_item" value="<{$result['id']}>">
+						</div>
+						<div class="shop_info_img">
+							<img src="<{$result['image_url']}>">
+						</div>
+						<div class="span_text">
+							<a href="#"><{$result["name"]}> <span class="goodstype"><{$type}></span></a>
+						</div>
+						<div class="price">
+							<span><{$result['price']}></span>
+						</div>
+						<div class="good_num">
+							<span><{$num}></span>
+						</div>
+						<div class="money_div">
+							<span class="money"><{$result['freight']}></span>
+							<span class="quick">支付完成后尽快为你发货</span>
+						</div>
+						</div>
+				<div class="goods_info_bottom">
+					<label for="leave_maeeage">给卖家留言:</label>
+					<textarea class="leave_message" placeholder="选填：对本次交易的补充说明，所填内容须与卖家达成一致意见。90字以内"></textarea>
+				   <span> <span class="message_num">0</span>/90</span>
+				</div>
+			</div>
+
+        <!--底下是结算信息
+    <div class="title">
+        结算信息
+    </div>-->
+
+    <div class="balance_info">
+        <div class="all_info_list">
+            <div>
+                <span>应付金额:
+                <span class="last_price"></span></span>
+            </div>
+            <div class="submit_order">
+                <a href="javascript:void(0)" class="submit">提交订单</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<SCRIPT language="javascript">
+    setup();
+</SCRIPT>
+<include file="Public/footer" />
+</body>
+</html>

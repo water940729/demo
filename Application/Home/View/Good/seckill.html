@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SecKill Page</title>
+	<link href="__PUBLIC__/Css/seckill.css" type="text/css" rel="stylesheet" />
+		<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+		<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+	<script src="__PUBLIC__/Js/seckill/seckill.js"></script>
+	<script src="__PUBLIC__/Js/seckill/time.js"></script>
+	<script src="__PUBLIC__/Js/seckill/header.js"></script>
+	<script>
+		$(function(){
+			$("#search").click(function(){
+				var name=$(this).prev("input").val();
+				if($.trim(name)==""){
+					alert("Please input any key words");
+				}else{
+					window.location.href="__APP__/good/search/n/"+name;
+				}
+			})
+		})
+	</script>	
+</head>
+<body>
+	<include file="Public/header"/>
+	<div class="ad_img">
+		<div class="navi_div">
+			<ul>
+				<li class="cur"><a href="__APP__/index/index">Home</a></li>
+				<ul class="ul_right">
+					<li><a href="__APP__/order/cart"><img src="__PUBLIC__/image/seckill/scar.jpg" />Cart<div id="shop_num">
+					<empty name="Think.cookie.num">
+					0
+					<else/>
+						<{$Think.cookie.num}>
+					</empty></div></a></li>
+				</ul>
+			</ul>
+			
+		</div>
+		<div class="img_div">
+			<a href="javascript:void(0)" id="to_left"><</a>
+			<a href="javascript:void(0)" id="to_right">></a>
+			<ul id="img_ul">
+				<foreach name="seckill_focus" item="vo">
+					<li><a href="<{$vo.link_url}>"><img src="<{$vo.image_url}>"/></a></li>
+				</foreach>
+			</ul>
+			<div class="img_eq"></div>
+		</div>
+	</div>
+	<!--底下是导航条-->
+	<div class="navigator">
+		<ul>
+			<li style="font-size:20px;font-weight:bold;">SecKill Session</li>
+			<foreach name="seckill_goods_start" item="vo">
+				<empty name="vo.seckill_goods">
+				<else/>
+				<li><{$vo.typename}></li>
+				</empty>
+			</foreach>
+			<li><a href="#">All Items>>></a></li>
+		</ul>
+		<span id="san_span"><img src="__PUBLIC__/image/seckill/san.png" /></span>
+	</div>
+	
+	<!--主内容商品展示-->
+	<div class="container">
+		<!--上面的商品展示-->
+		<div class="top_th">
+		<foreach name="seckill_goods_start"  item="vo">
+				<empty name="vo.seckill_goods">
+				<else/>
+			        <div class="top_con">
+					<foreach name="vo.seckill_goods" item="vi">
+						<div class="top_img_div">
+							<div class="img_div">
+								<div class="heart" title="Favorite">❤</div>
+								<div class="img_con"><a href="__APP__/good/secgoods/id/<{$vi.id}>"><img src="<{$vi.img_url}>" /></a></div>
+								<div class="mask_div"></div>
+								<div class="mask_time">
+									<span>To End:</span>
+									<span class="time_now"></span>
+									<span class="startTime"><{$vi.start}></span>
+									<span class="endTime"><{$vi.end}></span>
+									<span class="goods_num"><{$vi.num}></span>
+								</div>
+							</div>
+
+							<div class="img_span">
+								<div class="title"><a href="__APP__/good/secgoods/id/<{$vi.id}>"><{$vi.goodsname}></a></div>
+								<div class="price">
+									<span>￥<span style="font-size:25px"><{$vi.price}></span></span>
+								</div>
+
+								<div class="go_sec"><a href="__APP__/good/secgoods/id/<{$vi.id}>">To SecKill</a></div>
+							</div>
+						</div>
+					</foreach>
+			        </div>
+				</empty>
+		</foreach>
+
+        <!--这里是全部得商品列表-->
+        <div class="top_con">
+            <foreach name="seckill_goods_start" item="vo">
+                <foreach name="vo.seckill_goods" item="vi">
+					<div class="top_img_div">
+    					<div class="img_div">
+							<div class="heart" title="Favorite">❤</div>
+								<div class="img_con"><a href="__APP__/good/secgoods/id/<{$vi.id}>"><img src="<{$vi.img_url}>" /></a></div>
+								<div class="mask_div"></div>
+								<div class="mask_time">
+									<span>To End:</span>
+									<span class="time_now"></span>
+									<span class="startTime"><{$vi.start}></span>
+									<span class="endTime"><{$vi.end}></span>
+									<span class="goods_num"><{$vi.num}></span>
+								</div>
+						    </div>
+
+							<div class="img_span">
+								<div class="title"><a href="__APP__/good/secgoods/id/<{$vi.id}>"><{$vi.goodsname}></a></div>
+								<div class="price">
+									<span>￥<span style="font-size:25px"><{$vi.price}></span></span>
+								</div>
+
+								<div class="go_sec"><a href="__APP__/good/secgoods/id/<{$vi.id}>">To SecKill</a></div>
+			    	</div>
+                 </div>
+            </foreach>
+        </foreach>
+        </div>
+
+	</div>
+		<!--秒杀预告-->
+		<div class="prev_div">
+			<span>Coming Soon</span>
+			<ul>
+			<foreach name="seckill_goods_never" item="vo">
+				<empty name="vo.seckill_goods">
+				<else/>
+				<li style="color:white;cursor:pointer;"><{$vo.typename}></li>
+				</empty>
+			</foreach>
+			<li><a href="javascript:void(0)">All Items></a></li>
+			</ul>
+		</div>
+		
+		<!--秒杀预告下面的商品-->
+	<div class="bot_th">
+			<foreach name="seckill_goods_never"  item="vo">
+					<empty name="vo.seckill_goods">
+					<else/>
+						<div class="top_con">
+						<foreach name="vo.seckill_goods" item="vi">
+							<div class="top_img_div">
+								<div class="img_div">
+									<div class="heart" title="Favorite">❤</div>
+									<div class="img_con"><img src="<{$vi.img_url}>"></div>
+									<div class="mask_div"></div>
+									<div class="mask_time">
+										<span class="start">To Start:</span>
+										<span class="time_now"></span>
+										<span class="startTime"><{$vi.start}></span>
+										<span class="endTime"><{$vi.end}></span>
+										<span class="goods_num"><{$vi.num}></span>
+									</div>
+								</div>
+								<div class="img_span">
+									<div class="title"><{$vi.goodsname}></div>
+									<div class="price">
+										<span>￥<span style="font-size:25px"><{$vi.price}></span></span>
+									</div>
+									<div class="go_sec"><a href="#">To SecKill</a></div>
+								</div>
+							</div>
+						</foreach>
+						</div>
+					</empty>
+			</foreach>
+
+        <!--全部的秒杀预告商品-->
+        <div class="top_con">
+        <foreach name="seckill_goods_never" item="vo">
+            <foreach name="vo.seckill_goods" item="vi">
+                 			<div class="top_img_div">
+								<div class="img_div">
+									<div class="heart" title="Favorite"></div>
+									<div class="img_con"><img src="<{$vi.img_url}>"></div>
+									<div class="mask_div"></div>
+									<div class="mask_time">
+										<span class="start">To Start:</span>
+										<span class="time_now"></span>
+										<span class="startTime"><{$vi.start}></span>
+										<span class="endTime"><{$vi.end}></span>
+										<span class="goods_num"><{$vi.num}></span>
+									</div>
+								</div>
+								<div class="img_span">
+									<div class="title"><{$vi.goodsname}></div>
+									<div class="price">
+										<span>￥<span style="font-size:25px"><{$vi.price}></span></span>
+									</div>
+									<div class="go_sec"><a href="#">To SecKill</a></div>
+								</div>
+							</div>
+
+            </foreach>
+        </foreach>
+        </div>
+	</div>
+	</div>
+	<include file="Public/footer" />
+</body>
+</html>

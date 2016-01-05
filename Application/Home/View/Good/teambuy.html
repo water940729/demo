@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Team Buy Page</title>
+		<link href="__PUBLIC__/Css/teambuy.css" type="text/css" rel="stylesheet" />
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+		<script src="__PUBLIC__/Js/teambuy/teambuy.js"></script>
+		<script src="__PUBLIC__/Js/trial/header.js"></script>
+		<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+		<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<script>
+		$(function(){
+			$("#search").click(function(){
+				var name=$(this).prev("input").val();
+				if($.trim(name)==""){
+					alert("Please input any key words");
+				}else{
+					window.location.href="__APP__/good/search/n/"+name;
+				}
+			})
+		})
+		</script>
+	</head>
+	<body>
+	<include file="Public/header"/>
+	
+	<div class="logo_search">
+		<div class="logo"><a href="__APP__/index/index"><img src="<{$array['pics']}>" /></a></div>
+		<div class="search">
+			<input type="text" name=""/>
+			<input type="button" id="search" value="Search" style="background-color:#E3007F;"/>
+		</div>
+		<ul>
+			<foreach name="keyword" item="vo">
+				<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+			</foreach>
+		</ul>
+	</div>
+
+	
+	<!--上面的导航条以及图片幻灯片-->
+	<div class="ad_img">
+		<div class="navi_div">
+			<ul>
+				<li><a href="__APP__/index/index">Home</a></li>
+				<ul class="ul_right">
+					<li><a href="__APP__/order/cart"><img src="__PUBLIC__/image/teambuy/scar.jpg" />Cart<div id="shop_num">
+						<empty name="Think.cookie.num">
+							0
+						<else/>
+							<{$Think.cookie.num}>
+						</empty></div>
+					</a></li>
+				</ul>
+			</ul>
+			
+		</div>
+		<div class="img_div">
+			<a href="javascript:void(0)" id="to_left"><</a>
+			<a href="javascript:void(0)" id="to_right">></a>
+			<ul id="img_ul">
+				<foreach name="teambuy_focus" item="vo">
+					<li><a href="<{$vo.link_url}>"><img src="<{$vo.image_url}>"/></a></li>
+				</foreach>
+			</ul>
+			<div class="img_eq"></div>
+		</div>
+	</div>
+	
+	
+	<!--主内容包含框-->
+	<div class="container">
+		<div class="top_title" style="background-color:red;">
+			<span>All Items</span>
+			<ul class="title_ul">
+                <li></li>
+				<foreach name="teambuy_goods_start" item="vo">
+					<empty name="vo.teambuy_goods">
+					<else/>
+					<li><a href="javascript:void(0)"><{$vo.typename}></a></li>
+					</empty>
+				</foreach>
+				<li><a href="javascript:void(0)">All Items></a></li>
+			</ul>
+		</div>
+		<foreach name="teambuy_goods_start" item="vo">
+				<empty name="vo.teambuy_goods">
+				<else/>
+					<div class="top_con">
+					<!--每个小商品-->
+						<foreach name="vo.teambuy_goods" item="vi">
+								<div class="top_img_div">
+									<div class="top_img">
+										<div class="img_con"><a href="#"><img src="<{$vi.img_url}>" /></a></div>
+									</div>
+									<div class="bot_text">
+										<div class="brand_name"><a href="__APP__/good/teamgoods/id/<{$vi.id}>"><{$vi.goodsname}></a></div>
+										<div class="discount">￥<span><{$vi.price}></span></div>
+									</div>
+								</div>
+						</foreach>
+					</div>
+				</empty>
+		</foreach>
+        
+       <!--显示全部的团购商品-->
+       <div class="top_con">
+            <foreach name="teambuy_goods_start" item="vo">
+                <foreach name="vo.teambuy_goods" item="vi">
+					<div class="top_img_div">
+						<div class="top_img">
+							<div class="img_con"><a href="#"><img src="<{$vi.img_url}>" /></a></div>
+						</div>
+						<div class="bot_text">
+					        <div class="brand_name"><a href="__APP__/good/teamgoods/id/<{$vi.id}>"><{$vi.goodsname}></a></div>
+						    <div class="discount">￥<span><{$vi.price}></span></div>
+						</div>
+    				</div>
+                </foreach>
+            </foreach>
+       </div>
+	</div>
+	<include file="Public/footer" />
+</body>
+	
+</html>
+

@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+		<title><{$result["goods_keywords"]}>-葵花商城</title>
+		<meta name="keywords" content="<{$result['goods_keywords']}>"/>
+		<meta name="description" content="<{$result['goods_desc']}>" />
+		<link href="__PUBLIC__/Css/super_index.css"  rel="stylesheet" type="text/css"/>
+		<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+		<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+		<script src="__PUBLIC__/Js/good_info/header.js"></script>
+		<script src="__PUBLIC__/Js/good_info/good_info.js"></script>
+		<script src="__PUBLIC__/Js/good_info/good_info2.js"></script>
+		<script>
+			window.onload = function() {
+				var height = document.body.clientHeight;
+				var width = document.body.clientWidth;
+				var onOff = true;
+				var str = "";
+				//判断是否完全选取了所有条件
+				$(".cho_deal").each(function() {
+					$(this).attr("flag", false)
+				});
+
+				$(".cho_deal").find("div.choose_color").find("li").click(function() {
+					$(this).parents(".cho_deal").attr("flag", true);
+				})
+				function judge() {
+					$node = $(".cho_deal");
+					for (var i = 0; i < $node.length; i++) {
+						if ($($node[i]).attr("flag") == "false") {
+							str += $($node[i]).find("span.info_span").text();
+							onOff = false;
+							alert("请选择:" + str);
+							str="";
+							break;
+						}
+						onOff=true;
+					}
+				}
+				$(function() {
+					//点击加入购物车事件
+					$(".shopCar").click(function() {
+						judge();
+						var top = (height - $(".shopCar_mask_div").height()) / 2;
+						var left = (width - $(".shopCar_mask_div").width()) / 2;
+						var type = $("#already_choose").text();
+						var id = $("#number").text();
+						var num = $("#num").val();
+						var data = "type=" + type + "&id=" + id + "&num=" + num;
+						if (onOff) {
+							$.ajax({
+								type : "POST",
+								url : "__APP__/order/addcart",
+								data : data,
+								success : function(msg) {
+									if (msg == 1) {
+										$(".shopCar_mask,.shopCar_mask_div").fadeIn(200);
+										$(".shopCar_mask_div").css({
+											top : top + "px",
+											left : left + "px"
+										});
+									} else {
+										alert(msg);
+									}
+									
+									var text=$(".shopCar_img div").text();
+									$(".shopCar_img div").text(parseInt(text)+parseInt($("#num").val()));
+								}
+							});
+						}
+
+						//$("body").css("overflow","hidden");
+					});
+					$("#buy").click(function() {
+                        judge();
+                        if(onOff){
+						
+                            var type = $("#already_choose").text();
+                            var id = $("#number").text();
+                            var num = $("#num").val();
+                            document.write('<form name=myForm><input type=hidden name=num><input type=hidden name=id><input type=hidden name=type></form>');
+                            var myForm = document.forms['myForm'];
+                            myForm.action = '__APP__/order/buy';
+                            myForm.method = 'POST';
+                            myForm.num.value = num;
+                            myForm.id.value = id;
+                            myForm.type.value = type;
+                            myForm.submit();
+                        }
+
+					});
+					$("#search").click(function(){
+						var name=$(this).prev("input").val();
+						if($.trim(name)==""){
+							alert("请输入关键词");
+						}else{
+							window.location.href="__APP__/good/search/n/"+name;
+						}
+					});
+				});
+				//$("body").css("overflow","hidden");
+			}
+		
+		</script>
+	</head>
+	<body>
+	<include file="Public/header" />
+	<!--最外层的包含框-->
+	<div class="container">
+		<div class="logo_search">
+			<div class="logo"><a href="#"><img src="__PUBLIC__/image/good_info/logo.jpg" /></a></div>
+			<div class="search">
+				<input type="text" name=""/>
+			<input type="button" id="search" value="搜索" style="background-color:#E3007F;"/>
+			</div>
+			<div class="shopCar_img">
+			<a href="__APP__/order/cart"><img src="__PUBLIC__/image/good_info/shopcar.jpg" />
+				<!--这段代码是显示购物车数量的-->
+				<div>
+					<empty name="Think.cookie.num">
+					0
+				<else/>
+					<{$Think.cookie.num}>
+				</empty>
+				</div>
+			</a>
+			</div>
+			<ul>
+				<foreach name="keyword" item="vo">
+					<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+				</foreach>
+			</ul>
+		</div>
+	<!--导航区域-->
+	<div class="navigator">
+		<ul>
+			<li style="width:150px;background:#309DEF url(__PUBLIC__/image/good_info/dis.jpg) right center no-repeat;color:white;">全部商品分类</li>
+					<li style="font-weight:900;font-size:20px;color:black;" class="li_spec">首页</li>
+					<li><a href="__APP__/good/super" target="_blank" >超市</a></li>
+					<li><a href="__APP__/good/seckill" target="_blank" >秒杀</a></li>
+					<li><a href="__APP__/good/teambuy" target="_blank" >团购</a></li>
+					<li><a href="__APP__/good/trial" target="_blank" >试用</a></li>
+					<li><a href="__APP__/good/book" target="_blank" >预售</a></li>
+		</ul>
+	</div>
+	<!--路线-->
+	<div class="route" id="route">
+		<span><a href="__APP__/index/index">首页</a></span>>
+		<span>
+		<foreach name="type1_result" item="vo">
+		<a href="__APP__/good/goodslist/f/<{$vo.id}>"><{$vo.name}></a></span>>
+		</foreach>
+		<div>
+			<foreach name="current_type2" item="vo">
+				<a href="__APP__/good/goodslist/s/<{$vo.id}>"><{$vo.name}></a>
+			</foreach>
+			<ul>
+				<foreach name="type2_result" item="vo">
+					<!--<{vo.id}>--><li><a href="__APP__/good/goodslist/s/<{$vo.id}>"><{$vo.name}></a></li>
+				</foreach>
+			</ul>
+		</div>
+			>
+		<div>
+			<foreach name="current_type3" item="vo">
+				<a href="__APP__/good/goodslist/type/<{$vo.id}>"><{$vo.name}></a>
+			</foreach>
+			<ul>
+				<foreach name="type3_result" item="vo">
+					<!--<{vo.id}>--><li><a href="__APP__/good/goodslist/type/<{$vo.id}>"><{$vo.name}></a></li>
+				</foreach>
+			</ul>
+		</div>
+			>
+		<span><a href="#" ><{$result[0]["name"]}></a></span>
+	</div>
+	
+	<!--商品展示以及购买的详细信息-->
+	<div class="good_display">
+		<!--左边的商品展示-->
+		<div class="good_display_left">
+			<div class="big_image" id="big_image">
+				<img src="<{$photo[0][pic_url]}>"  />
+			</div>
+			<div class="small_image">
+				<div id="to_left"><</div>
+				<div class="ul_div" id="ul_div">
+					<ul>
+						<foreach name="photo" item="vo">
+							<li><img src="<{$vo.pic_url}>" /></li>
+						</foreach>
+					</ul>
+				</div>
+						<div id="to_right">
+							>
+						</div>
+					</div>
+					<div class="share">
+						商品编号：<span id="number"><{$result[0]["id"]}></span>
+					</div>
+				</div>
+
+				<!--中间的文字信息-->
+				<div class="good_display_center">
+					<div class="top_right">
+					<div class="title_div">
+						<span class="title"> <{$result[0]["name"]}>
+							<br/>
+						</span>
+						<br />
+					</div>
+					<div class="two">
+						<span class="info_span"> 葵  花  价 </span>
+						<div>
+							<span class="price">￥</span></span><span class="price" style="font-size:25px;margin-right:10px;"><{$result[0]["price"]}></span>原价<{$result[0]["original_price"]}><a href="#">降价通知</a>
+							<br />
+						</div>
+					</div>
+
+					<div class="five">
+						<span class="info_span">服务</span>
+						<div>
+							<span>由“葵花”直接销售和发货，并提供售后服务和在线客服
+								<img src="__PUBLIC__/image/good_info/cen2.jpg"  />免运费<img src="__PUBLIC__/image/good_info/cen3.jpg"  />自提<img src="__PUBLIC__/image/good_info/cen4.jpg"  />不支持无理由退换货 </span>
+						</div>
+					</div>
+					<foreach name="extattribute" item="vo">
+						<div class="six<{$i}> cho_deal" id="six<{$key}>">
+							<span class="info_span" id="type"><{$vo.name}></span>
+							<div id="choose_color" class="choose_color">
+								<ul>
+									<foreach name="vo.value" item="vo">
+										<li>
+											<{$vo}>
+										</li>
+									</foreach>
+								</ul>
+							</div>
+						</div>
+					</foreach>
+					<div class="eight">
+						<span class="info_span">数量</span>
+						<div>
+							<div id="decrease">
+								-
+							</div>
+							<input type="text" id="num" value="1"  />
+							<div id="add">
+								+
+							</div>
+						</div>
+					</div>
+			</div>
+					<div class="center_bot">
+						<div class="center_bot_top">
+							您已选择<span id="already_choose"></span>
+						</div>
+						<div class="button">
+							<div id="buy">
+								<a href="javascript:void(0)">立即购买</a>
+							</div>
+							<!-- <div id="shopCar" class="shopCar">
+								加入购物车
+							</div> -->
+							<div id="collect">
+								收藏
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--底下是相关发布和创建宝宝档案-->
+			<div class="goods_detail">
+				<!--右边的一些商品数据和图片-->
+				<div class="right_detail">
+					<!--底下是商品详情包装及参数和其它部分-->
+					<div class="right_bot_details">
+						<!--商品信息导航条-->
+						<div class="right_bot_ul" >
+							<ul>
+								<li class="ul_li_current">
+									商品详情
+								</li>
+								<li>
+									包装及参数
+								</li>
+								<li>
+									评价(<span></span>)
+								</li>
+								<li>
+									售后保障
+								</li>
+							</ul>
+						</div>
+						<!--商品详细信息展示区域-->
+						<div class="details_dispaly">
+							<{$result[0]["goods_info"]}>
+						</div>
+
+						<!--包装及参数-->
+						<div class="details_dispaly">
+							<{$result[0]["package_info"]}>
+						</div>
+
+						<!--评价-->
+                        <div class="details_dispaly">
+
+                        </div>
+						<!--售后保障-->
+						<div class="details_dispaly">
+							<{$result[0]["sales_support"]}>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<include file="Public/footer" />
+		<!--这里是添加到购物车的蒙板效果-->
+		<div class="shopCar_mask"></div>
+		<!--购物车蒙板之中的div-->
+		<div class="shopCar_mask_div">
+			<div class="shopCar_mask_back">
+				<span id="back_span">×</span>
+			</div>
+			<div class="success_add">
+				商品已成功加入购物车
+			</div>
+			<div class="shopCar_btn">
+				<a href="__APP__/index/index" class="go_shopping">继续购物</a>
+				<a href="__APP__/order/cart" class="go_shopCar">去购物车结算</a>
+			</div>
+		</div>
+		<!--这里是添加到我的收藏的蒙板效果-->
+		<div class="collect_mask"></div>
+		<!--购物车蒙板之中的div-->
+		<div class="collect_mask_div"></div>
+
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> 菜单 </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="Jiangting@WiiPu -- http://www.wiipu.com" />
+	<link rel="stylesheet" href="../css/style2.css" type="text/css"/>
+	<link rel="stylesheet" href="../css/bootstrap/css/bootstrap.min.css">
+
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="../css/bootstrap/css/bootstrap-theme.min.css">
+
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="../css/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../css/bootstrap/js/jquery.js"></script>
+  <script src="../js/jquery-1.9.1.min.js"></script>
+  <script src="../js/highcharts.js" type="text/javascript"></script>
+  <script>
+  $(function(){
+		$("li a").click(function(){
+			$(this).parent().addClass("active");
+			$(this).parent().siblings().removeClass("active");
+		})
+  })
+  </script>
+ </head>
+		<div class="bgintor">				
+				<div class="tit1">
+					<ul>				
+						<li><a href="#">statistic</a></li>
+					</ul>		
+				</div>
+				<div class="header1"><img src="../images/square.gif" width="6" height="6" alt="" />
+					<span>location：statistic manage －&gt; <strong>order statistic</strong></span>
+				</div> 
+				<div>
+
+				  <!-- Nav tabs -->
+				  <ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="sale_line_chart.html" class="line_chart" aria-controls="home" role="tab" data-toggle="tab" target="chartFrame">line chart</a></li>
+					<li role="presentation"><a href="sale_pie_chart.html" class="pie_chart" aria-controls="profile" role="tab" data-toggle="tab" target="chartFrame">pie chart</a></li>
+				  </ul>
+
+				</div>
+		</div>
+</html>				

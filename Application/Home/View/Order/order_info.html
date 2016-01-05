@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>Order Information</title>
+<link href="__PUBLIC__/Css/order_info.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+<script type="text/javascript" src="__PUBLIC__/Js/order_info/header.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/order_info/order_info.js"></script>
+<script>
+		$(function(){
+			$("#search").click(function(){
+				var name=$(this).prev("input").val();
+				if($.trim(name)==""){
+					alert("Please input key word");
+				}else{
+					window.location.href="__APP__/good/search/n/"+name;
+				}
+			})
+		})
+</script>	
+</head>
+<body>
+
+	<!--登陆注册页面-->
+	<include file="Public/header" />
+		<!--主包含框-->
+		<div class="container">
+			<div class="logo_search">
+		<div class="logo"><a href="__APP__/index/index"><img src="<{$array['pics']}>"/></a></div>
+		<div class="search">
+			<input type="text" name=""/>
+			<input type="button" id="search" value="Search" style="background-color:#E3007F;"/>
+		</div>
+		<div class="shopCar">
+		<a href="__APP__/order/cart"><img src="__PUBLIC__/image/shangcheng_image/shopcar.jpg" />
+		<!--这段代码是显示购物车数量的-->
+		<div>
+		<empty name="Think.cookie.num">
+			0
+		<else/>
+			<{$Think.cookie.num}>
+		</empty>
+		</div>
+		</a>
+		</div>
+		<ul>
+			<foreach name="keyword" item="vo">
+				<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+			</foreach>
+		</ul>
+	</div>
+		<div class="navigator">
+			<ul class="navigator_ul">
+				<li style="width:120px;height:63px;margin-bottom:-3px;background-color:#309DEF;color:white;font-weight:bold;"><a href="__APP__/index/index">Main Page</a></li>
+				
+				<li><a href="__APP__/good/seckill">SecKill</a></li>
+				<li><a href="__APP__/good/teambuy">TeamBuy</a></li>
+				<li><a href="__APP__/good/trial">Trial</a></li>
+				<li><a href="__APP__/good/book">PreSell</a></li>
+			</ul>
+		</div>
+		<!--路线-->
+		<div class='body_container'>
+		<div class="route">
+			<span style="font-size:20px;color:#E3007F;">My Order</span>>
+			<span><a href="__APP__/order/order" >Order Centre</a></span>>
+			<span>Order Number：<{$ordid}></span>
+		</div>
+		
+		<div class="status_div">
+			<div style="border-bottom:solid 1px #ccc;">
+				Order Number：<span><{$ordid}></span>
+				Status：<span class="status_span">Finish</span>
+			</div>
+			<div class="div_bot">
+				<span>Order has been completed, thank you for shopping in the Sunflower Mall, we would appreciate if you could submit your comment</span>
+				<a href="#">Comment right now </a>
+			</div>
+		</div>
+		
+		<div class="information_div">
+			<div class="title_div">
+				Order Information
+			</div>
+			<div class="order_div">
+				Order Number：<span><{$ordid}></span>
+				Shipping Mall：<span><{$data.mall_name}></span>
+				Transaction Time：<span id="checktime"><{$data.checktime}></span>
+				Payment Time：<span id="ordtime"><{$data.ordtime}></span>
+			</div>
+			<div class="address_div">
+				<h5>Consignee Information</h5>
+				<div>Consignee：<span><{$data.recname}></span></div>
+				<div>Address：<span><{$data.recaddress}></span></div>
+				<div>Phone Number：<span><{$data.recphone}></span></div>
+			</div>
+			<div class="address_div">
+				<h5>Payment and delivery</h5>
+				<div>Payment：<span><{$data.payment_type}></span></div>
+				<div>Freight：<span>￥<{$data.freight}></span></div>
+				<div>Delivery Date：<span><{$data.deliverydate}></span></div>
+				<div>Delivery Time：<span><{$data.deliverytime}></span></div>
+			</div >
+			<div class="address_div">
+				<h5>Invoice Information</h5>
+				<div>Invoice Type：<span><{$data.invoicetype}></span></div>
+				<div>Invoice Title：<span><{$data.invoicetitle}></span></div>
+				<div>Invoice Content：<span><{$data.invoicecontent}></span></div>
+			</div>
+			
+			<div class="order_information">
+				<div class="top_title">
+					<ul>
+						<li style="width:300px;">Good Number</li>
+						<li class="li_special">Good Information</li>
+						<li>Price</li>
+						<li>Amount</li>
+						<li>Total Price</li>
+						<li>Move</li>
+					</ul>
+				</div>
+				<if condition="$data[ordstatus] eq 1">
+					<volist name="result" id="vo">
+						<div class="bot_title bot<{$i}>">
+							<ul>
+								<li style="overflow:hidden;width:300px; "><{$vo.ordid}></li>
+									<ul>
+										<li class="li_special">
+											<div class="img_div">
+												<img src="<{$vo.productimage}>"  />
+											</div>
+											<div class="img_infor_div">
+												<span><a href="__APP__/good/index/id/<{$vo.productid}>"><{$vo.productname}></a></span>
+											</div>
+										</li>
+										<li>￥<{$vo.ordprice}></li>
+										<li><{$vo.ordbuynum}></li>
+										<li>￥<{$vo.ordfee}></li>
+									</ul>
+								<if condition="$i eq 1">
+									<li style="border:0;line-height:30px;">
+										<div id="comment">Comment</div>
+										<a href="#">Service</a>
+										<a href="#">Buy it Again</a>
+										<div id="delete">Delete</div>
+									</li>
+								</if>
+							</ul>
+						</div>
+					</volist>
+				<else/>
+				<!--待付款的-->
+					<volist name="result" id="vo">
+						<div class="bot_title bot<{$i}>">
+							<ul>
+								<li style="overflow:hidden;width:300px; "><{$vo.ordid}></li>
+									<ul>
+										<li class="li_special">
+											<div class="img_div">
+												<img src="<{$vo.productimage}>"  />
+											</div>
+											<div class="img_infor_div">
+												<span><a href="__APP__/good/index/id/<{$vo.productid}>" title="<{$vo.productname}>"><{$vo.productname}></a></span>
+											</div>
+										</li>
+										<li>￥<{$vo.ordprice}></li>
+										<li><{$vo.ordbuynum}></li>
+										<li>￥<{$vo.ordfee}></li>
+									</ul>
+								<if condition="$i eq 1">
+									<li style="border:0;line-height:30px;">
+										<a href="#" style="margin-top:35px;">Pay Now</a>
+										<a href="javascript:void(0)" id="delete_order">Cancel Order</a>
+									</li>
+								</if>
+							</ul>
+						</div>
+						
+					</volist>
+				<!--待付款结束-->
+				</if>
+			</div>
+		<div class="all_price">
+			<foreach name="total" item="vo">
+				<div>Order Price：<span style="font-size:30px;color:#E3007F;">￥<{$vo["sum"]+$data["freight"]-$data["cashback"]}></span></div>
+				<!--立即付款--><if condition="$data[ordstatus] eq 0"><a href="#" id="go_pay">Pay it now </a></if>
+			</foreach>
+		</div>
+		</div>
+		</div>
+	</div>
+
+<include file="Public/footer" />
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+

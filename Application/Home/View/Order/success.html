@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Pay Sucess Page</title>
+		<link href="__PUBLIC__/Css/success.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+	<script type="text/javascript" src="__PUBLIC__/Js/shangcheng_js/header.js"></script>
+	</head>
+	<body>
+	<include file="Public/header" />
+		<!--这是logo和进度的部分-->
+		<div class="container">
+				<div class="logo_pro">
+			<div class="logo"><a href="__APP__/index/index"><img src="__PUBLIC__/image/success/logo.jpg" /></a></div>
+				<div class="progrecess">
+					<ul>
+						<li class="pro_li_spec"><div class="pro_li_spec">1</div></li>
+						<li class="pro_li_spec"><div class="pro_li_spec">2</div></li>
+						<li class="pro_li_spec"><div class="pro_li_spec">3</div></li>
+						<li class="pro_li_spec"><div class="pro_li_spec">4</div></li>
+						
+					</ul>
+					<div class="pro_div">
+						<span>My Shopping Cart</span>
+						<span>Confirm Order</span>
+						<span>Payment</span>
+						<span>Payment Success</span>
+					</div>
+				</div>
+			</div>
+			<!--底下是内容content-->
+			<div class="content">
+				<div class="buy_suc">
+					<div class="suc_img"><img src="__PUBLIC__/image/success/add.jpg" /></div>
+					<div class="suc_span">
+						<span class="suc">Pay Successful!</span>
+						<span class="order">Order Number:<span class="order_num"><{$out_trade_no}></span></span>
+					</div>
+				</div>
+				<div class="suc_con">
+					We will deliver the goods as soon as possible after the payment is completed
+					You also can go to“<a href="__APP__/order/order">My Order</a>”to check Order's newest status
+				</div>
+				<div class="go_cart">
+					<a href="__APP__/index/index" class="buy">Continue Shopping</a>
+					<a href="__APP__/order/order" class="go_cart">Back To Order</a>
+				</div>
+			</div>
+		</div>
+<include file="Public/footer" />
+	</body>
+</html>

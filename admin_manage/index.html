@@ -1,0 +1,54 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> admin center </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="Jiangting@WiiPu -- http://www.wiipu.com" />
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+ </head>
+ <body>
+	<div id="content">
+		<div id="login">
+			<div class="loginpic"><!--<img src="" width="104" height="30" alt="" />--><!--<img src="images/site.gif" width="145" height="30" alt="美食美刻网站管理平台" />--></div>
+			<div class="loginpic2"><!--<img src="images/banner.gif" width="940" height="183" alt="" />--></div>
+			<div class="loginpic3">
+				<div class="mid">
+				<form  id="loginform" action="login.php" method="post">
+					<p>username：<input  class="txt" type="text" name="name"/></p>
+					<p>password：<input  class="txt" type="password" name="pwd"/></p>
+					<p>verify：<input class="txt txt1" type="text" name="code"/></p>
+					<p class="code"><img src="adminlogincode.php" height="24" width="60" alt="没看到图片请刷新页面"/></p>
+				    <p class="btn"><input type="image" src="images/submit.gif" onClick="return checkInput();"/>　
+					<input type="image" src="images/reset.gif" onClick="this.form.reset();return false;"/></p>
+					<script type="text/javascript">
+						function checkInput(){
+							var form=document.getElementById('loginform');
+							if(form.name.value=="")
+							{
+								alert('帐号不能为空');
+								form.name.focus();
+								return false;
+							}
+							if(form.pwd.value=="")
+							{
+								alert('密码不能为空')
+								form.pwd.focus();
+								return false;
+							}
+							if(form.code.value=="")
+							{
+								alert('验证码不能为空');
+								form.code.focus();
+								return false;
+							}
+						}
+					</script>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+ </body>
+</html>
+

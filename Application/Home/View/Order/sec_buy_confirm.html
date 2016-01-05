@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+        <form action="__APP__/Pay/doalipay" method="post">
+            <input name="trade_no" type="hidden" value="<{$trade_no}>"/>
+            <input name="ordsubject" type="hidden" value="<{$ordsubject}>"/>
+            <input name="ordtotal_fee" type="hidden" value="<{$ordtotal_fee}>"/>
+            <input size="30" name="ordbody" type="hidden"/>
+            <input size="30" name="ordshow_url" type="hidden"/>
+            <input type="submit" name="submit" value="Confirm"/>
+		</form>
+</body>
+</html>

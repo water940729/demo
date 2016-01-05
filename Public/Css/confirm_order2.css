@@ -1,0 +1,38 @@
+*{padding:0;margin:0;font-family:microsoft yahei;}
+ul{list-style:none;}
+input{outline:0;}
+/*包围框*/
+.container_order{width:1000px;margin:3px auto;}
+.title{width:1170px;padding-left:20px;height:30px;line-height:30px;font-weight:bold;margin-top:10px;}
+.body_container{width:988px;border:solid 1px #ccc;margin-bottom:20px;padding-bottom:20px;padding-top:10px;overflow:hidden;}
+.body_container div{font-family:microsoft yahei;font-size:14px;margin-top:5px;}
+.body_container .add_information{width:800px;overflow:hidden;height:280px;display:none;}
+.body_container .address{width:910px;padding-left:80px;height:auto;}
+.body_container .add_address{width:970px;height:25px;line-height:25px;background-color:#F3FDFF;border:solid 1px #8AD6F2;margin:5px auto;}
+.body_container .add_address span.to_address{margin-left:17px;margin-right:5px;}
+.body_container .add_address span a{color:#49ACF1;}
+.body_container>div{width:800px;height:30px;margin:0 auto;line-height:30px;margin-bottom:10px;}
+.body_container div label{width:80px;height:30px;float:left;line-height:30px;text-align:right;margin-right:5px;}
+.body_container div label span{color:red;margin-left:5px;margin-top:3px;float:left;height:20px;font-size:16px;}
+.body_container div.info_div input{width:180px;height:28px;border:solid 1px #ccc;color:#353535;padding-left:5px;}
+.body_container div.info_div>span{margin-right:10px;margin-left:10px;}
+.body_container div.sel_address label{margin-left:}
+.body_container div.sel_addresss>div{width:180px;height:28px;line-height:20px;border:solid 1px #ccc;float:left;margin-top:0;background:url(../image/confirm_order/sanjiao.jpg) right center no-repeat;cursor:default;}
+.body_container div.sel_address>div ul{display:none;background-color:white;border:solid 1px #ccc;position:absolute;width:180px;margin-left:-1px;}
+.body_container .set_address{outline: solid 1px black;margin-left: 100px;margin-right: 10px;}
+.body_container .set_address_label{width:300px;float:none;}
+.body_container .confirm_info{width:150px;height:40px;line-height:40px;background-color:#2B9EEF;color:white;font-size: 20px;text-align:center;line-height:40px;border-radius: 5px;cursor:default;margin:20px auto;}
+.body_container .pay_met{padding-left:30px;width:880px;font-size:16px;font-weight:bold;}
+.body_container .pay_met span.look_bank{font-size:14px;font-weight:normal;margin-left:100px;}
+.body_container .pay_met span.look_bank a{text-decoration: none;}
+.title a{float:right;text-decoration: none;color:#46A6EF;font-size:14px;margin-right:20px;font-weight:normal;}
+.address{overflow:hidden;}
+.add_con{padding-left:75px;width:820px;overflow:hidden;}
+.add_con button{float:right;margin-right:5px;background-color:#e3007f;border:0;cursor:pointer;border-radius:5px;padding:2px;color:white;}
+span.default_add{display:inline-block;color:#353535;font-size:16px;width:75px;margin-left:-75px;text-align:center;font-weight:bold;}
+
+
+
+
+
+

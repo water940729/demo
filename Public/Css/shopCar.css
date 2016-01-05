@@ -1,0 +1,104 @@
+*{padding:0;margin:0;font-family:microsoft yahei;}
+input{outline:0;}
+ul{list-style: none;}
+/*首先用来定义container部分*/
+.container{width:1190px;margin:0 auto;min-height:800px;}
+.shopCar{width:90px;height:25px;float:left;margin-top:39px;margin-left:20px;position:relative;}
+.shopCar a{color:white;}
+.shopCar a div{position:absolute;background-color:#e3007f;width:20px;height:20px;border-radius:10px;text-align:center;line-height:20px;top:-10px;right:20px;}
+.logo_pro{width:1190px;height:110px;}
+.logo_pro .logo{width:250px;height:100px;margin-top:5px;float:left;overflow:hidden;}
+.logo_pro .shopCar{width:120px;height:60px;margin-top:35px;float:left;margin-left:40px;}
+.logo_pro .progrecess{width:500px;height:100px;margin-top:5px;float:right;}
+.progrecess ul,.progrecess div.pro_div{width:500px;height:50px;} 
+.progrecess ul li{float:left;position:relative;width:120px;height:5px;margin-right:1px;margin-top:20px;background-color:#C7C7C7;}
+.progrecess ul li div{position:absolute;width:20px;height:20px;background-color:#C7C7C7;top:-7px;left:50px;text-align:center;line-height:20px;border-radius:10px;}
+.progrecess ul li.pro_li_spec,.progrecess ul li div.pro_li_spec
+{background-color:#E3007F;color:white;}
+.progrecess div.pro_div span{display:inline-block;width:120px;height:30px;margin-right:1px;text-align:center;line-height:30px;}
+/*这是运费说明和返回继续购物的div板块*/
+.go_back{width:1190px;height:25px;border-bottom:solid 2px #ccc;margin-top:10px;padding-bottom:10px;font-size:14px;}
+.go_back span{height:20px;padding:3px 7px;display:inline-block;float:left;background-color:#F3FCFF;border:solid 1px #66C9F0;}
+.go_back a{float:right;text-decoration:none;font-family:宋体;padding-top:10px;}
+
+/*商品信息的详细表格部分*/
+.table_title{width:1180px;padding-left:10px;height:30px;line-height:30px;}
+.table_title>div{float:left;width:150px;text-align:center;margin-right:1px;}
+.table_title>div input{margin-right:5px;outline:solid 1px #595858;}
+.table_title>div.goods_detail{width:270px;}
+.table_title div.select_div{width:85px;padding-left:2px;padding-right:2px;height:23px;line-height:23px;margin-top:2px;border:solid 1px #ccc;float:right;margin-left:5px;background:url(../image/shopCar/sanjiao.jpg) no-repeat right center;position:relative;cursor:default;}
+.table_title div.select_div .select_div_ul{background-color:white;border:solid 1px #ccc;width:89px;margin-left:-3px;display:none;top:24px;position:absolute;border-top:0;}
+/*底下是商品详细信息*/
+.goods_table{width:1188px;border:solid 1px #ccc;}
+.goods_table input[type="checkbox"]{margin-right:5px;outline:solid 1px #595858;float:left;margin-top:9px;}
+.goods_table>div{padding-left:10px;width:1178px;height:120px;border-top:solid 1px #ccc;line-height:120px;}
+.goods_table>div.goods_table_title{height:30px;line-height:30px;color:#309DEF;font-size:14px;font-weight:bold;background-color:#F3F3F3;}
+.goods_table>div.goods_table_title img{margin:5px;vertical-align: middle;}
+/*定义每个div之中的部分*/
+.goods_table div div{float:left;height:120px;width:150px;margin-right:1px;line-heigth:120px;text-align:center;}
+.goods_table div div input{float:left;}
+.goods_table div div.img_div{width:100px;height:100px;border:solid 1px #ccc;margin-top:10px;margin-left:10px;}
+.goods_table div div.img_div img{width:100px;height: 100px;}
+.goods_table div div.img_span{width:265px;padding-left:10px;line-height:25px;padding-right:10px;text-align:left;padding-top:20px;height:100px;}
+.goods_table div div.checkbox_div{width:20px;height:70px;padding-top:50px;text-align:center;}
+.goods_table div div.btn_div{width:110px;padding-left:40px;}
+.goods_table div div.btn_div input{width:20px;height:30px;flaot:left;margin-top:45px;border:solid 1px #ccc;font-size:20px;text-align:center;}
+.goods_table div div.btn_div input[type="text"]{height:28px;margin-left:2px;margin-right:2px;font-size:14px;}
+.goods_table div div.all_price{color:#FF0000;font-weight:bold;}
+.goods_table div div.a_div{line-height:30px;padding-top:30px;height:90px;}
+.goods_table div div a{display:block;text-decoration:none;color:#666;font-size:14px;}
+.goods_table div div a.to_collect{color:#E3007F;}
+/*商品结算和运费*/
+.settle_price{width:1190px;height:40px;line-height:40px;margin-bottom:20px;text-align:right;}
+.settle_price>span{margin-right:20px;margin-left:20px;color:black;}
+.settle_price>span span{color:#E3007F;}
+/*底下是去结算对应的div*/
+.go_cache{width:1188px;border:solid #ccc 1px;height:125px;margin-bottom:20px;}
+.go_cache_top{padding-left:10px;height:55px;padding-top:7px;}
+.go_cache_top .go_cache_check{width:500px;float:left;}
+.go_cache_top .go_cache_price{text-align:right;padding-right:10px;}
+.go_cache_top .go_cache_check a{color:#309DEF;font-size:14px;margin-left:20px;text-decoration:none;}
+.go_cache_top .go_cache_check input{margin-right:5px;outline:solid black 1px;}
+.go_cache_top .go_cache_check a.delete_shopCar_a{text-decoration:underline;color:#E3007F;}
+.go_cache_price span{display:inline-block;width:150px;text-align:right;}
+.go_cache_price span.go_cache_price_span{color:#FF0000;text-align:left;padding-left:5px;}
+
+.go_cache_bottom{height:63px;background-color:#F6F6F6;text-align:right;padding-right:20px;}
+.go_cache_div{position:relative;}
+.go_cache_bottom>span{font-size:16px;margin-right:20px;height:60px;line-height:60px;}
+.go_cache_bottom div{width:100px;height:40px;float:right;margin-top:10px;text-align:center;line-height:40px;border-radius:3px;border:solid 1px #C9C9C9;background-color:#eee;}
+.go_cache_bottom div a{text-decoration:none;font-size:18px;color:#C9C9C9;}
+.go_cache_div .least_one{position:absolute;width:175px;height:20px;border:solid 1px #8ED7F4;background-color:#F3FCFF;font-family:宋体;font-size:12px;line-height:20px;position:absolute;top:-30px;left:-40px;}
+.go_cache_div .least_one img{position:absolute;top:19px;left:80px;}
+.go_cache_bottom .should_price{margin-right:5px;}
+/*猜你喜欢的部分*/
+.guess_love{width:1188px;height:310px;border:solid 1px #ccc;}
+.guess_love_title{padding-left:10px;height:40px;line-height:40px;padding-right:10px;border-bottom:solid 1px #ccc;}
+.guess_love_title span{color:#5D5D5D;font-weight:bold;}
+.guess_love_title .num_div{width:100px;border:0;padding-left:10px;float:right;}
+.guess_love_title .num_div div{width:20px;height:20px;border:solid 1px #ccc;text-align:center;line-height:20px;color:white;float:left;margin-top:10px;margin-right:10px;cursor:pointer;}
+.guess_love_title .guess_love_div{background-color:#bbb;}
+.guess_love_title .guess_love_div_cur{background-color:#5BC5EF;}
+.gussess_love_bot{width:1188px;height:269px;position:relative;overflow:hidden;}
+#guess_love_left,#guess_love_right{width:30px;height:100px;text-align:center;line-height:100px;font-size:25px;position:absolute;top:65px;cursor:pointer;background-color:#ccc;z-index:5;}
+#guess_love_left{left:0;}
+#guess_love_right{right:0;}
+.gussess_love_bot ul{height:260px;margin:5px auto;position:absolute;left:30px;overflow:hidden;position:absolute;}
+.gussess_love_bot ul li{width:187px;height:260px;float:left;}
+.gussess_love_bot ul li .guess_love_img{width:140px;height:140px;border:solid 1px #ccc;margin:4px 4px 10px 10px;overflow:hidden;}
+.gussess_love_bot ul li .guess_love_img img{width:140px;height:140px;}
+.gussess_love_bot ul li .guess_love_span{width:160px;height:70px;font-size:12px;}
+.gussess_love_bot ul li .guess_love_span span{display:block;margin-top:5px;height:50px;overflow:hidden;text-align:center;}
+.gussess_love_bot ul li .guess_love_span span a{text-decoration:none;color:#353535;}
+.gussess_love_bot ul li .guess_love_span span a:hover{color:orange;}
+.gussess_love_bot ul li .guess_love_span span.guess_love_price{font-size:18px;color:#E3007F;height:auto;}
+.gussess_love_bot ul li .add_shopCar{width:100px;height:25px;border:solid 1px #ccc;text-align:center;line-height:25px;margin-left:20px;margin-top:5px;}
+.gussess_love_bot ul li .add_shopCar a{text-decoration:none;font-size:14px;color:#666;}
+
+
+
+
+
+
+
+

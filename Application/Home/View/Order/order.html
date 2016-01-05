@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>Order Information</title>
+<link href="__PUBLIC__/Css/order.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+<script type="text/javascript" src="__PUBLIC__/Js/order_js/header.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/order_js/order.js"></script>
+</head>
+<body>
+
+<include file="Public/header" />
+		
+		<!--主包含框-->
+		<div class="container">
+			<div class="logo_search">
+		<div class="logo"><a href="__APP__/index/index"><img src="<{$array['pics']}>"/></a></div>
+		<div class="search">
+			<input type="text" name=""/>
+			<input type="button" id="search" value="Search" style="background-color:#E3007F;"/>
+		</div>
+		<div class="shopCar">
+		<a href="__APP__/order/cart"><img src="__PUBLIC__/image/shangcheng_image/shopcar.jpg" />
+		<!--这段代码是显示购物车数量的-->
+		<div>
+		<empty name="Think.cookie.num">
+			0
+		<else/>
+			<{$Think.cookie.num}>
+		</empty>
+		</div>
+		</a>
+		</div>
+		<ul>
+			<foreach name="keyword" item="vo">
+				<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+			</foreach>
+		</ul>
+	</div>
+		<div class="navigator">
+			<ul class="navigator_ul">
+				<li style="width:120px;height:63px;margin-bottom:-3px;background-color:#309DEF;font-weight:bold;"><a href="__APP__/index/index" style="color:white;">Main Page</a></li>
+				
+				<li><a href="__APP__/good/seckill">Seckill</a></li>
+				<li><a href="__APP__/good/teambuy">TeamBuy</a></li>
+				<li><a href="__APP__/good/trial">Trial</a></li>
+				<li><a href="__APP__/good/book">PreSell</a></li>
+			</ul>
+		</div>
+		<!--路线-->
+		<div class="route">
+			<span><a href="__APP__/index/index">Main Page</a></span>>
+			<span><a href="__APP__/order/order">Order Centre</a></span>>
+		</div>
+		<!--订单的主体部分-->
+		
+		<div class="content">
+			<div class="left_content" id="left_content">
+				<div class="left_content_body">
+		
+				<h3 style="background:url(__PUBLIC__/image/order_image/order1.jpg) no-repeat 10px center;padding-left:30px;">Transaction Management</h3>
+				<ul>
+					<li><a href="javascript:;" id="order">My Orders</a></li>
+					<li><a href="javascript:;" id="seckill">My SecKill</a></li>
+					<li><a href="javascript:;" id="teambuy">My TeamBuy</a></li>
+					<li><a href="javascript:;" id="trial">My Trial</a></li>
+					<li><a href="javascript:;" id="book">My PreSell</a></li>
+					<li><a href="javascript:;" id="collect">Goods Favourite</a></li>
+					<li><a href="javascript:;" id="shop_collect">Shops Favourite</a></li>
+					<li><a href="javascript:;" id="footprint">Footprint</a></li>
+					
+				</ul>
+				</div>
+		<script>
+		
+			$(document).ready(function(){
+               
+               /*
+                alert(window.location.hash);
+                anchor_point = window.locatioon.hash;
+                if(anchor_point == "collect"){
+                    alert("ok");
+                    $('#right').load('../TabChange/collect.html');
+                }
+                */
+                $('#right').load('../TabChange/order.html');
+
+                $("#collect").click(function(){
+                    $('#right').load('../TabChange/collect.html');
+                })
+
+                $("#return").click(function(){
+                    $('#right').load('../TabChange/return_good.html');
+                })
+
+                $("#shop_collect").click(function(){
+                    $('#right').load('../TabChange/shop_collect.html');
+                })
+            
+                $("#footprint").click(function(){
+                    $('#right').load('../TabChange/footprint.html');
+                })
+
+             
+                $("#order").click(function(){
+                    $('#right').load('../TabChange/order.html');
+                })
+
+
+                $("#seckill").click(function(){
+                    $('#right').load('../TabChange/seckill.html');
+                })
+
+                $("#teambuy").click(function(){
+                    $('#right').load('../TabChange/teambuy.html');
+                })
+
+                $("#trial").click(function(){
+                    $('#right').load('../TabChange/trial.html');
+                })
+
+
+                $("#book").click(function(){
+                    $('#right').load('../TabChange/book.html');
+                })
+    
+                $("#score").click(function(){
+                    $('#right').load('../TabChange/score.html');        
+                })
+				
+				$("#address_manage").click(function(){
+					$("#right").load("../TabChange/address_manage.html");
+				})
+
+           })
+		</script>
+				<div class="left_content_body">
+				<h3 style="background:url(__PUBLIC__/image/order_image/order2.jpg) no-repeat 10px center;padding-left:30px;">Support Centre</h3>
+				<ul>
+					<li><a href="javascript:;" id="return">Return/Change Goods</a></li>
+				</ul>
+				</div>
+				
+				<div class="left_content_body">
+				<h3 style="background:url(__PUBLIC__/image/order_image/order3.jpg) no-repeat 10px center;padding-left:30px;">Account Management</h3>
+				<ul>
+					<!--<li><a href="javascript:;">个人信息</a></li>-->
+					<li><a href="javascript:void(0);" id="address_manage">Address Management</a></li>
+				</ul>
+				</div>
+				
+				<div class="left_content_body">
+				<h3 style="background:url(__PUBLIC__/image/order_image/order4.jpg) no-repeat 10px center;padding-left:30px;">Community Centre</h3>
+				<ul>
+					<li><a href="javascript:;" id="score">Comment</a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="right_content" id="right">
+			    Loading,Please wait a second
+		</div>
+		</div>
+		</div>
+	<include file="Public/footer" />
+	</body>
+</html>

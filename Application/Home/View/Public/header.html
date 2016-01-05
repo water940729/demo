@@ -1,0 +1,35 @@
+	<!--登陆注册页面-->
+	<div class="header">
+		<div class="header_container">
+		<empty name="current">
+		<span class="go_index"><a href="__APP__/index/index">Back to Kuihua Page</a></span>
+		</empty>
+		<div class="header_reg" >
+		<ul id="header_reg">
+		
+		<li>
+
+			<a href="__APP__/order/order">Personal Centre</a>
+		</li>
+		<li>
+			<a href="__APP__/order/order">My Orders</a>
+		</li>
+		<empty name="Think.session.username">
+			<li class="spec_li"><!-- __APP__/user/login -->
+				<a href="__APP__/user/login" style="color:#E3007F;background:none;">Login</a>
+			</li>
+			<li class="spec_li">
+				<a href="__APP__/user/register"style="background:none;">Register</a>
+			</li>
+		<else/>
+			<li class="spec_li">
+				<a href="__APP__/order/order" style="color:#E3007F;background:none;"><{$Think.session.username}></a>
+			</li>
+			<li class="spec_li">
+				<a href="__APP__/user/logout" style="background:none;">Logout</a>
+			</li>
+		</empty>
+		</ul>
+		</div>
+		</div>
+	</div>

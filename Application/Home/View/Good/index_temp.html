@@ -1,0 +1,697 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+
+		<title>Item Detail</title>
+		<link href="__PUBLIC__/Css/good_info.css"  rel="stylesheet" type="text/css"/>
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+		<script src="__PUBLIC__/Js/good_info/header.js"></script>
+		<script src="__PUBLIC__/Js/good_info/good_info.js"></script>
+		<script src="__PUBLIC__/Js/good_info/good_info2.js"></script>
+	</head>
+	<body>
+	<include file="Public/header" />
+	<!--最外层的包含框-->
+	<div class="container">
+		<div class="logo_search">
+			<div class="logo"><a href="#"><img src="__PUBLIC__/image/good_info/logo.jpg" /></a></div>
+			<div class="search">
+				<input type="text" name=""/>
+				<input type="button" value="Search" style="background-color:#E3007F;"/>
+				<input type="button" value="Cancel" style="background-color:#5BC5EF;"/>
+			</div>
+			<div class="shopCar_img">
+			<a href="__APP__/order/cart"><img src="__PUBLIC__/image/good_info/shopcar.jpg" />
+				<!--这段代码是显示购物车数量的-->
+				<empty name="Think.cookie.num">
+					0
+				<else/>
+					<{$Think.cookie.num}>
+				</empty>
+			</a>
+			</div>
+			<ul>
+				<li><a href="#">Toy</a></li>
+				<li><a href="#">HUGGIES</a></li>
+				<li><a href="#">Wyeth</a></li>
+				<li><a href="#"><span style="color:#E3007F;">Baby Bed</span></a></li>
+				<li><a href="#">Lacute</a></li>
+			</ul>
+		</div>
+	<!--导航区域-->
+	<div class="navigator">
+		<ul>
+			<li style="width:150px;background:#309DEF url(__PUBLIC__/image/good_info/dis.jpg) right center no-repeat;color:white;">All Categories</li>
+			<li style="color:black;font-weight:bold;">Home</li>
+			<li>SecKill</li>
+			<li>TeamBuy</li>
+			<li>Try</li>
+			<li>Presale</li>
+		</ul>
+	</div>
+	<!--路线-->
+	<div class="route" id="route">
+		<span><a href="__APP__/index/index">Home</a></span>>
+		<span>
+		<foreach name="type1_result" item="vo">
+		<a href="#"><!--<{$vo.id}>--><{$vo.name}></a></span>>
+		</foreach>
+		<div>
+			<foreach name="current_type2" item="vo">
+				<{$vo.name}>
+			</foreach>
+			<ul>
+				<foreach name="type2_result" item="vo">
+					<!--<{vo.id}>--><li><a href="#"><{$vo.name}></a></li>
+				</foreach>
+			</ul>
+		</div>
+			>
+		<div>
+			<foreach name="current_type3" item="vo">
+				<{$vo.name}>
+			</foreach>
+			<ul>
+				<foreach name="type3_result" item="vo">
+					<!--<{vo.id}>--><li><a href="#"><{$vo.name}></a></li>
+				</foreach>
+			</ul>
+		</div>
+			>
+		<span><a href="#"><{$result[0]["name"]}></a></span>
+	</div>
+	
+	<!--商品展示以及购买的详细信息-->
+	<div class="good_display">
+		<!--左边的商品展示-->
+		<div class="good_display_left">
+			<div class="big_image" id="big_image">
+				<img src="<{$photo[0][pic_url]}>"  />
+			</div>
+			<div class="small_image">
+				<div id="to_left"><</div>
+				<div class="ul_div" id="ul_div">
+					<ul>
+						<foreach name="photo" item="vo">
+							<li><img src="<{$vo.pic_url}>" /></li>
+						</foreach>
+					</ul>
+				</div>
+				<div id="to_right">></div>
+			</div>
+			<div class="share">
+				Item ID：<span id="number"><{$result[0]["id"]}></span>
+				Share:
+				<div class="share_to">
+					<div><img src="" />1</div>
+					<div><img src="" />2</div>
+					<div><img src="" />3</div>
+					<div><img src="" />4</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--中间的文字信息-->
+		<div class="good_display_center">
+			
+			<div class="title_div">
+				<span class="title">
+				<{$result[0]["name"]}><br/>
+				<{$result[0]["goods_desc"]}>
+				</span><br />
+				<span class="title_des">
+				Celebrate 11th anniversary of Kuihua-Baby，event time：6.15—6.17
+				</span>
+			</div>
+			<div class="two">
+				<span class="info_span">
+				  Kui Hua Price
+				</span>
+				<div>
+					<span class="price">￥</span></span><span class="price" style="font-size:25px;"><{$result[0]["price"]-$result[0]["discount"]}></span>Original Price<{$result[0]["price"]}><a href="#">Discount Notice</a><br />
+					<span>Score</span><span><{$result[0]["score"]}>Points</span><a href="#">Have<span><{$result[0]["commentnum"]}></span>Comments</a>
+				</div>
+			</div>
+			
+			<div class="three">
+					<span class="info_span">Discounting</span>
+				<div>
+					<span class="span_div">Full Reduce</span><span>80￥ off while ordering 300￥</span><a href="#">More Details</a><br />
+					<span class="span_div">Coupon</span><span>You have<span style="margin:0;">2</span>tickets to get</span><a href="#">Get Now</a><br />
+				</div>
+			</div>
+			
+			<div class="four">
+				<span class="info_span">Shipping To</span>
+				<div>
+				<div class="ul_div" id="goto_ul_div">
+				<div id="send"></div>
+					<ul>
+						<li>45545465</li>
+						<li>856732547</li>
+						<li>857245</li>
+						<li>57457</li>
+					</ul>
+					
+				</div>
+				<span style="color:black;font-size:16px;">On Shelf</span>
+				<span><img src="__PUBLIC__/image/good_info/hour.jpg" />Delivery in 3 Hours<span><img src="__PUBLIC__/image/good_info/hour1.jpg" />Delivery in time</span><img src="__PUBLIC__/image/good_info/hour2.jpg" />Pick up by self</span>
+				</div>
+				
+			</div>
+			
+			<div class="five">
+
+				<span class="info_span">Service</span>
+				<div>
+				<span>Direct sales and shipments by the "Kuihua" and provide after-sales service and online customer service<img src="__PUBLIC__/image/good_info/cen1.jpg" /><a href="#">Contact Us</a>
+					<img src="__PUBLIC__/image/good_info/cen2.jpg"  />Free Delivery<img src="__PUBLIC__/image/good_info/cen3.jpg"  />Pick up by self<img src="__PUBLIC__/image/good_info/cen4.jpg"  />Not support no reason to return
+				</span>
+				</div>
+			</div>
+			<foreach name="extattribute" item="vo">
+				<div class="six<{$i}>" id="six<{$key}>">
+					<span class="info_span" id="type"><{$vo.name}></span>
+					<div id="choose_color">
+					<ul>
+						<foreach name="vo.value" item="vo">
+							<li><{$vo}></li>
+						</foreach>
+					</ul>
+					</div>
+				</div>
+			</foreach>
+			<div class="eight" style="border-bottom:solid #ccc 1px;">
+				<span class="info_span">Amount</span>
+				<div>
+				<div id="decrease">-</div>
+				<input type="text" id="num" value="1"  />
+				<div id="add">+</div>
+				</div>
+			</div>
+			
+			<div class="center_bot">
+				<div class="center_bot_top">Selected<span id="already_choose"></span></div>
+				<div class="button">
+					<div id="buy"><a href="__APP__/user/buy?">Buy Now</a></div>
+					<div id="shopCar" class="shopCar">Add to Cart</div>
+					<div id="collect">Favorite</div>
+					<a href="#">Tell us lower price</a>
+				</div>
+			</div>
+	</div>
+	<div class="good_display_right">
+		<div class="right_top">
+			<span>Free Shipping</span>
+			<span style="color:black;font-weight:bold;">Supplier：<span style="font-size:20px;color:black;"><{$result[0]["shop_name"]}></span></span>
+		<div>
+			<span class="right_left">Supplier Details</span><span class="right_right">Compare with others</span>
+			<span class="right_left">Supplier Score:<span>4.82</span>分</span><span class="right_right">16.33%</span>
+			<span class="right_left">Service Score:<span>4.87</span>分</span><span class="right_right">7.45%</span>
+			<span class="right_left">Shipping Speed::<span>4.87</span>分</span><span class="right_right">15.64%</span>
+		</div>
+		<a href="__APP__/shop/index/id/<{$result[0][shop_id]}>"><div class="go_shop">Enter Shop</div></a>
+	</div>
+		<div class="right_center">
+			<span>Similar</span>
+			<span style="cursor:pointer;">Change</span>
+		</div>
+		
+		<div class="right_bottom">
+			<div>
+				<div class="image_div"><img src="#" /></div>
+				<div class="image_span">
+					<span>Topfer Organic Infant Milk 3</span>
+				</div>
+			</div><div>
+				<div class="image_div"><img src="#" /></div>
+				<div class="image_span">
+					<span>Topfer Organic Infant Milk 3</span>
+					<span class="image_span_price">￥258.00</span>
+				</div>
+			</div>
+			<div>
+				<div class="image_div"><img src="#" /></div>
+				<div class="image_span">
+					<span>Topfer Organic Infant Milk 3</span>
+					<span class="image_span_price">￥258.00</span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	</div>
+	<!--推荐搭配-->
+	<div class="recom">
+
+		<div class="recom_top">
+			<div>Suggest</div>
+		</div>
+		<div class="recom_bot">
+			<div class="recom_bot_left">
+				<div class="recom_center">
+				<ul>
+					<li><a href="#">精选搭配</a></li><span>|</span>
+					<li><a href="#">精选搭配</a></li><span>|</span>
+					<li><a href="#">精选搭配</a></li><span>|</span>
+					<li><a href="#">精选搭配</a></li><span>|</span>
+					<li><a href="#">精选发生的搭配</a></li><span>|</span>
+					<li><a href="#">精选搭fd配</a></li><span>|</span>
+					<li><a href="#">精选搭fd配</a></li><span>|</span>
+					<li><a href="#">精选搭配</a></li><span>|</span>
+					<li><a href="#">精选dfgs搭配</a></li><span>|</span>
+					<li><a href="#">精选gfdsg搭配</a></li><span>|</span>
+					<li><a href="#">精选gsfdgff搭配</a></li>
+				</ul>
+			</div>
+			<div class="recom_bot_img">
+				<div class="recom_bot_img_left">
+					<div class="recom_img_div"><img src="#" /></div>
+					<div class="recom_img_span">
+						<span>
+							Aptamil Infant Milk 3 （10-12 Months） 800g
+						</span>
+						<span style="color:#E3007F">￥260.00</span>
+					</div>
+				</div>
+				<div class="add_mark">
+					<img src="__PUBLIC__/image/good_info/plus.jpg"  class="plus_img"/>
+				</div>
+				<div class="recom_bot_goods">
+					<div id="left_select" class="change_sel"><</div>
+					<div id="right_select" class="change_sel">></div>
+					
+					<div class="selected_img">
+						<div class="selected_img_con"><img src="#" /></div>
+						<input type="checkbox"  />
+						<span>E-Health Algae DHA Oil 650 mg</span>
+						<span class="package">Discount Price：<span>￥394.02</span></span>
+						<div class="count_div">Off：<span>￥3.98</span></div>
+					</div>
+					<div class="add_mark" style="margin-left:30px;">
+					<img src="__PUBLIC__/image/good_info/plus.jpg"  class="plus_img"/>
+					</div>
+				<div class="selected_img">
+						<div class="selected_img_con"><img src="#" /></div>
+						<input type="checkbox"  />
+						<span>E-Health Algae DHA Oil 650 mg</span>
+						<span class="package">Discount Price：<span>￥394.02</span></span>
+						<div class="count_div">Off<span>￥3.98</span></div>
+					</div>
+				</div>
+			</div>	
+			</div>
+			
+			<div class="recom_bot_right">
+				<span>Chosen<span>0</span>Pieces</span><br />
+				<span>Discount Price:</span><span style="color:#E3007F;font-size:16px;margin-left:80px;">￥260.00</span>
+				<div class="shopCar" style="float:none;">Add To Cart</div>
+				<span class="clearAll">Clear All</span>
+
+			</div>
+		</div>
+		
+	</div>
+
+	<!--底下是相关发布和创建宝宝档案-->
+	<div class="goods_detail">
+		<!--左边的包含相关分类的大的div-->
+		<div class="left_detail">
+
+			<!--相关分类-->
+			<div class="detail">
+				<div class="detail_title">Related Categories</div>
+				<div class="detail_content">
+					<ul>
+						<li><a href="">Stage 3 Milk</a></li>
+						<li><a href="">Stage 1 Milk</a></li>
+						<li><a href="">Stage 2 Milk</a></li>
+						<li><a href="">Stage 4 Milk</a></li>
+						<li><a href="">Stage 5 Milk</a></li>
+						<li><a href="">Special Recipe</a></li>
+						<li><a href="">Pre Stage Milk</a></li>
+					</ul>
+				</div>
+			</div>
+			<!--相关品牌-->
+			<div class="detail">
+				<div class="detail_title">Related Brand</div>
+				<div class="detail_content">
+					<ul>
+						<li><a href="">Aptamil</a></li>
+						<li><a href="">Friso</a></li>
+						<li><a href="">Wyeth</a></li>
+						<li><a href="">Henri Nestle</a></li>
+						<li><a href="">Abbott</a></li>
+						<li><a href="">Meadjohnson</a></li>
+						<li><a href="">Nutrilon</a></li>
+						<li><a href="">Yili</a></li>
+						<li><a href="">Dumex</a></li>
+						<li><a href="">Karicare</a></li>
+						<li><a href="">WanasShang</a></li>
+						<li><a href="">HiPP</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<!--销售排行榜-->
+			<div class="hot_goods">
+			<div class="hot_title">Sales Ranking</div>
+			<div class="middle_goods_right">
+			<div class="current" id="first_goods">Popular</div>
+			<div class="past" id="second_goods">Season Hot</div>
+			<!--销售排行榜  热销排行 对应的div-->
+			<div class="bottom_first" id="bottom_first" >
+				<!--销售排行榜中的第一个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods1.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第二个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods2.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第三个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods3.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第四个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods4.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第五个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods5.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第六个图片，和上面的相比增加了一个类-->
+				<div class="middle_goods_right_spec">
+					<img src="__PUBLIC__/image/good_info/goods6.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+			</div>
+			
+			<!--销售排行榜  当季热卖  对应的div-->
+			<div class="bottom_second" id="bottom_second" style="display:none;">
+				<!--销售排行榜中的第一个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods1.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Season Hot</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第二个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods2.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第三个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods3.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第四个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods4.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第五个图片-->
+				<div>
+					<img src="__PUBLIC__/image/good_info/goods5.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+				<!--销售排行榜中的第六个图片，和上面的相比增加了一个类-->
+				<div class="middle_goods_right_spec">
+					<img src="__PUBLIC__/image/good_info/goods6.jpg" class="posi_img"/>
+					<div class="div_img">
+					<a href="#" ><img src="#" /></a></div>
+					<div class="div_text">
+					<a href="#" class="aClass">Dumex Infant Milk Stage 3</a><br/>
+					<span class="priceClass">￥800.00</span><br/>
+					<span class="saleClass">Sold Out<span style="color:red;">10000</span>Pieces</span>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+			<!--看了最终选-->
+			<div class="detail">
+				<div class="detail_title">Maybe You Like</div>
+				<div class="detail_content">
+					<!--第一个图片-->
+					<div>
+						<div class="detail_img_div"><img src="" />s</div>
+						<div class="detail_img_span">
+							<span>Aptamil Infant Milk Stage 4 800g</span><br />
+							<span class="image_span_price pricrSize"  style="font-family:宋体;font-size:16px;">￥240.00</span>
+						</div>
+					</div>
+					<!--第二个图片-->
+					<div>
+						<div class="detail_img_div"><img src="" />s</div>
+						<div class="detail_img_span">
+							<span>Aptamil Infant Milk Stage 4 800g</span><br />
+							<span class="image_span_price pricrSize"  style="font-family:宋体;font-size:16px;">￥240.00</span>
+						</div>
+					</div>
+					<!--第三个图片-->
+					<div>
+						<div class="detail_img_div"><img src="" />s</div>
+						<div class="detail_img_span">
+							<span>Aptamil Infant Milk Stage 4 800g</span><br />
+							<span class="image_span_price pricrSize"  style="font-family:宋体;font-size:16px;">￥240.00</span>
+						</div>
+					</div>
+					<!--第四个图片-->
+					<div>
+						<div class="detail_img_div"><img src="" />s</div>
+						<div class="detail_img_span">
+							<span>Aptamil Infant Milk Stage 4 800g</span><br />
+							<span class="image_span_price pricrSize"  style="font-family:宋体;font-size:16px;">￥240.00</span>
+						</div>
+					</div>
+					<!--第五个图片-->
+					<div>
+						<div class="detail_img_div"><img src="" />s</div>
+						<div class="detail_img_span">
+							<span>Aptamil Infant Milk Stage 4 800g</span><br />
+							<span class="image_span_price pricrSize"  style="font-family:宋体;font-size:16px;">￥240.00</span>
+						</div>
+					</div>
+					<!--最后一个图片，比以上图片增加了一个样式-->
+					<div style="border:0;">
+						<div class="detail_img_div"><img src="" />s</div>
+						<div class="detail_img_span" >
+							<span>Aptamil Infant Milk Stage 4 800g</span><br />
+							<span class="image_span_price pricrSize"  style="font-family:宋体;font-size:16px;">￥240.00</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--右边的一些商品数据和图片-->
+		<div class="right_detail">
+			<!--创建宝宝档案-->
+			<div class="baby_file">
+				<div class="baby_title">Create Baby File</div>
+				<div class="baby_detail">
+					<div>
+						<form>
+							<label for="bir">Birthday：</label><input type="text" id="bir" />
+							Sex:<input type="radio" id="boy" name="sex"><label for="boy">Boy</label>
+							<input type="radio" id="girl" name="sex"><label for="girl">Girl</label>
+							<label for="weight">Weight：</label><input type="text" id="weight" />kg
+							<label for="height">Height：</label><input type="text" id="height" />cm
+							<input type="submit" value="Submit"  />
+						</form>
+					</div>
+				</div>
+			</div>
+			<!--底下是商品详情包装及参数和其它部分-->
+			<div class="right_bot_details">
+				<!--商品信息导航条-->
+				<div class="right_bot_ul" >
+					<ul>
+						<li class="ul_li_current">Item Details</li>
+						<li>Parameters</li>
+						<li>Comment(<span>1468</span>)</li>
+						<li>Advice(<span>39</span>)</li>
+						<li>After-Sale</li>
+					</ul>
+				</div>
+				<!--商品详细信息展示区域-->
+				<div class="details_dispaly">
+					<div class="details_image">
+					<{$result[0]["goods_info"]}>
+					<!--
+						<h4>产品信息:</h4>
+						<span>品牌:帮宝适</span>
+						<span>适用婴儿体重:9~14kg</span>
+						<span>保质期:3年</span>
+						<span>规格:L164片</span>
+						<h4>产品特点:</h4>
+						<span>1、12小时干爽</span>
+						<span>2、适用婴儿体重:9~14kg</span>
+						<span>3、保质期:3年</span>
+						<span>4、规格:L164片</span>
+						-->
+						<div class="image_con_detail">
+							<img src="__PUBLIC__/image/good_info/goods_dis.jpg">
+							<img src="__PUBLIC__/image/good_info/goods_dis.jpg">
+							<img src="__PUBLIC__/image/good_info/goods_dis.jpg">
+							<img src="__PUBLIC__/image/good_info/goods_dis.jpg">
+							<img src="__PUBLIC__/image/good_info/goods_dis.jpg">
+							<img src="__PUBLIC__/image/good_info/goods_dis.jpg">
+							<img src="__PUBLIC__/image/good_info/goods_dis.jpg">
+						</div>
+					</div>
+					<div class="details_navigator">
+						<ul>
+							<li class="navigator_li">Description</li>
+							<li>Feature</li>
+							<li>Ingredient</li>
+							<li>Details</li>
+							<li>Common Problem</li>
+						</ul>
+						<img src="__PUBLIC__/image/good_info/li_san.jpg"  />
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	</div>
+<include file="Public/footer" />
+	<!--这里是添加到购物车的蒙板效果-->
+	<div class="shopCar_mask"></div>
+	<!--购物车蒙板之中的div-->
+	<div class="shopCar_mask_div">
+			<div class="shopCar_mask_back"><span id="back_span">×</span></div>
+			<div class="success_add">Item has added to cart</div>
+			<div class="shopCar_btn">
+				<a href="__APP__/index/index" class="go_shopping">Continue Shopping</a>
+				<a href="__APP__/order/cart" class="go_shopCar">Pay</a>
+			</div>
+		</div>
+	<!--这里是添加到我的收藏的蒙板效果-->
+	<div class="collect_mask"></div>
+	<!--购物车蒙板之中的div-->
+	<div class="collect_mask_div">
+			<div class="collect_mask_back"><span id="collect_back_span">×</span></div>
+			<div class="collect_suc">
+				<img src="__PUBLIC__/image/good_info/add.jpg" />
+				<span>Add Succeed<a href="#">Favorite</a></span>
+				<span class="add_bookmark">Add Bookmark</span>
+			</div>
+			<div class="love_other">
+				<span>Also Like</span>
+				<a href="#">More Recommend></a>
+				</div>
+				<div class="img_li">
+					<ul>
+						<li>
+							<div></div>
+							<span><a href="#">HiPP Combiotic Infant Milk</a></span>
+							<span class="clo_price_span">￥76.6</span>
+						</li>
+						
+						<li>
+							<div></div>
+							<span><a href="#">HiPP Combiotic Infant Milk</a></span>
+							<span class="clo_price_span">￥76.6</span>
+						</li>
+						
+						<li>
+							<div></div>
+							<span><a href="#">HiPP Combiotic Infant Milk</a></span>
+							<span class="clo_price_span">￥76.6</span>
+						</li>
+						
+						<li>
+							<div></div>
+							<span><a href="#">HiPP Combiotic Infant Milk</a></span>
+							<span class="clo_price_span">￥76.6</span>
+						</li>
+					</ul>
+				</div>
+			
+		</div>
+	
+	</body>
+</html>

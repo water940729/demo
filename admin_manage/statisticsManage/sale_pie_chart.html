@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />	
+		<title>饼状图</title>		
+	  <script src="../js/jquery-1.6.min.js"></script>
+	  <script src="../js/highcharts.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="container" style="min-width:500px;max-width:800px;height:500px;border:solid 2px #e3007f;"></div>
+		<script>
+		$(function () {
+			var json={};
+			$.ajax({
+				url:"sale_pie_chart.php",
+				dataType:"json",
+				success:function(msg){
+					var v=msg;
+					console.log(v);
+					json.title=v.title;
+					json.series=v.series;
+					console.log(json);
+					//底下这些是属性的设置必须 可以不动
+					
+					//基本的配置不要动
+						Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+							return {
+								radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+								stops: [
+									[0, color],
+									[1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+								]
+							};	
+						});
+							json.plotOptions={
+									pie: {
+										allowPointSelect: true,
+										cursor: 'pointer',
+										dataLabels: {
+										   enabled: true,
+										   color: '#000000',
+										   connectorColor: '#000000',
+											formatter: function() {
+												return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+											}
+										}
+									}
+								};
+							json.tooltip={
+									pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+								};
+								
+							json.credits={
+							 enabled: false
+							};
+							
+							json.series[0].type='pie';
+							$('#container').highcharts(json);
+				}
+			});
+		});
+/*
+		var json={
+			//图表的标题
+				title: {
+					text: '葵花商城'
+				},
+			  //图表的各个部分
+				series: [{
+					name: '销售额',
+					data: [
+						['Firefox',   150.0],
+						['IE',       26.8],
+						['chrome',15.8],
+						['Safari',    8.5],
+						['Opera',     6.2],
+						['Others',   0.7]
+					]
+				}]
+			}
+	*/
+			
+		</script>
+	</body>
+</html>

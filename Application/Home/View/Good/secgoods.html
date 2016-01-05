@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+		<title><{$result["goods_keywords"]}>-Kuihua Mall</title>
+		<meta name="keywords" content="<{$result['goods_keywords']}>"/>
+		<meta name="description" content="<{$result['goods_desc']}>" />
+		<link href="__PUBLIC__/Css/good_info2.css"  rel="stylesheet" type="text/css"/>
+		<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+		<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+		<script src="__PUBLIC__/Js/good_info/header.js"></script>
+		<script src="__PUBLIC__/Js/seckill/good_info.js"></script>
+		<script src="__PUBLIC__/Js/seckill/good_info2.js"></script>
+		<script>
+			window.onload = function() {
+
+				var height = document.body.clientHeight;
+				var width = document.body.clientWidth;
+				var onOff = true;
+				var str = "";
+				//判断是否完全选取了所有条件
+				$(".cho_deal").each(function() {
+					$(this).attr("flag", false)
+				});
+
+				$(".cho_deal").find("div.choose_color").find("li").click(function() {
+					$(this).parents(".cho_deal").attr("flag", true);
+				})
+
+				function judge() {
+					$node = $(".cho_deal");
+					for (var i = 0; i < $node.length; i++) {
+						if ($($node[i]).attr("flag") == "false") {
+							str += $($node[i]).find("span.info_span").text();
+							onOff = false;
+							alert("Please choose:" + str);
+							str="";
+							break;
+						}
+						onOff=true;
+					}
+				}
+				$(function(){
+					//点击加入购物车事件
+					$(".shopCar").click(function() {
+						judge();
+						var top = (height - $(".shopCar_mask_div").height()) / 2;
+						var left = (width - $(".shopCar_mask_div").width()) / 2;
+						var type = $("#already_choose").text();
+						var id = $("#number").text();
+						var num = $("#num").val();
+						var data = "type=" + type + "&id=" + id + "&num=" + num;
+						if (onOff) {
+							$.ajax({
+								type : "POST",
+								url : "__APP__/order/addcart",
+								data : data,
+								success : function(msg) {
+									if (msg == 1) {
+										$(".shopCar_mask,.shopCar_mask_div").fadeIn(200);
+										$(".shopCar_mask_div").css({
+											top : top + "px",
+											left : left + "px"
+										});
+									} else {
+										alert(msg);
+									}
+									var text=$(".shopCar_img div").text();
+									$(".shopCar_img div").text(parseInt(text)+parseInt($("#num").val()));
+								}
+							});
+						}
+						//$("body").css("overflow","hidden");
+					});
+
+					$("#buy").click(function(){
+					judge();
+                        if(onOff){
+						var type = $("#already_choose").text();
+						var id = $("#number").text();
+						var num = $("#num").val();
+						document.write('<form name=myForm><input type=hidden name=num><input type=hidden name=id><input type=hidden name=type></form>');
+						var myForm = document.forms['myForm'];
+						myForm.action = '__APP__/order/sec_buy';
+						myForm.method = 'POST';
+						myForm.num.value = num;
+						myForm.id.value = id;
+						myForm.type.value = type;
+						myForm.submit();}
+					});
+
+					$("#search").click(function(){
+						var name=$(this).prev("input").val();
+						if($.trim(name)==""){
+							alert("Please input key words");
+						}else{
+							window.location.href="__APP__/good/search/n/"+name;
+						}
+					});
+
+				});
+				//$("body").css("overflow","hidden");
+			};
+		
+		</script>
+	</head>
+	<body>
+	<include file="Public/header" />
+	<!--最外层的包含框-->
+	<div class="container">
+		<div class="logo_search">
+			<div class="logo"><a href="#"><img src="__PUBLIC__/image/good_info/logo.jpg" /></a></div>
+			<div class="search">
+				<input type="text" name=""/>
+			<input type="button" id="search" value="Search" style="background-color:#E3007F;"/>
+			</div>
+			<div class="shopCar_img">
+			<a href="__APP__/order/cart"><img src="__PUBLIC__/image/good_info/shopcar.jpg" />
+				<!--这段代码是显示购物车数量的-->
+				<div>
+					<empty name="Think.cookie.num">
+					0
+				<else/>
+					<{$Think.cookie.num}>
+				</empty>
+				</div>
+			</a>
+			</div>
+			<ul>
+				<foreach name="keyword" item="vo">
+					<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+				</foreach>
+			</ul>
+		</div>
+	<!--导航区域-->
+	<div class="navigator">
+		<ul>
+			<li style="width:150px;background:#309DEF url(__PUBLIC__/image/good_info/dis.jpg) right center no-repeat;color:white;">All Categories</li>
+					<li style="font-weight:900;font-size:20px;color:black;" class="li_spec">Home</li>
+					<li><a href="__APP__/good/seckill" target="_blank" >SecKill</a></li>
+					<li><a href="__APP__/good/teambuy" target="_blank" >TeamBuy</a></li>
+					<li><a href="__APP__/good/trial" target="_blank" >Trial</a></li>
+					<li><a href="__APP__/good/book" target="_blank" >Pre-Sale</a></li>
+		</ul>
+	</div>
+	<!--路线-->
+	<div class="route_absolute" id="route_absolute">
+		<span><a href="__APP__/index/index">Home</a></span>>
+		<span>
+        <!--
+		<foreach name="type1_result" item="vo">
+		<a href="__APP__/good/goodslist/f/<{$vo.id}>"><{$vo.name}></a></span>>
+		</foreach>
+		<div>
+			<foreach name="current_type2" item="vo">
+				<a href="__APP__/good/goodslist/s/<{$vo.id}>"><{$vo.name}></a>
+			</foreach>
+			<ul>
+				<foreach name="type2_result" item="vo">
+					<li><a href="__APP__/good/goodslist/s/<{$vo.id}>"><{$vo.name}></a></li>
+				</foreach>
+			</ul>
+		</div>
+            -->
+		<div>
+        <a href="../../seckill.html"><{$type_name}></a>
+        <!--
+			<foreach name="current_type3" item="vo">
+				<a href="__APP__/good/goodslist/type/<{$vo.id}>"><{$vo.name}></a>
+			</foreach>
+			<ul>
+				<foreach name="type3_result" item="vo">
+					<li><a href="__APP__/good/goodslist/type/<{$vo.id}>"><{$vo.name}></a></li>
+				</foreach>
+			</ul>
+            -->
+		</div>
+			>
+		<span><a href="#" ><{$result[0]["goodsname"]}></a></span>
+	</div>
+	
+	<!--商品展示以及购买的详细信息-->
+	<div class="good_display">
+		<!--左边的商品展示-->
+		<div class="good_display_left">
+			<div class="big_image" id="big_image">
+				<img src="<{$photo[0][image_url]}>"  />
+			</div>
+			<div class="small_image">
+				<div id="to_left"><</div>
+				<div class="ul_div" id="ul_div">
+					<ul>
+						<foreach name="photo" item="vo">
+							<li><img src="<{$vo.image_url}>" /></li>
+						</foreach>
+					</ul>
+				</div>
+						<div id="to_right">
+							>
+						</div>
+					</div>
+					<div class="share">
+						Item ID：<span id="number"><{$result[0]["id"]}></span>
+					</div>
+				</div>
+
+				<!--中间的文字信息-->
+				<div class="good_display_center">
+
+					<div class="title_div">
+						<span class="title"> <{$result[0]["goodsname"]}>
+							<br/>
+						</span>
+						<br />
+					</div>
+					<div class="two">
+						<span class="info_span"> Kui Hua Price </span>
+						<div>
+							<span class="price">￥</span></span><span class="price" style="font-size:25px;margin-right:10px;"><{$result[0]["price"]}></span>Original Price<{$result[0]["original_price"]}>							<br />
+						</div>
+					</div>
+
+					<div class="five">
+						<span class="info_span">Service</span>
+						<div>
+							<span>Direct sales and shipments by the "Kuihua" and provide after-sales service and online customer service
+								<br/>
+								<img src="__PUBLIC__/image/good_info/cen2.jpg"  />Free Shipping<img src="__PUBLIC__/image/good_info/cen3.jpg"  />Pick up by self<img src="__PUBLIC__/image/good_info/cen4.jpg"  />Not support no reason to return </span>
+						</div>
+					</div>
+					<foreach name="extattribute" item="vo">
+						<div class="six<{$i}> cho_deal" id="six<{$key}>">
+							<span class="info_span" id="type"><{$vo.name}></span>
+							<div id="choose_color" class="choose_color">
+								<ul>
+									<foreach name="vo.value" item="vo">
+										<li>
+											<{$vo}>
+										</li>
+									</foreach>
+								</ul>
+							</div>
+						</div>
+					</foreach>
+					<div class="eight" style="border-bottom:solid #ccc 1px;padding-bottom:10px;">
+						<span class="info_span">Amount</span>
+						<div>
+							<div id="decrease">
+								-
+							</div>
+							<input type="text" id="num" value="1"  />
+							<div id="add">
+								+
+							</div>
+						</div>
+					</div>
+
+					<div class="center_bot">
+						<div class="center_bot_top">
+							Selected<span id="already_choose"></span>
+						</div>
+						<div class="button">
+							<div id="buy">
+								<a href="javascript:void(0)">Buy Now</a>
+							</div>
+                            <!--
+							<div id="shopCar" class="shopCar">
+								加入购物车
+							</div>
+                            -->
+							<div id="collect">
+								Favorite
+							</div>
+						</div>
+					</div>
+				</div>
+                <!--
+				<div class="good_display_right">
+					<div class="right_top">
+						<span>正品联保，送货入户</span>
+						<span style="color:black;font-weight:bold;">商家：<span style="font-size:20px;color:black;"><{$result[0]["shop_name"]}></span></span>
+						<a href="__APP__/shop/index/id/<{$result[0][shop_id]}>">
+						<div class="go_shop">
+							进入店铺
+						</div></a>
+					</div>
+				</div>
+                -->
+			</div>
+
+			<!--底下是相关发布和创建宝宝档案-->
+			<div class="goods_detail">
+            <!--
+				<div class="left_detail">
+
+					<div class="detail">
+						<div class="detail_title">
+							相关分类
+						</div>
+						<div class="detail_content">
+							<ul>
+								<foreach name="type3_result" item="vo">
+									<li>
+										<a href="__APP__/good/goodslist/type/<{$vo.id}>" title="<{$vo.name}>"><{$vo.name}></a>
+									</li>
+								</foreach>
+							</ul>
+						</div>
+					</div>
+
+					<div class="hot_goods">
+						<div class="hot_title">
+							销售排行榜
+						</div>
+						<div class="middle_goods_right">
+							<div class="bottom_first" id="bottom_first" >
+								<foreach name="type3_sell" item="vo">
+									<div>
+										<img src="__PUBLIC__/image/good_info/goods<{$key+1}>.jpg" class="posi_img"/>
+										<div class="div_img">
+											<a href="__APP__/good/index/id/<{$vo.id}>" ><img src="<{$vo.image_url}>" style="width:30px;"/></a>
+										</div>
+										<div class="div_text">
+											<a href="__APP__/good/index/id/<{$vo.id}>" class="aClass" title="<{$vo.name}>"><{$vo.name}></a>
+											<span class="priceClass"><{$vo.price}>元</span>
+											<br/>
+										</div>
+									</div>
+								</foreach>
+							</div>
+						</div>
+					</div>
+				</div>
+                -->
+				<!--右边的一些商品数据和图片-->
+				<div class="right_detail">
+					<!--底下是商品详情包装及参数和其它部分-->
+					<div class="right_bot_details">
+						<!--商品信息导航条-->
+						<div class="right_bot_ul" >
+							<ul>
+								<li class="ul_li_current">
+									Item Details
+								</li>
+							</ul>
+						</div>
+						<!--商品详细信息展示区域-->
+						<div class="details_dispaly">
+							<{$result[0]["description"]}>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="Public/footer" />
+		<!--这里是添加到购物车的蒙板效果-->
+		<div class="shopCar_mask"></div>
+		<!--购物车蒙板之中的div-->
+		<div class="shopCar_mask_div">
+			<div class="shopCar_mask_back">
+				<span id="back_span">×</span>
+			</div>
+			<div class="success_add">
+				Item has added to cart
+			</div>
+			<div class="shopCar_btn">
+				<a href="__APP__/index/index" class="go_shopping">Continue Shopping</a>
+				<a href="__APP__/order/cart" class="go_shopCar">Pay</a>
+			</div>
+		</div>
+		<!--这里是添加到我的收藏的蒙板效果-->
+		<div class="collect_mask"></div>
+		<!--购物车蒙板之中的div-->
+		<div class="collect_mask_div"></div>
+
+	</body>
+</html>

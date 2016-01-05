@@ -1,0 +1,26 @@
+
+	<!--footer区域-->
+	<div class="footer" id="footer">
+	<div class="footer_con">
+	<div class="footer_left_div">
+		<div>
+			<a href="__APP__/article/alist/n/about">关于葵花</a>|
+			<a href="__APP__/article/alist/n/contact">联系我们</a>|
+			<a href="__APP__/article/alist/n/employ">诚聘英才</a>|
+			<a href="__APP__/article/alist/n/tender">葵花招标</a>|
+			<a href="__APP__/article/alist/n/law">法律声明</a>|
+			<a href="__APP__/article/alist/n/custom">客户服务</a>|
+			<a href="__APP__/shop_manage/index.php">商户登录</a>|
+			<a href="__APP__/mall_manage/index.php">商场登录</a>			
+		</div>
+		<span><{$array.copyright}></span>
+		<ul>
+			<li><a href="#"><img src="__PUBLIC__/image/shop_image/footer1.jpg" /></a></li>
+			<li><a href="#"><img src="__PUBLIC__/image/shop_image/footer2.jpg" /></a></li>
+			<li><a href="#"><img src="__PUBLIC__/image/shop_image/footer3.jpg" /></a></li>
+			<li><a href="#"><img src="__PUBLIC__/image/shop_image/footer4.jpg" /></a></li> 
+		</ul>
+	
+	</div>
+	</div>
+	</div>

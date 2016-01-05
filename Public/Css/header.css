@@ -1,0 +1,18 @@
+.header{width:100%;height:38px;background-color:#EEEEEE;border-bottom:solid 1px #DDDDDD; position:relative;}
+.header_container{width:1190px;margin:0 auto;}
+.header .header_city{width:76px;height:25px;background:url(../image/mall_image/header1.jpg) left top no-repeat;display:inline-block;margin-top:6px;margin-left:360px;color:white;font-size:12px;padding-left:7px;line-height:26px;}
+.header .header_city a{color:white;text-decoration:none;}
+.go_index{display:inline-block;height:38px;line-height:38px;}
+.header .header_reg{float:right;display:inline-block;margin-top:0px;}
+.header .header_container span a{color:#666666;font-size:12px;text-decoration:none;}
+.header .header_container span a:hover{color:#FF803A;}
+#header_reg ul{width:70px;background-color:white;border:solid #eee 1px;border-top:0;background-color:white;display:none;overflow:hidden;}
+#header_reg li{width:70px;overflow:hidden;float:left;margin-left:10px;margin-right:5px;border:solid 1px #eee;}
+#header_reg li ul{position:relative;z-index:9999;}
+#header_reg li ul li{text-align:center;margin-left:0;margin-top:3px;border:0;}
+.header .header_reg a{color:#666666;font-size:12px;text-decoration:none;display:block;width:70px;height:38px;float:left;line-height:38px;text-align:center;}
+.header .header_reg a:hover{color:#FF803A;}
+.header .header_reg a:hover span{color:#666666;}
+.header .header_reg a span{font-size:15px;display:inline-block;vertical-align:middle;height:30px;}
+li.spec_li{display:inline-block;width:auto;text-align:center;margin-left:0;}
+li.spec_li a{display:inline-block;}

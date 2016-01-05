@@ -1,0 +1,42 @@
+*{padding:0;margin:0;font-family:"microsoft yahei";}
+ul{list-style:none;}
+.return_con{width:946px; border:solid 1px #ccc;overflow:hidden;margin:10px auto;}
+.goods_top{width:946px; height:30px; background-color:#ccc; line-height:30px; color:#353535; }
+.goods_top div{width:150px; float:left;text-align:center;}
+.goods_top .good_info{padding-left:60px;width:410px;}
+.goods_con{width:946px; overflow:hidden; }
+.goods_bot{width:946px; height:80px; overflow:hidden;border-bottom:solid 1px #ccc;}
+.goods_bot div{float:left; width:150px; height:80px; line-height:80px; text-align:center;}
+.goods_con .img_div{width:50px; height:50px;  overflow:hidden; margin:13px 5px;}
+.goods_con .goods_title{width:350px; padding-right:60px; height:80px;  overflow:hidden;}
+.goods_con .goods_title a{text-decoration:none; color:#353535;}
+.return{width:846px; padding:10px 50px; border:solid 1px #ccc;overflow:hidden;border-right:0;border-left:0;display:none;}
+.return>div{width:846px;margin-top:10px;overflow:hidden;}
+.return>div>*{display:inline-block;vertical-align:top;}
+.return>div>span{width:70px;margin-right:10px;float:left;height:30px;line-height:30px;text-align:right;}
+.return>div ul li{float:left;margin-right:10px;}
+.text{width:710px;height:80px;border;solid 1px #ccc;}
+.return_btn{width:80px;height:30px;border:solid 1px #ccc;text-align:center;line-height:26px;margin-left:100px;border-radius:5px;font-size:16px;}
+.status_div{width:946px;height:40px;line-height:40px;background-color:#e3007f;text-align:center;color:white;font-size:18px;display:none;}
+
+
+.order_com span{cursor:pointer; color:#57C1FD;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

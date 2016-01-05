@@ -1,0 +1,47 @@
+*{padding:0;margin:0;font-family:"microsoft yahei";}
+ul{list-style:none;}
+.score_con{width:946px; border:solid 1px #ccc;overflow:hidden;margin:10px auto;}
+.goods_top{width:946px; height:30px; background-color:#ccc; line-height:30px; color:#353535; }
+.goods_top div{width:230px; float:left;}
+.goods_top .good_info{padding-left:60px;width:410px;}
+.goods_con{width:946px; overflow:hidden; }
+.goods_bot{width:946px; height:80px; overflow:hidden;}
+.goods_bot div{float:left; width:230px; height:80px; line-height:80px; }
+.goods_con .img_div{width:50px; height:50px; overflow:hidden; margin:13px 5px;}
+.goods_con .goods_title{width:350px; padding-right:60px; height:80px;  overflow:hidden;}
+.goods_con .goods_title a{text-decoration:none; color:#353535;}
+.score{width:846px; padding:10px 50px; border:solid 1px #ccc;overflow:hidden;border-right:0;border-left:0;display:none;}
+.score>div{width:846px;margin-top:10px;}
+.score>div>*{display:inline-block;vertical-align:top;}
+.score>div>span{width:50px;height:30px;line-height:30px;text-align:right;}
+.score li{float:left;}
+.star li{width:30px;height:30px;text-align:center;line-height:30px;font-size:20px;color:#ccc;cursor:pointer;}
+.star li.score_cur{color:red;}
+.label_div{width:750px;overflow:hidden;}
+.label{overflow:hidden;}
+.label li{height:20px; padding:5px; border:solid 1px #ccc;margin:10px;}
+.text{width:760px;height:80px;border:solid 1px #ccc;}
+.txt{width:130px;height:30px;margin:10px;}
+.btn{width:80px;height:30px;border:solid 1px #ccc;text-align:center;line-height:26px;margin-left:100px;border-radius:5px;font-size:16px;}
+.order_che{color:skyblue; cursor:pointer;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

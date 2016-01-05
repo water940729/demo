@@ -1,0 +1,61 @@
+body{background-color:#EEF3FA;}
+ul{list-style:none;}
+/*外包含框*/
+.container{width:1280px;height:780px;margin:80px auto;background-color:#F1F1F1}
+/*logo区域*/
+.logo_container{width:100%;height:130px;text-align:center;}
+/*个人用户*/
+.per_container{width:100%;height:35px;background-color:blsue;margin-top:20px;}
+
+.per_container .per_div{width:120px;height:32px;background-color:#fff;border:solid 1px #D4D4D4;border-bottom:0;border-top:solid 3px #E2007E;margin-left:350px;display:inline-block;color:#E2007E;text-align:center;font-family:microsoft yahei;font-size:15px;line-height:32px;font-weight:bold;}
+
+.per_container .per_span{float:right;margin-right:200px;color:#666666;font-size:14px;height:35px;line-height:45px;}
+/*注册主体区域*/
+.body_container{width:990px;height:490px;border:solid 1px #D4D4D4;margin:-1px auto;background-color:#fff;}
+/*注册表单部分*/
+.body_container .form_div{width:600px;height:490px;display:inline-block;}
+
+.form_div form{margin-left:30px;}
+
+.body_container .form_div label{width:100px;height:30px;background-color:rred;display:inline-block;text-align:right;font-family:microsoft yahei;}
+
+.body_container .form_div label span{color:#E70012;font-size:12px;}
+
+.body_container .form_div  input{width:315px;height:30px;border:solid 1px #ccc;margin-top:30px;font-size:20px;padding-left:5px;}
+
+#test{width:150px;}
+
+#test_div{width:70px;height:25px;display:inline-block;padding-top:10px;text-align:center;}
+
+.form_div form a{text-decoration:none;font-size:14px;color:#2E9CF1;}
+
+.form_div form a:hover{text-decoration:underline}
+
+.body_container .form_div  input[type="checkbox"]{width:auto;height:auto;margin-left:100px;}
+
+.body_container .form_div  label[for="checkbox"]{width:auto;height:auto;margin-left:10px;}
+
+.body_container .form_div  label[for="checkbox"] a{color:#E70012;font-size:16px;}
+
+.body_container .form_div  label[for="checkbox"] a:hover{text-decoration:underline;}
+
+.body_container .form_div input[type="button"]{width:165px;height:35px;background-color:#E2007E;color:white;border:0;font-family:microsoft yahei;border-radius:5px;margin-left:100px;}
+/*注册右侧图片部分*/
+.pic_div{width:290px;height:290px;float:right;margin-right:40px;text-align:center;margin-top:50px;}
+/*footer区域*/
+.footer_container{width:100%;height:150px;text-align:center;}
+.footer_container div{margin-top:10px;}
+.footer_container  a{font-size:12px;color:#646464;text-decoration:none;margin-left:10px;margin-right:10px;}
+.footer_container span{font-size:12px;color:#646464;margin-left:10px;display:inline-block;margin-top:15px;}
+.footer_container ul{width:500px;padding-left:450px;text-align:center;}
+.footer_container ul li{float:left;margin-right:20px;}
+
+
+
+
+
+
+
+
+
+

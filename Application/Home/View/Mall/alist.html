@@ -1,0 +1,184 @@
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title><{$mall["name"]}></title>
+<link href="__PUBLIC__/Css/mall2.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/sh_article.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+<script type="text/javascript" src="__PUBLIC__/Js/mall_js/goods_change.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/mall_js/header.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/mall_js/select.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/mall_js/middle.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/mall_js/select_list_ul.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/mall_js/floor_change.js"></script>
+<script>
+var Public="__PUBLIC__";
+	$(function(){
+	// 	alert(typeof <{$mall["id"]}>);
+	// 	var datad="belong="+(<{$mall["id"]}>.toString());
+	// 	alert(datad);
+		$.ajax({
+			type:"POST",
+			url:"__APP__/mall/classify",
+			data:"belong="+<{$mall["id"]}>,
+			dataType:"json",
+			success:function(data){
+				var div="";
+				for(var item in data){
+					div+="<div>";
+					var type2=data[item]["item"];
+					for(var vi in type2){
+						div+="<ul>";
+						var type3=type2[vi]["goods_type3"];
+						div+="<li class='li_first'>"+type2[vi]["name"]+"></li>";
+						//alert(type2[vi]["name"]);
+						for(var vo in type3){
+							div+="<li><a href='#'>"+type3[vo]["name"]+"</a></li>";
+						}
+						div+="</ul>";
+						
+					}
+					div+="</div>";
+				}
+				$("#div_list").append(div);
+				$("#div_list>div").height($(".list_adv").height()-$(".id_li_first").height()-61);
+				$("#div_list div").hover(function(){
+				var index=$(this).index();
+						
+				var li_index=index-1;
+				
+				var li=$("#list li");
+				
+				
+				var top=li.eq(li_index).offset().top+li.eq(li_index).height()/2;
+				
+				var left=li.eq(li_index).offset().left+li.eq(li_index).width();
+					
+				$("#list li").eq(li_index).css("backgroundColor","#E2007E");
+
+				$(this).show();
+				
+				$("#div_list span").show().offset({left:left,top:top});
+				
+			},function(){
+				
+				var index=$(this).index();
+				
+				var li_index=index-1;
+				
+				$("#list li").eq(li_index).css("backgroundColor","#F480C1");
+
+				$(this).hide();
+				
+				$("#div_list span").hide();
+			});
+				//alert(div);
+			}
+		});
+	})
+</script>
+</head>
+<body>
+<include file="Public/header" />
+	<div class="floor_change" id="floor_change">
+		<div class="flower" style="width:80px;height:63px;background:url(__PUBLIC__/image/shangcheng_image/floor_flower.jpg) no-repeat top;border:0px;top:0px;"></div>
+		<div style="background-color:#FD519D;">To Top</div>
+		<foreach name="floorid" item="vo">
+			<div style="background-color:<{$vo['background']}>;"><{$vo["name"]}></div>
+		</foreach>	
+		<div style="background-color:#FD519D;">To Bottom</div>
+	</div>
+	<!--最外层包围框-->
+<div class="container">
+	<!--广告区域-->
+	<div class="header_adv">
+		<a href="<{$adImage['top1']['link_url']}>"><img  style="width:<{$adImage['top1']['width']}>px ; height: <{$adImage['top1']['height']}>px ; " src="<{$adImage['top1']['img_path']}>" /></a>
+	</div>
+	
+	<!--logo和搜索框-->
+	<div class="logo_search">
+		<div class="logo"><a href="__APP__/mall/index/id/<{$mall['id']}>"><img src="<{$mall['image_url']}>" /></a></div>
+		<div class="search">
+			<input type="text" name=""/>
+			<input type="button" id="search" value="Search" style="background-color:#E3007F;"/>
+		</div>
+		<div class="shopCar">
+		<a href="__APP__/order/cart"><img src="__PUBLIC__/image/shangcheng_image/shopcar.jpg" />
+		<!--这段代码是显示购物车数量的-->
+		<div>
+		<empty name="Think.cookie.num">
+			0
+		<else/>
+			<{$Think.cookie.num}>
+		</empty>
+		</div>
+		</a>
+		</div>
+		<ul>
+			<foreach name="keyword" item="vo">
+				<li><a href="__APP__/good/search/n/<{$vo.keyword}>"><{$vo.keyword}></a></li>
+			</foreach>
+		</ul>
+	</div>
+	<!--商品列表和广告幻灯片-->
+	<div class="list_adv">
+	<!--商品列表-->
+		<div class="list" style="position:relative" id="div_list">
+			<ul id="list">
+	<!--使用内部的style来定义背景图片-->
+				<li style="background:url(__PUBLIC__/image/mall_image/list1.jpg);"></li>
+				<foreach name="type1" item="vi">
+					<li><img src="<{$vi.logo}>"><a href="#"><{$vi.name}></a></li>
+				</foreach>
+			</ul>
+			<span><img src="__PUBLIC__/image/mall_image/list_10.jpg"></span>
+		</div>
+		<!--选项卡-->
+			<div class="select_list">
+				<ul id="select_list_ul">
+					<li style="font-weight:900;font-size:20px;color:black;" class="li_spec">Home</li>
+				</ul>
+			</div>
+		<!--上面的广告和下拉框-->
+		
+		<!--中间的幻灯片广告-->
+		<div class="middle_adv">
+			<ul id="middle_adv_ul">
+				<foreach name="homefocus" item="row">
+				<li><a href="<{$row['link_url']}>"><img src="<{$row['image_url']}>" /></a></li>
+				</foreach>
+			</ul>
+			<div id="to_right" style="display:none">></div>
+			<div id="to_left" style="display:none"><</div>
+			<div id="to_num">
+			</div>
+		</div>
+		
+		<!--右边的便民服务项-->
+		<div class="right_adv">
+			<div class="right_top">
+				<a href="<{$adImage['r1']['link_url']}>"><img  style="width:<{$adImage['r1']['width']}>px ; height: <{$adImage['r1']['height']}>px ; " src="<{$adImage['r1']['img_path']}>" /></a>
+			</div>
+			<div class="right_bottom">
+				<a href="<{$adImage['r2']['link_url']}>"><img  style="width:<{$adImage['r2']['width']}>px ; height: <{$adImage['r2']['height']}>px ; " src="<{$adImage['r2']['img_path']}>" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="article">
+	<h1 style="background-color:#E2007E;"><{$super_articles["title"]}></h1>
+	<div><{$super_articles["content"]}></div>
+	</div>
+</div>
+<include file="Public/footer" />
+</body>
+</html>

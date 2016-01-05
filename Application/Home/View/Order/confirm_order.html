@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Confirm Order</title>
+    <link href="__PUBLIC__/Css/confirm_order.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+    <script src="__PUBLIC__/Js/confirm_order/confirm_order.js"></script>
+    <script src="__PUBLIC__/Js/confirm_order/city.js"></script>
+	<script>
+		$(function(){
+			$(".submit").click(function(){
+				var address_id=$(".address :checked").val();
+				var cart_item=[];
+				var message=[];
+				var $shop_info=$(".shop_info");
+				var cart_item_child;
+				$shop_info.each(function(){
+					message.push($(this).find(".leave_message").val());
+					cart_item_child=[];
+					$(this).find(".cart_item").each(function(){
+						cart_item_child.push($(this).attr('value'));
+					});
+					cart_item.push(cart_item_child);
+				});
+                document.write('<form name=myForm><input type=hidden name=address_id><input type=hidden name=cart_item><input type=hidden name=message></form>'); 
+                var myForm=document.forms['myForm']; 
+                myForm.action='submit_order'; 
+                myForm.method='POST'; 
+                myForm.address_id.value=address_id; 
+				myForm.cart_item.value=JSON.stringify(cart_item); 
+				myForm.message.value=JSON.stringify(message);
+				myForm.submit();
+			})
+		})
+	</script>
+</head>
+<body>
+<!--这是header区域-->
+<include file="Public:header" />
+<div class="container">
+    <!--这是logo和进度的部分-->
+    <div class="logo_pro">
+        <div class="logo"><img src="__PUBLIC__/image/confirm_order/logo.jpg" /></div>
+        <div class="shopCar"><img src="__PUBLIC__/image/confirm_order/shopCar.jpg" /></div>
+        <div class="progrecess">
+            <ul>
+                <li class="pro_li_spec"><div class="pro_li_spec">1</div></li>
+                <li class="pro_li_spec"><div class="pro_li_spec">2</div></li>
+                <li><div>3</div></li>
+                <li><div>4</div></li>
+            </ul>
+            <div class="pro_div">
+            <span>My Shopping Cart</span>
+                <span>Confirm Order</span>
+                <span>Payment</span>
+                <span>Payment Success</span>
+            </div>
+        </div>
+    </div>
+    <div class="title">
+        Dispatching Information
+    </div>
+    <div class="body_container">
+        <div class="address">
+			<input type="radio" name="radio1" checked="checked" class="radio_in" value="<{$default['address_id']}>"><span><{$default["username"]}> <{$default["phone"]}> <{$default["address"]}></span><br/>
+			<foreach name="adddata" item="vo">
+				<input type="radio" name="radio1" class="radio_in" value="<{$vo['address_id']}>">
+				<span><{$vo["username"]}> <{$vo["phone"]}> <{$vo["address"]}></span>
+                <br/>
+			</foreach>
+        </div>
+
+        <div class="add_address">
+            <span class="to_address">Send to:</span>
+            <span class="add_new_address"><a href="#">Add New Address</a></span>
+        </div>
+
+        <div class="add_information">
+            <div class="info_div">
+                <label><span>*</span>Consignee:</label>
+                <input type="text"  name="username"/>
+            </div>
+
+            <div class="info_div">
+                <label><span>*</span>Phone Number:</label>
+                <input type="text"  name="phone"/>
+            </div>
+            <div class="sel_address">
+                <label><span>*</span>Address:</label>
+                <!-- <div class="choose_sel_add">
+                    <div></div>
+                    <ul>
+                        <li>陕西省　西安市　西电</li>
+                        <li>陕西省　西安市　长安区</li>
+                        <li>陕西省　西安市　碑林区</li>
+                        <li>陕西省　西安市　雁塔区</li>
+                        <li>陕西省　西安市　高新区</li>
+                        <li>陕西省　西安市　韦曲区</li>
+                    </ul>
+                </div> -->
+                <select id="Province" runat="server" name="province" style="width: 90px;" ></select>
+                <select id="Country" runat="server" name="country" style="width: 90px;"></select>
+                <select id="Town" runat="server" name="town" style="width: 90px;"></select>
+            </div>
+            <div class="info_div">
+                <label><span>*</span>Address:</label>
+                <span id="detail_add"></span><input type="text" name="address" id="cho_inp"/>
+            </div>
+
+            <div>
+                <input type="checkbox" class="set_address"/><label  class="set_address_label">Set to the default receiving address</label>
+            </div>
+            
+            <div class="confirm_info">
+                Confirm the Information
+            </div>
+        </div>
+
+        
+
+    </div>
+
+        <!--底下是支付方式-->
+    <!--底下是商品信息及服务信息-->
+    <div class="title">
+        Goods and Service Information
+        <a href="__APP__/order/cart">Return to Shopping Cart to Change Goods</a>
+    </div>
+
+    <div class="goods_info">
+        <div class="goods_info_top">
+            <div class="goods_name">Good's Name</div>
+          <div>Good's Price</div>
+            <div>Amount</div>
+            <div>Service Information</div>
+        </div>
+		<foreach name="shopname" item="vo">
+			<span class="title_name"><{$vo["shop_name"]}></span>
+			
+			<div class="shop_info"><!--每个商铺对应的一项内容-->
+				<foreach name="result" item="vi">
+					<if condition="$vo[shop_name] eq $vi[shop_name]">
+						<div class="good_con">
+						<div class="cart_item" value="<{$vi['id']}>">
+						</div>
+						<div class="shop_info_img">
+							<img src="<{$vi['photo']}>">
+						</div>
+						<div class="span_text">
+							<a href="#" title="<{$vi["good_name"]}>"><{$vi["good_name"]}> <{$vi["good_info"]}></a>
+						</div>
+						<div class="price">
+							<span><{$vi['price']}></span>
+						</div>
+						<div class="good_num">
+							<span><{$vi["num"]}></span>
+						</div>
+						<div class="money_div">
+							<span class="money"><{$vi['freight']}></span>
+							<span class="quick">We will deliver the goods as soon as possible after the payment is completed</span>
+						</div>
+						</div>				
+					
+					</if>
+				</foreach>
+				<div class="goods_info_bottom">
+					<label>Sent message to Seller:</label>
+					<textarea class="leave_message" placeholder="For example：Comment for this transaction，the fill content shall reach an agreement with the seller, Within 90 words"></textarea>
+				   <span> <span class="message_num">0</span>/90</span>
+				</div>
+			</div>
+		</foreach>
+
+        <!--底下是结算信息-->
+    <!-- <div class="title">
+        结算信息
+    </div> -->
+
+    <div class="balance_info">
+        <div class="all_info_list">
+            <div>
+                <span>Amount Price:
+                <span class="last_price"></span></span>
+            </div>
+            <div class="submit_order">
+                <a href="javascript:void(0)" class="submit">Submit Order</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<SCRIPT language="javascript">
+setup();
+</SCRIPT>
+<include file="Public/footer" />
+</body>
+</html>

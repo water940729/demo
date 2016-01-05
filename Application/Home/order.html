@@ -1,0 +1,270 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>订单信息</title>
+<link href="__PUBLIC__/Css/order.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/Js/order_js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/order_js/header.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/order_js/order.js"></script>
+</head>
+<body>
+
+<include file="Public/header" />
+		
+		<!--主包含框-->
+		<div class="container">
+			<div class="logo_search">
+		<div class="logo"><a href="#"><img src="__PUBLIC__/image/order_image/logo.jpg" /></a></div>
+		<div class="search">
+			<input type="text" name=""/>
+			<input type="button" value="搜索" style="background-color:#E3007F;"/>
+			<input type="button" value="高级搜索" style="background-color:#5BC5EF;"/>
+		</div>
+		<div class="shopCar">
+		<a href="#"><img src="__PUBLIC__/image/order_image/shopcar.jpg" /></a>
+		</div>
+		<ul>
+			<li><a href="#">玩具</a></li>
+			<li><a href="#">好奇</a></li>
+			<li><a href="#">惠氏</a></li>
+			<li><a href="#"><span style="color:#E3007F;">婴儿床</span></a></li>
+			<li><a href="#">乐可爱</a></li>
+		</ul>
+	</div>
+		<div class="navigator">
+			<ul class="navigator_ul">
+				<li style="width:200px;height:63px;margin-bottom:-3px;background-color:#309DEF;color:white;font-weight:bold;">全部商品分类</li>
+				<li>首页</li>
+				<li>超市</li>
+				<li>秒杀</li>
+				<li>团购</li>
+				<li>试用</li>
+				<li>预售</li>
+			</ul>
+		</div>
+		<!--路线-->
+		<div class="route">
+			<span><a href="#">首页</a></span>>
+			<span><a href="#" style="color:#E3007F;text-decoration:underline;">我的葵花</a></span>>
+			<span><a href="#">订单中心</a></span>>
+		</div>
+		<!--订单的主体部分-->
+		
+		<div class="content">
+			<div class="left_content" id="left_content">
+				<div class="left_content_body">
+		
+				<h3 style="background:url(__PUBLIC__/image/order_image/order1.jpg) no-repeat 10px center;padding-left:30px;">交易管理</h3>
+				<ul>
+					<li><a href="#" id="order">我的订单</a></li>
+					<li><a href="#" id="trail">我的试用</a></li>
+					<li><a href="#" id="book">我的预售</a></li>
+					<li><a href="#" id="collect">我的收藏</a></li>
+					<li><a href="#" id="footprint">浏览历史</a></li>
+					
+					<li><a href="#">我的优惠券</a></li>
+					<li><a href="#">我的礼品卡</a></li>
+					<li><a href="#">我的积分</a></li>
+					<li><a href="#">商品咨询</a></li>
+					<li><a href="#">到货通知</a></li>
+				</ul>
+				</div>
+		<script>
+		
+			$(document).ready(function(){
+               
+                $('#right').load('../TabChange/order.html');
+
+                $("#collect").click(function(){
+                    $('#right').load('../TabChange/collect.html');
+                })
+
+            
+                $("#footprint").click(function(){
+                    $('#right').load('../TabChange/footprint.html');
+                })
+
+             
+                $("#order").click(function(){
+                    $('#right').load('../TabChange/order.html');
+                })
+
+
+                $("#trail").click(function(){
+                    $('#right').load('../TabChange/trail.html');
+                })
+
+
+                $("#book").click(function(){
+                    $('#right').load('../TabChange/book.html');
+                })
+
+           })
+		</script>
+				<div class="left_content_body">
+				<h3 style="background:url(__PUBLIC__/image/order_image/order2.jpg) no-repeat 10px center;padding-left:30px;">客服中心</h3>
+				<ul>
+					<li><a href="#">退换货</a></li>
+					<li><a href="#">维修/保养</a></li>
+					<li><a href="#">我的投诉</a></li>
+					<li><a href="#">修改订单</a></li>
+				</ul>
+				</div>
+				
+				<div class="left_content_body">
+				<h3 style="background:url(__PUBLIC__/image/order_image/order3.jpg) no-repeat 10px center;padding-left:30px;">账户管理</h3>
+				<ul>
+					<li><a href="#">个人信息</a></li>
+					<li><a href="#">门店会员卡</a></li>
+					<li><a href="#">关联互联帐号</a></li>
+					<li><a href="#">安全设置</a></li>
+					<li><a href="#">短消息</a></li>
+					<li><a href="#">地址管理</a></li>
+				</ul>
+				</div>
+				
+				<div class="left_content_body">
+				<h3 style="background:url(__PUBLIC__/image/order_image/order4.jpg) no-repeat 10px center;padding-left:30px;">社区中心</h3>
+				<ul>
+					<li><a href="#">我的咨询</a></li>
+					<li><a href="#">评价/晒单</a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="right_content" id="right">
+				hahahaha
+				<!--<div class="right_top_ul">
+					<ul id="select_ul">
+						<li class="right_li_spec">全部订单</li><span>|</span>
+						<li>充值订单</li><span>|</span>
+						<li>团购订单</li><span>|</span>
+						<li>代付款<span>2</span></li><span>|</span>
+						<li>待发货<span>1</span></li><span>|</span>
+						<li>待收货<span>2</span></li><span>|</span>
+						<li>待评价<span>1</span></li>
+					</ul>
+					<div class="right_top_clear">订单回收站</div>
+				</div>
+				
+				<div class="query_order">
+					<select>
+						<option>最近三个月订单</option>
+						<option>最近一个月订单</option>
+						<option>最近一个星期订单</option>
+						<option>最近三天订单</option>
+					</select>
+					<div class="right_search">
+						<input type="text" value="商品名称/订单编号" id="text_search" />
+						<input type="button" value="查找" />
+					</div>
+				</div>
+				<div class="order_content" style="display:block;">
+					<div class="order_content_top">
+						<ul>
+							<li class="order_li_spec">订单商品 </li>
+							<li>订单金额(元)</li>
+							<li>交易时间</li>
+							<li class="status_li">交易状态<span>ˇ</span>
+								<ul>
+									<li>成功</li>
+									<li>失败</li>
+								</ul>
+							</li>
+							<li class="status_li">交易操作<span>ˇ</span>
+							<ul>
+								<li>已付款</li>
+								<li>未付款</li>
+							</ul>
+							</li>
+						</ul>
+					</div>
+					<empty name="orderid">
+							<div class="information"><span>你最近3个月内没有该类型的订单哦，如需查询之前的订单请选择<a href="#">历史订单</a></span></div>
+						<else/>
+							<foreach name="orderid" item="vo">
+								<foreach name="data" item="vi">
+									<eq name="vi.ordid" value="$vo.ordid">
+										<div class="order_inform">
+											<div class="order_inform_top">
+												订单编号：<span><{$vi.ordid}></span>
+												<{$vi.shop_name}>
+											</div>
+											
+											<div class="order_inform_bottom">
+												<ul class="order_inform_bottom_ul">
+												<li class="order_li_spec">
+													<div class="img_div">
+														<img src="<{$vi.productimage}>"  />
+													</div>
+													<div>
+														<a href="__APP__/good/index/id/<{$vi.productid}>"><{$vi.productname}></a><br/>
+														<!--<span>备注：描述</span>-->
+													
+						<!--							</div>
+												</li>
+												<li><span><{$vi.ordfee}><br/>
+													<a href="#">自动充值</a></span>
+												</li>
+												<li><span><{$vi.ordtime}></span>
+												</li>
+												<li>
+												<if condition="$vi.ordstatus eq 0">
+												等待付款
+												<br/>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span>
+												</li>
+												<li style="border:0;">
+													<input type="button" value="取消订单" id="comment"><br/>
+													<a href="#">马上付款</a><br/>
+													<input type="button" value="删除" id="delete">
+												</li>
+												<elseif condition="$vi.ordstatus eq 1"/>
+												付款成功
+												<br/>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span>
+												</li>
+												<li style="border:0;">
+													<input type="button" value="评价" id="comment"><br/>
+													<a href="#">售后</a><br/>
+													<a href="#">再次购买</a><br/>
+													<input type="button" value="删除" id="delete">
+												</li>
+												<else/>
+												已撤销
+												<br/>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span>
+												</li>
+												<li style="border:0;">
+													<input type="button" value="评价" id="comment"><br/>
+													<a href="#">售后</a><br/>
+													<a href="#">再次购买</a><br/>
+													<input type="button" value="删除" id="delete">
+												</li>
+												</if>
+											</ul>
+											</div>
+										</div>
+									</eq>
+								</foreach>
+							</foreach>
+					</empty>				
+					</div>
+				<!--全部订单-->
+<!--				<div style="clear:both"></div>  -->
+		</div>
+<include file="Public/footer" />
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+

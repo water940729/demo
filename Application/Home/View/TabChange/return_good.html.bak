@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment Page</title>
+    <link href="__PUBLIC__/Css/return.css" rel="stylesheet" type="text/css" />
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"></script>
+		<!--<![endif]-->
+    <script src="__PUBLIC__/Js/return/return.js"></script>
+<style>
+        .feedback{margin:10px;float:left;overflow:hidden;}
+        .feedback img{float:left;width:70px;height:70px;margin-right:10px;}
+        .addpicContainer{float:left;}
+        .addpicContainer{margin-left:5px;}
+        .addpicContainer img{float: left;}
+        .loading{display:none;background:url("http://f7-preview.awardspace.com/zjmainstay.co.cc/jQueryExample/jquery_upload_image/files/ui-anim_basic_16x16.gif") no-repeat scroll 0 0 transparent;float: left;padding:8px;margin:18px 0 0 18px;}
+    </style>
+    <script type="text/javascript">
+$(document).ready(function(){
+    
+    $(".file_div").click(function(){
+        $(this).next("input.inputfile").click();
+    })
+    //响应文件添加成功事件
+    $(".inputfile").each(function(index){
+        var that=$(this);
+        var iNow=0;
+        var data=null;
+        var index=index;
+       $(this).change(function(){
+        //创建FormData对象
+        if(iNow<3){
+        data = new FormData();
+        //为FormData对象添加数据
+        $.each($('.inputfile')[index].files, function(i, file) {
+            data.append('upload_file'+i, file);
+        });
+        $(".loading").show();   //显示加载图片
+        //发送数据
+            $.ajax({
+            url:'../Widget/upload_img',
+            type:'POST',
+            data:data,
+            cache: false,
+            contentType: false,     //不可缺参数
+            processData: false,     //不可缺参数
+            success:function(data){
+                data = $(data).html();
+                //第一个feedback数据直接append，其他的用before第1个（ .eq(0).before() ）放至最前面。
+                //data.replace(/&lt;/g,'<').replace(/&gt;/g,'>') 转换html标签，否则图片无法显示。
+                if(that.siblings("div.feedback").children('img').length == 0) {that.siblings("div.feedback").append(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));}
+                else {that.siblings("div.feedback").children('img').eq(0).before(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));}
+                $(".loading").hide();   //加载成功移除加载图片
+                iNow++;
+            },
+            error:function(){
+                alert('Submit Error');
+                $(".loading").hide();   //加载失败移除加载图片
+            }
+        });}else{
+            alert("Only can Submit No more than 3 Pictures");
+            return false;
+        }
+        }); 
+    }) 
+
+    //点击提交申请
+    /*
+    $(".return_btn").click(function(){
+        $(".return").hide();
+        $(".status_div").show();
+        alert("你的申请已经提交，等待商家审核");
+    })  
+    */
+});
+</script>
+</head>
+<body>
+    <!--这是商品的包含框-->
+    <div class="return_con">
+        <!-- 标题-->
+        <div class="goods_top">
+            <div class="good_info">Good's Information</div>
+            <div>Buy Time</div>
+            <div>Price</div>
+        </div>
+        <!-- 这是商品的具体信息-->
+        <foreach name="ordlist_to_return" item="vo">
+        
+        <div class="goods_con">
+            <div class="goods_bot">
+                <div class="img_div">
+                    <a href="../../<{$vo.goodPrefix}>/id/<{$vo.productid}>"><img src="<{$vo.productimage}>" style="width:50px;height:50px;"/></a>
+                </div>
+                <div class="goods_title">
+                    <a href="#" title="<{$vo.productname}>"><{$vo.productname}></a>
+                    <span hidden class="good_type_id"><{$vo.ordertype}></span>
+                    <span hidden class="good_id"><{$vo.productid}></span>
+                    <span hidden class="order_time"><{$vo.ordtime}></span>
+                    <span hidden class="ordid"><{$vo.ordid}></span>
+                </div>
+                <div><{$vo.ordtime|date="y-m-d",###}></div>
+                <div class="order_che">￥<{$vo.ordprice}></div>
+				<div class="order_com"><span>Return</span></div>
+            </div>
+            <!-- 这是每个商品下面对应的填写信息的包含框-->
+            <div class="return">
+              <div style="text-align:center;font-size:18px;">Pleause full returning information in time to make sure returning process smooth</div>
+			  <div>
+				<span>Service Type:</span>
+				<ul class="service">
+					<li><input type="radio" value="1"/><span>Return Goods</span></li>
+					<li><input type="radio" value="2"/><span>Replace Goods</span></li>
+				<!--	<li><input type="radio" value="3"/><span>维修</span></li> -->
+				</ul>
+			  </div>
+			  <div class="invoice">
+			  <span>Application Credentials:</span>
+				<input type="checkbox"   style="vertical-align:middle;"/><span style="float:none;margin:0;width:auto;vertical-align:middle;margin-left:5px;">Receipt</span>
+			  </div>
+			  <div>
+			  <span>Alipay:</span>
+				<input type="text" class="zhifubao" style="vertical-align:middle;"/>
+			  </div>
+              <div>
+                    <span>Problem Description:</span>
+                    <textarea class="text" placeholder="Please deseribe your Ploblem as detailed as possible"></textarea>
+              </div>
+               <div>
+                   <span>Picture Information:</span>
+                   <div class="addpicContainer">
+                    <!-- 利用multiple="multiple"属性实现添加多图功能 -->
+                    <!-- position: absolute;left: 10px;top: 5px;只针对本用例将input隐至图片底下。-->
+                    <!-- height:0;width:0;z-index: -1;是为了隐藏input，因为Chrome下不能使用display:none，否则无法添加文件 -->
+                    <!-- onclick="getElementById('inputfile').click()" 点击图片时则点击添加文件按钮 -->
+                    <div class="file_div" style="cursor:pointer;width:120px;height:30px;font-family:'microsoft yahei';color:white;line-height:30px;text-align:center;background-color:#e3007f;border-radius:5px;font-weight:bold;">上传图片</div>
+                    <input type="file" multiple="multiple" class="inputfile" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;"/>
+                    <span class="loading"></span>
+                    <div class="feedback"></div>    <!-- 响应返回数据容器 -->
+                    </div>
+               </div>
+                <div>
+                    <input type="button" value="Submit Application"  class="return_btn"/>
+                </div>
+            </div>
+            <!--
+            <div   class="status_div">
+                退货状态:<span>等待商家审核</span>
+            </div>
+            -->
+        </div>
+        </foreach>
+
+        <foreach name="ordlist_done" item="vo">
+		<!--已退货-->
+		<div class="goods_con">
+            <div class="goods_bot">
+                <div class="img_div">
+                    <a href="../../<{$vo.goodPrefix}>/id/<{$vo.productid}>"><img src="<{$vo.productimage}>" style="width:50px;height:50px;"/></a>
+                </div>
+                <div class="goods_title">
+                    <a href="#" title="<{$vo.productname}>"><{$vo.productname}></a>
+                    <span hidden class="good_type_id"><{$vo.ordertype}></span>
+                    <span hidden class="good_id"><{$vo.productid}></span>
+                    <span hidden class="order_time"><{$vo.ordtime}></span>
+                    <span hidden class="ordid"><{$vo.ordid}></span>
+                </div>
+                <div><{$vo.ordtime|date="y-m-d",###}></div>
+                <div class="order_che">￥<{$vo.ordprice}></div>
+				<!--退货状态-->
+				<div style="color:#e3007f;"><span>
+                <if condition="$vo.ordstatus eq 4">
+                Already Applyed Changen Goods
+                <elseif condition="$vo.ordstatus eq 5" />
+                Already Changed
+                <elseif condition="$vo.ordstatus eq 6" />
+                Already Applyed Return Goods
+                <elseif condition="$vo.ordstatus eq 7" />
+                Already Returned
+                <else/>
+                </if>
+                </span></div>
+            </div>
+        </div>
+        </foreach>
+
+    </div>
+</body>
+</html>

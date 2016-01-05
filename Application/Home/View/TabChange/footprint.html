@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>FootPrint</title>
+	<style>
+		.shop_container{width:965px;padding:10px;border:solid 1px #ccc;font-family:"microsoft yahei"}
+		.history{width:910px;margin:10px auto;border:solid 1px #ccc;height:90px; overflow:hidden;}
+		.history .img{width:60px; height:60px; float:left; margin:14px 10px; border:solid 1px #ccc; overflow:hidden;}
+		.history .img img{width:60px; height:60px;}
+		.history .title{width:750px;height:60px;margin:14px 10px; border:solid 1px #ccc;float:left;}
+		.history .title a{text-decoration: none; color:#353535; font-family:"microsoft yahei";font-size:15px;display:block;height:30px;width:400px;padding-left:10px;overflow:hidden;line-height:30px;}
+		.history .title span{display:block;width:150px;padding-left:10px;height:30px;line-height:30px;font-size:13px;}
+		.history .title a:hover{color:orange;}
+		.del_shop_add{width:50px;height:25px;line-height:25px;background-color:#3CA9EE;float:right;color:white;text-align:center;margin-top:30px;margin-right:5px;border-radius:5px;cursor:pointer;}
+	</style>
+</head>
+<body>
+	<div class="shop_container">
+    <foreach name="result" item="vo">
+		<div class="history">
+			<div class="img"><a href="__APP__/good/index/id/<{$vo.good_info.id}>"><img src="<{$vo.good_info.image_url}>"/></a></div>
+			<div class="title">
+				<a href="#"><{$vo.good_info.name}></a>
+               <span>Collect Time:<{$vo.footprint_info.time|date="y-m-d", ###}></span>
+			</div>
+		</div>
+    </foreach>
+	</div>
+</body>
+</html>

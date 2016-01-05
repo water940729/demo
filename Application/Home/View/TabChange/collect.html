@@ -1,0 +1,151 @@
+<!--个人中心-->
+ <!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>My Favour</title>
+    <link href="__PUBLIC__/Css/collect.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container_right">
+        <!--右侧上面收藏商品和收藏店铺的切换div-->
+          <div class="container_right_top">
+          <!--
+            <div class="top_title">
+              <div class="collect_cur">商品收藏</div>
+              <div>店铺收藏</div>
+            </div>
+
+-->
+            <!--对应的内容-->
+            <div class="top_content">
+              <ul>
+                <li id="all" class="li_first">All(<span><{$all}></span>)</li>
+                <li class="common"><a href="javascript:;">Common Goods(<span><{$common}></span>)</a></li>
+                <li class="seckill"><a href="javascript:;">Seckill Goods(<span><{$seckill}></span>)</a></li>
+                <li class="teambuy"><a href="javascript:;">Teambuy Goods(<span><{$teambuy}></span>)</a></li>
+                <li class="trial"><a href="javascript:;">Trial Goods(<span><{$trial}></span>)</a></li>
+                <li class="book"><a href="javascript:;">Book Goods(<span><{$book}></span>)</a></li>
+              </ul>
+            </div>
+          </div>
+          <!--底下是全部商品对应的部分-->
+          <div id="collect_content_margin">
+          <div id="collect_content" class="container_right_cen">
+           <!--第一个品牌-->
+            <foreach name="result" item="vo">
+            <div class="cen_top_con">
+              <div class="shop_name">
+                    <notdefined name="vo.good_info.shop_name">
+                    <{$vo.good_info.shop_name}>
+                    </notdefined>
+              </div>
+              <div class="goods_det">
+                <div class="img_div">
+                <notdefined name="vo.good_info.image_url">
+                    <img src="<{$vo.good_info.image_url}>" /> 
+                </notdefined>
+                <notdefined name="vo.good_info.img_url">
+                    <img src="<{$vo.good_info.img_url}>" /> 
+                </notdefined>
+                </div>
+                <div class="span_div">
+                  <span><a href="#"><{$vo.good_info.name}></a></span>
+                  <span class="info_span">Collect time:<span><{$vo.collect_info.collect_time|date="y-m-d",###}></span>Collect Price:￥<span><{$vo.collect_info.collect_price}></span></span>
+                </div>
+              </div>
+              <div class="price_down">
+                <span class="price_down_pri">Price:<span>￥</span><span><{$vo.good_info.price}></span></span>
+              </div>
+              <div class="now_goods">Remain Number:
+                <notdefined name="vo.good_info.goodsnum">
+                <{$vo.good_info.goodsnum}>
+                </notdefined>
+                <notdefined name="vo.good_info.num">
+                <{$vo.good_info.num}>
+                </notdefined>
+              </div>
+              <div class="del_shopcar">
+                <span hidden><{$vo.collect_info.collect_type}></span>
+                <span id="collect_good_id" hidden><{$vo.good_info.id}></span>
+                <div class="del_shopcar_add">Delete</div>
+              </div>
+            </div>
+            </foreach>
+          <!--第二个品牌-->
+          <!--
+          <div class="cen_top_con">
+              <div class="shop_name">葵花自营</div>
+              <div class="goods_det">
+                <div class="img_div"></div>
+                <div class="span_div">
+                  <span><a href="#">标题，货物的商品的名称</a></span>
+                  <div class="info_div">直降</div>
+                  <span class="info_span">收藏时间:<span>2015-05-05</span>收藏人数:<span>17</span></span>
+                </div>
+              </div>
+              <div class="price_down">
+                <span class="price_down_pri">直降价:<span>￥</span><span>76.5</span></span>
+                <a href="javascript:void(0)">降价通知</a>
+                
+              </div>
+              <div class="now_goods">现货</div>
+              <div class="del_shopcar">
+                <div class="del_shopcar_add">加入购物车</div>
+                <div class="del_shopcar_del">删除</div>
+              </div>
+            </div>
+            
+          </div>
+          -->
+          <!--底下的下一页-->
+          <!--
+          <div class="cen_top_bot">
+            
+            <div class="bot_left">
+              <input type="checkbox" id="check_all2"><label for="check_all2">全选</label>
+              <span class="delete_all"><img src="__PUBLIC__/image/collect/del.jpg">删除</span>
+              <span class="add_shopCar"><img src="__PUBLIC__/image/collect/shopCar.jpg" >加入购物车</span>
+              <span class="add_label"><img src="__PUBLIC__/image/collect/label.jpg">添加标签</span>
+            </div>
+            
+            <div class="bot_right">
+              <div class="prev_page">上一页</div>
+              <div class="num_page">1</div>
+              <div class="next_page">下一页</div>
+            </div>
+          </div>  
+          -->
+          </div>
+        </div>
+ 
+ <!--</div>-->  
+<!--
+ <script>
+ function loadScript(url, callback){
+    var script = document.createElement ("script")
+    script.type = "text/javascript";
+    if (script.readyState){ //IE
+        script.onreadystatechange = function(){
+            if (script.readyState == "loaded" || script.readyState == "complete"){
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else { //Others
+        script.onload = function(){
+            callback();
+        };
+    }
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+}  
+window.onload=loadScript("__PUBLIC__/Js/collect/jquery.js", function(){
+})
+</script>
+-->
+   <script src="__PUBLIC__/Js/collect/collect.js"></script> 
+   <script src="__PUBLIC__/Js/order_js/tabChange/collect.js"></script>
+   <script src="__PUBLIC__/Js/jquery/load_jquery.js"></script> 
+</body>
+</html>

@@ -1,0 +1,22 @@
+*{padding:0;margin:0;font-family:microsoft yahei;}
+ul{list-style:none;}
+/*外包含框*/
+.container{width:1190px;margin:10px auto;overflow:hidden;min-height:900px;}
+/*这里是咯logo*/
+.logo{width:300px;height:120px;margin:0 auto;overflow:hidden;text-align:center;overflow:hidden;}
+/*这里是导航条部分*/
+.nav_route{width:1190px;height:40px;border-bottom:solid 3px #FF7EAC;}
+.nav_route ul li{float:left;width:100px;height:40px;text-align:center;line-height:40px;font-size:16px;}
+.nav_route ul li a{text-decoration:none;color:#353535;width:100px;display:block;}
+.nav_route ul li.cur{background-color:#FF7EAC;}
+.nav_route ul li.cur a{color:white;}
+/*这里是图片区域*/
+.img_mild{width:1190px;height:200px;overflow:hidden;}
+/*这里是路线部分*/
+.route{width:1170px;height:30px;padding-left:20px;margin-top:20px;}
+.route ul li{float:left;font-size:14px;height:30px;line-height:30px;margin-right:10px;}
+.route ul li a{color:#353535;text-decoration:none;}
+.route ul li a:hover{color:orange;}
+/*正文部分*/
+.content_body{width:1150px;padding:10px 20px;color:#353535;}
+.content_body h1{color:#e3007f;}

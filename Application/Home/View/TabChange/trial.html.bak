@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"!>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>my2</title>
+	<link href="__PUBLIC__/Css/order.css" ref="stylesheet" type="text/css">	
+</head>
+	<body>
+   	<div class="right_content">
+				<div class="right_top_ul">
+					<ul id="select_ul">
+						<li id="all" class="right_li_spec">All Orders</li><span>|</span>
+                        <!--
+						<li>充值订单</li><span>|</span>
+						<li>团购订单</li><span>|</span>
+                        -->
+						<li id="wait_pay">Wait Pay<span><{$wait_pay}></span></li><span>|</span>
+						<li id="wait_send">Wait Sen<span><{$wait_send}></span></li><span>|</span>
+						<li id="wait_take">Wait Take<span><{$wait_take}></span></li><span>|</span>
+						<li id="wait_comment">Wait Comment<span><{$wait_comment}></span></li>
+                        <li id="status" hidden>40</li>
+					</ul>
+				</div>
+				
+				<div class="query_order">
+					<select id="time_select">
+						<option value="5">ALL</option>
+						<option value="4">Last three Months Orders</option>
+						<option value="3">Last one Month Orders</option>
+						<option value="2">Last one Week Orders</option>
+						<option value="1">Last three Months Orders</option>
+					</select>
+					<div class="right_search">
+						<input id="search_text" type="text" value="商品名称/订单编号"/>
+						<input id="search" type="button" value="查找" />
+					</div>
+				</div>
+                <div id="order_content_margin">  
+				<div id="order_content" class="order_content" style="display:block;">
+					<div class="order_content_top">
+						<ul>
+							<li class="order_li_spec">订单商品 </li>
+							<li>订单金额(元)</li>
+							<li>交易时间</li>
+							<li class="status_li">交易状态
+							</li>
+							<li class="status_li">交易操作
+							</li>
+						</ul>
+					</div>
+					<empty name="orderid">
+							<div class="information"><span>您在指定时间内没有该类型的订单哦。</span></div>
+						<else/>
+							<foreach name="orderid" item="vo">
+								<div class="order_inform_top" style="color:#353535;font-family:microsoft yahei">
+										订单编号：<span><{$vo.ordid}></span>
+										<{$vo.shop_name}>
+                                        <if condition="$vo.ordstatus eq 0">
+                                            <input type="button" value="取消订单" class="trial_delete">
+											<input type="button" value="马上付款" class="to_pay"><br/>
+                                        </if>
+								</div>
+								<foreach name="data" item="vi">
+									<eq name="vi.ordid" value="$vo.ordid">
+										<div class="order_inform">
+											
+										    <span class="ordid" hidden><{$vo.ordid}></span>	
+											<div class="order_inform_bottom">
+												<ul class="order_inform_bottom_ul">
+												<li class="order_li_spec">
+													<div class="img_div">
+														<img src="<{$vi.productimage}>"  />
+													</div>
+													<div>
+                                                        <span class="productid" hidden><{$vi.productid}></span>
+														<a href="__APP__/good/trialgoods/id/<{$vi.productid}>"><{$vi.productname}></a><br/>
+														<!--<span>备注：描述</span>-->
+													</div>
+												</li>
+												<li><span><{$vi.ordfee}><br/>
+												</li>
+												<li><span><{$vi.ordtime|date="y-m-d",###}></span>
+												</li>
+												<li>
+												<if condition="$vi.ordstatus eq 0">
+												等待付款
+												<br/>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span>
+												</li>
+												<li style="border:0;">
+												</li>
+												<elseif condition="$vi.ordstatus eq 1"/>
+												付款成功
+												<br/>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span>
+												</li>
+												<li style="border:0;">
+													<input type="button" value="确认收货" class="trial_confirm_rev"><br/>
+													<a href="__APP__/good/trialgoods/id/<{$vi.productid}>">再次购买</a><br/>
+												</li>
+                                                <elseif condition="$vi.ordstatus eq 3" />
+                                                已收货
+                                                </br>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span>
+                                                </li>
+                                                <li style="border:0;">
+                                                    <input type="button" value="去评价" class="order_comment"><br/>
+                                                    <input type="button" value="退换货" class="trial_return"><br/>
+                                                    <a href="__APP__/good/trialgoods/id/<{$vi.productid}>">再次购买<a></br>
+
+                                                <elseif condition="$vi.ordstatus eq 9" />
+                                                已申请退换货，请到退换货页面提交详细信息 
+                                                </br>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span>
+                                                </li>
+                                                <li style="border:0;">
+                                                    <a href="__APP__/good/trialgoods/id/<{$vi.productid}>">再次购买<a></br>
+
+
+                                                </li>
+
+
+
+                                                 <elseif condition="$vi.ordstatus eq 8" />
+                                                已评价
+                                                </br>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span>
+                                                </li>
+                                                <li style="border:0;">
+                                                    <input type="button" value="已评价" class="commented"><br/>
+                                                    <a href="__APP__/good/trialgoods/id/<{$vi.productid}>">再次购买<a></br>
+                                                </li>
+                                               </li>
+												<else/>
+												已撤销
+												<br/>
+												<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span>
+												</li>
+												<li style="border:0;">
+													<a href="__APP__/good/trialgoods/id/<{$vi.productid}>">再次购买</a><br/>
+												</li>
+												</if>
+											</ul>
+											</div>
+										</div>
+									</eq>
+								</foreach>
+							</foreach>
+					</empty>				
+					</div>
+                    </div>
+				<!--全部订单-->
+				<div style="clear:both"></div>
+			</div>
+    <script src="__PUBLIC__/Js/order_js/tabChange/trial.js"></script>
+    <script src="__PUBLIC__/Js/jquery/load_jquery.js"></script>
+	</body>
+</html>

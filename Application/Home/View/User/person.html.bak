@@ -1,0 +1,91 @@
+<!--个人中心-->
+ <!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Personal Center</title>
+    </head>
+    <body>
+		<!--header区域-->
+		<!--暂未写-->
+		<!--logo保卫框-->
+		<div class="logo_container">
+			<div class="logo_container_red">
+				<div class="head_img"><img src="#" /></div>
+				<div class="logo_img"><img src="#" /></div>
+				<ul>
+					<li><a href="#">Home Screen</a></li>
+					<li><a href="#">Account Management</a>+</li>
+					<li><a href="#">Message</a><span>N</span></li>
+				</ul>
+				<div class="form_div">
+					<input type="text" value="Key Word" />
+					<input type="button" value="Search" />
+				</div>
+			</div>
+			
+			<div class="logo_container_white">
+				<span class="telephone">12345678987</span>
+				<div class="my_info">My Information</div>
+				<span><img src="#" /><span>regular member</span></span>
+				<div class="outer_div"><span>850</span>/2000<div class="inner_div"></div></div>
+				Security Classification:<span>Low</span>
+				<span><img src="#" /><a href="#" >Change Phone Number</a></span>
+			</div>
+		</div>
+		
+		<!--主体保围框-->
+		<div class="container">
+		<!--中间的左侧的部分-->
+			<div class="container_left">
+				<h3>Transaction Management</h3>
+				<ul>
+					<li><a href="#">My Shopping Cart<span>(1)</span></a></li>
+					<li><a href="#">My Order<span>(1)</span></a></li>
+					<li><a href="#">My Coupon<span>(1)</span></a></li>
+					<li><a href="#">My Collection<span>(1)</span></a></li>
+					<li><a href="#">My Footprint<span>(1)</span></a></li>
+				</ul>
+				<ul>
+					<li><a href="#">Return Goods</a></li>
+					<li><a href="#">Service Consultation</a></li>
+					<li><a href="#">Maintenance</a></li>
+					<li><a href="#">Change Order</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">Evaluate</a></li>
+					<li><a href="#">My Consultation</a></li>
+				</ul>
+			</div>
+			<!--中间的右侧部分-->
+			<div class="container_right">
+				<div class="container_right_top">
+					<ul>
+						<li></li>
+						<li><img src="#" /><a href="#">待付款<span>(</span><span>1</span><span>)</span></a></li>
+						<li><img src="#" /><a href="#">待发货<span>(</span><span>1</span><span>)</span></a></li>
+						<li><img src="#" /><a href="#">待收货<span>(</span><span>1</span><span>)</span></a></li>
+						<li><img src="#" /><a href="#">待评价<span>(</span><span>1</span><span>)</span></a></li>
+						<li><img src="#" /><a href="#">购物车<span>(</span><span>1</span><span>)</span></a></li>
+					</ul>
+				</div>
+				<div class="container_right_cen">
+					<h2>我的订单</h2>
+					<div>
+						<div>
+							<div>订单号:<span>0112212121</span></div>
+							<div>
+								<div>图片</div>
+								<div>
+								<a href="#">这是商品的标题</a>
+								<span>￥<span>168.00</span></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container_right_bot"></div>
+			</div>
+		</div>	
+    </body>
+</html>

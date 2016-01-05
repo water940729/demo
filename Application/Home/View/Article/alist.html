@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>文章页面</title>
+		<link href="__PUBLIC__/Css/article.css" rel="stylesheet" type="text/css" />
+		<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+		<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+			<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+		<script type="text/javascript" src="__PUBLIC__/Js/article/header.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/Js/article/article.js"></script>
+		<script>
+		$(function(){
+			var url=window.location.href;
+			var urls=url.split("/");
+			var length=urls.length;
+			var content=urls[length-1];
+			$(".nav_route ul li[name="+content+"]").addClass("cur").siblings("li").removeClass("cur");
+			
+			$(".nav_route ul li").click(function(){
+				var n=$(this).attr("name");
+				$(".content").load("__APP__/article/content",{n:n});
+				$(this).addClass("cur").siblings("li").removeClass("cur");
+				$(".route ul li:last-child").find("a").text($(this).children("a").text());
+			})
+		})
+		</script>
+	</head>
+	<body>
+		<include file="Public:header" />
+		<div class="container">
+			<!--这是logo的部分-->
+			<div class="logo"><a href="#"><img src="__PUBLIC__/image/article/logo.png" /></a></div>
+			<!--这是导航条的部分-->
+			<div class="nav_route">
+				<ul>
+					<li name="about"><a href="javascript:void(0);">About Us</a></li>
+					<li name="contact"><a href="javascript:void(0);">Contact Us</a></li>
+					<li name="employ"><a href="javascript:void(0);">Recruitment</a></li>
+					<li name="tender"><a href="javascript:void(0);">Kuihua Bidding</a></li>
+					<li name="law"><a href="javascript:void(0);">Legal Notices</a></li>
+					<li name="custom"><a href="javascript:void(0);">Support</a></li>
+				</ul>
+			</div>
+			<!--这是图片部分-->
+			<div class="img_mild"><a href="#"><img src="__PUBLIC__/image/article/ad.png" /></a></div>
+			<!--这里是路线部分-->
+			<div class="content">
+				<div class="route">
+					<ul>
+						<li>HOME></li>
+						<li class="current"><{$name}></li>
+					</ul>
+				</div>
+				<!--这是正文部分-->
+				<div class="content_body">
+					<h1><{$super_articles.title}></h1>
+					<{$super_articles.content}>
+				</div>
+			</div>
+		</div>
+		<include file="Public/footer" />
+	</body>
+</html>

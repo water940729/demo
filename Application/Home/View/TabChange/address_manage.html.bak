@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Confirm Order</title>
+    <link href="__PUBLIC__/Css/confirm_order2.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+    <script src="__PUBLIC__/Js/confirm_order/city.js"></script>
+	<script>
+$(function(){
+    var flag=true;
+    var value;
+    //单选按钮点击取消事件
+    $("input[type='radio']").click(function(){
+        if(flag){
+            $(this).attr("checked",true);
+            flag=false;
+        }else{
+            $(this).attr("checked",false);
+            flag=true;
+        }
+    })
+
+    //文本框聚焦事件
+    $("input[type='text']").focus(function(){
+        value=$(this).val();
+        $(this).val("");
+
+    })
+
+    $("input[type='text']").blur(function(){
+        if($(this).val()==""){
+            $(this).val(value);
+        }
+    })
+
+    //点击添加新地址事件
+    $(".add_new_address").click(function(){
+        if($(".add_information").is(":hidden")){
+            $(".add_information").fadeIn('normal');
+			$(".info_div input[type=text]").val("");
+			$("#detail_add").text("");
+        }else{
+            $(".add_information").hide();
+			
+			
+        }
+        
+    })
+
+    //点击所在地址事件
+    $(".choose_sel_add").children("div").text( $(".choose_sel_add").find("li:first").text());
+    $(".choose_sel_add").click(function(){
+        if($(this).children("ul").is(":hidden")){
+            $(this).children("ul").show();
+        }else{
+            $(this).children("ul").hide();
+			
+        }
+
+    })
+
+    $(".choose_sel_add").find("li").click(function(){
+        $(".choose_sel_add").children("div").text($(this).text());
+        $("#detail_add").text($(this).text());
+    })
+
+
+    //判断文本框中的文字的个数
+    $(".leave_message").val("");
+    $(".leave_message").blur(function(){
+        var length=$(this).val().length;
+        if(length>90){
+            alert("Please not input more than 90 words");
+            $(this).val($(this).val().substr(0,90));
+        }
+        $(this).siblings("span").find(".message_num").text($(this).val().length);
+    })
+
+	//添加新地址
+	$(".confirm_info").click(function(){
+		var username=$(":input[name=username]").val();
+		//alert(username);
+		var phone=$(":input[name=phone]").val();
+		var address=$("#detail_add").text()+$(":input[name=address]").val();
+		var checked=$(".set_address").is(":checked");
+        var reg=/^13[0-9]{1}[0-9]{8}$|^15[012356789]{1}[0-9]{8}$|^18[0256789]{1}[0-9]{8}$/;
+         var flag=false;
+		 var text1=$("#Province").val();
+		var text2=$("#Country").val();
+		var text3=$("#Town").val();
+		var text4=$("#cho_inp").val();
+            if((username=="")||(!reg.test(phone))||($("#cho_inp").val()=="Address")||text1=="Province"||text2=="City"||text3=="County"||text4==""){
+             alert("Please input whole information");
+             return false;
+         }else{
+            $.ajax({
+             type:"POST",
+             url:"../user/add_address",
+             data:"username="+username+"&phone="+phone+"&address="+address+"&tag="+checked,
+             success:function(msg){
+                 if(msg==1){
+                     alert("Add Success");
+					 $(".address").load("__APP__/TabChange/address_info");
+					 $(".add_information").hide();
+                 }else{
+                     alert(msg);
+                     //alert("请重试");
+                 }
+                
+             }
+            });
+         }	
+	});
+	
+	//计算价格
+	var allPrice=0;
+	$("span.money").each(function(){
+		var num=$(this).parent().siblings("div.good_num").find("span").text();
+		var price=$(this).parent().siblings("div.price").find("span").text();
+		var aP="￥"+num*price;
+		allPrice+=num*price;
+		$(this).text(aP);
+	});
+	
+	$(".last_price").text("￥"+allPrice);
+
+    //选择位置的时间
+
+    var str="";
+	
+    $("#cho_inp").keydown(function(){
+        //alert("ok")
+        var text4=$("#Province").val();
+        var text5=$("#Country").val();
+        var text6=$("#Town").val();
+        if(text4=="Province"||text5=="City"||text6=="County"){
+            alert("Please input whole information");
+        }else{
+            str=text4+text5+text6;
+            $("#detail_add").text(str);
+        }
+
+    })
+	
+	$(".setDefault").click(function(){
+		var address_id=$(this).attr("value");
+		$.ajax({
+			url:"__APP__/user/setDefault",
+			type:"POST",
+			data:"address_id="+address_id,
+			success:function(msg){
+				alert(msg);
+				$(".address").load("__APP__/TabChange/address_info");				
+			}
+		})
+	});
+	$(".del").click(function(){
+		var address_id=$(this).attr("value");
+		$.ajax({
+			url:"__APP__/user/delAddress",
+			type:"POST",
+			data:"address_id="+address_id,
+			success:function(msg){
+				alert(msg);
+				$(".address").load("__APP__/TabChange/address_info");				
+			}
+		})
+	})
+
+
+})	
+	</script>
+</head>
+<body>
+<div class="container_order">
+    <div class="title">
+        配送信息
+    </div>
+    <div class="body_container">
+        <div class="address" style="padding-left:0px;">
+			<foreach name="info_address" item="vo">
+            <div class="add_con">
+				<if condition="$vo['address_id'] eq $default_address['address_id']">
+					<span class="default_add">默认地址:</span><span class="address_id"><{$default_address["username"]}> <{$default_address["phone"]}> <{$default_address["address"]}></span>
+				<else/>
+					<span value="<{$vo['address_id']}>" class="address_id"><{$vo["username"]}> <{$vo["phone"]}> <{$vo["address"]}></span>
+				</if>
+				<button class="setDefault" value="<{$vo['address_id']}>" >设为默认地址</button> <button class="del" value="<{$vo['address_id']}>" >删除</button><br/>
+                </div>
+			</foreach>
+        </div>
+
+        <div class="add_address">
+            <span class="to_address">寄送至:</span>
+            <span class="add_new_address"><a href="#">添加新地址</a></span>
+        </div>
+
+         <div class="add_information">
+            <div class="info_div">
+                <label><span>*</span>收 货 人:</label>
+                <input type="text" name="username"/>
+            </div>
+
+            <div class="info_div">
+                <label><span>*</span>手机号码:</label>
+                <input type="text"  name="phone"/>
+            </div>
+            <div class="sel_address">
+                <label><span>*</span>所在地址:</label>
+                <select id="Province" runat="server" name="province" style="width: 90px;" ></select>
+                <select id="Country" runat="server" name="country" style="width: 90px;"></select>
+                <select id="Town" runat="server" name="town" style="width: 90px;"></select>
+            </div>
+            <div class="info_div">
+                <label><span>*</span>详细地址:</label>
+                <span id="detail_add"></span><input type="text"  name="address" id="cho_inp"/>
+            </div>
+
+            <div>
+                <input type="checkbox" class="set_address"/><label  class="set_address_label">设置为默认的收货地址</label>
+            </div>
+            
+            <div class="confirm_info">
+                确认配货信息
+            </div>
+        </div>
+
+    </div>
+</div>
+<SCRIPT language="javascript">
+    setup();
+</SCRIPT>
+    <script src="__PUBLIC__/Js/confirm_order/city.js"></script>
+    <script src="__PUBLIC__/Js/jquery/load_jquery.js"></script>
+</body>
+</html>

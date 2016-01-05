@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Welcome to Kuihua Mall</title>
+	<link href="__PUBLIC__/Css/login.css" type="text/css" rel="stylesheet">
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<!--<![endif]-->
+	<script src="__PUBLIC__/Js/login_js/login.js"></script>
+	<script>
+	$(function(){
+		$("#btn").click(function(){
+			var data=$("form").serialize();
+			var url=$("form").attr("name");
+			var checkbox=$("input[type='checkbox']").is(":checked");
+			$.ajax({
+				type:"POST",
+				url:"do_login",
+				data:data+"&checkbox="+checkbox,
+				success:function(msg){
+					if(msg==-1){
+						alert("Unknown error, please try again later");
+					}else if(msg==0){
+						alert("User name or password error");
+					}else{
+						if(msg==1){
+							location.href=url;
+						}else{
+							location.href="__APP__/"+msg;
+						}
+					}
+				}
+			});
+		});
+		
+		$(".form_div form input").keydown(function(ev){
+			if(ev.keyCode==13){
+				$("#btn").click();
+			}
+		});
+	})
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="logo_container">
+			<img src="__PUBLIC__/image/login_image/logo.png" />
+		</div>
+		<div class="body_out_container">
+			<div class="body_container">
+				<div class="img_div">
+					<img src="__PUBLIC__/image/login_image/pic.png" />
+				</div>
+				
+				<div class="form_div">
+					<form name="__APP__/index/index" action="" id="myform">
+						<label for="username">User Name</label>
+						<input type="text" id="username" name="username"><br/>
+						<label for="psd">Password</label>
+						<input type="password" id="psd" name="password"><br/>
+						<input type="checkbox" id="checkbox" class="box"/>
+						<label for="checkbox">Auto-login</label><br/>
+						<input type="button" value="登　录" id="btn"/>
+					</form>
+					<div>
+					<span><a href="__APP__/user/lostpass">Forget Password</a></span>　|　<span><a href="__APP__/user/register"  style="color:#E6007E;">register</a></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="footer_container">
+			<div>
+			<a href="__APP__/article/alist/n/about">About Kuihua</a>|
+			<a href="__APP__/article/alist/n/contact">Contact Us</a>|
+			<a href="__APP__/article/alist/n/employ">Recruit</a>|
+			<a href="__APP__/article/alist/n/tender">Kuihua Tenders</a>|
+			<a href="__APP__/article/alist/n/law">Legal Statement</a>|
+			<a href="__APP__/article/alist/n/custom">Customer Service</a>|
+			<a href="__APP__/shop_manage/index.php">Merchant Login</a>|
+			<a href="__APP__/mall_manage/index.php">Mall Login</a>
+			</div>
+			<span><{$array.copyright}></span>
+			<ul>
+				<li><a href="#"><img src="__PUBLIC__/image/login_image/footer1.jpg" /></a></li>
+				<li><a href="#"><img src="__PUBLIC__/image/login_image/footer2.jpg" /></a></li>
+				<li><a href="#"><img src="__PUBLIC__/image/login_image/footer3.jpg" /></a></li>
+				<li><a href="#"><img src="__PUBLIC__/image/login_image/footer4.jpg" /></a></li> 
+			</ul>
+			</div>
+	</div>
+</body>
+</html>
