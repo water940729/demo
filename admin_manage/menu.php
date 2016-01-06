@@ -28,6 +28,7 @@
  </head>	
 	<body id="flow">
 		<div class="menu" id="me">
+			<!--
 			<div class="menu_content">
 				<div class="menu_h menu_h3">Marketing</div>
 				<div class="menu_intor">
@@ -35,6 +36,7 @@
 					<p><a href="mall_manage/check_mall.php" target="mainFrame">View Marketing</a></p>
 				</div>
 			</div>
+			-->
 			<div class="menu_content">
 				<div class="menu_h menu_h3">Store</div>
 				<div class="menu_intor">

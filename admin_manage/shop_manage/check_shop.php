@@ -26,7 +26,6 @@
 						<tr class="t1">
 							<td width="10%">Store Number</td>
 							<td width="10%">Store name</td>
-							<td width="10%">Markting belong</td>
 							<td width="10%">Store Description</td>
 							<td width="15%">operator</td>
 						</tr>
@@ -65,7 +64,6 @@
 						<tr>
 							<td><?php echo $id?></td>
 							<td><?php echo $name?></td>
-							<td><?php echo $mall_name?></td>
 							<td><?php echo $detail?></td>
 							<td>
 							<?php

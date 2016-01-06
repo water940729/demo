@@ -33,19 +33,7 @@
 						<div>ro&nbsp;&nbsp;le：
 							<select name="role" id="role" onchange=choose_area(this.value)>
 								<option value="0">----Select----</option>
-								<?php 
-									if($role==1){
-								?>
-								<option value="1">super manager</option>
-								<option value="2">mall manager</option>
-								<?php
-									}else{
-										
-								?>
 								<option value="3">Merchants administrator</option>
-								<?php 
-									}
-								?>
 							</select>
 							<span id="area" name="area">
 							</span>

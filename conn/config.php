@@ -32,8 +32,8 @@
 		//define('SYSTEM_IP','http://120.25.124.134');//配置服务器url
 		//define('HOME_PATH','/home/wiipu/local/apache/htdocs');
 		define('SYSTEM_IP','http://localhost');//配置服务器url
-		define('HOME_PATH','C:\wamp\www');		
+		define('HOME_PATH','E:/wamp/www');		
 	}
 	//define("SYSTEM_IP","localhost");
-	//define('HOME_PATH','c:/wamp/www/Mall');
+	//define('HOME_PATH','E:\wamp\www');
 ?>

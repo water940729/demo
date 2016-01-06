@@ -16,7 +16,6 @@ if(!isset($_SESSION['admin_manager_id'])){
  </head>
  <body>
 	<div id="header" >
-	<img src="images/logo.png"  width="120" height="50" />	
 	<span class="sp1">Merchant Center</span>
 	</div>
 	<div id="quit">

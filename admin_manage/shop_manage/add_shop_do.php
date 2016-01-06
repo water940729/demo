@@ -11,8 +11,8 @@
 	$mall_name=$row['name'];
 	$time=time();
 	$pics=count($_POST['pics'])-1;
-	$insert="insert into shop(name,ratio,detail,logo,mall_id,mall_name,time) 
-	values('$name','$ratio','$introduceInfo','{$_POST["pics"][$pics]}','$mall_id','$mall_name','$time')";
+	$insert="insert into shop(name,ratio,detail,logo,time) 
+	values('$name','$ratio','$introduceInfo','{$_POST["pics"][$pics]}','$time')";
 	if(mysql_query($insert)){
 		/*$shop_id=mysql_insert_id();
 		//print_r($_POST["pics"]);

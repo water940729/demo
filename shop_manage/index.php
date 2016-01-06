@@ -41,7 +41,6 @@
 <body>
 <div class="out_con">
 	<div class="logo_name">
-		<div class="logo"><img src="<?php echo $PUBLIC ;?>/image/shop_login/logo.jpg" /></div>
 		<div class="name"><img src="<?php echo $PUBLIC ;?>/image/shop_login/name.jpg" /></div>
 	</div>
 	<div class="container">

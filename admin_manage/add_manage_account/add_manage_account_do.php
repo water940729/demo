@@ -45,18 +45,7 @@
 	}
 	$msgresult=mysql_query($sql);
 	$row=mysql_fetch_array($msgresult);
-	$sms=new Sms();
-	$sms->sendSMS($phone,$row["msgContext"]);
 	
-	
-	//发送邮件通知
-	if($role==1){
-		$sql="select msgContext from msgModule where catID=1 and catName='addadmin'";
-	}else if($role==2){
-		$sql="select msgContext from msgModule where catID=1 and catName='addmall'";
-	}else{
-		$sql="select msgContext from msgModule where catID=1 and catName='addshop'";	
-	}
 	$msgresult=mysql_query($sql);
 	$row=mysql_fetch_array($msgresult);
 	$system_info_result=mysql_query("select * from system_info");
@@ -71,8 +60,8 @@
 	$mailsubject = "葵花商城";
 	$mailbody = $row["msgContext"];
 	$mailtype = "HTML";
-	$smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass,$smtpusermail);
-	$smtp->sendmail($smtpemailto, $smtpusermail,"water", $mailsubject, $mailbody, $mailtype); 	
+	//$smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass,$smtpusermail);
+	//$smtp->sendmail($smtpemailto, $smtpusermail,"water", $mailsubject, $mailbody, $mailtype); 	
 	
 	
 	if(mysql_query($insert)){

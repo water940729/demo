@@ -35,35 +35,7 @@
 		<div class="fromcontent">
 			<form action="add_shop_do.php" method="post" id="doForm">
 				<p>Store：<input class="in1" type="text" name="name" id="name"/></p>
-				<p>earnings ratio：<input class="in1" type="text" name="ratio" id="ratio"/></p>（For example: 80 indicates a pay market 80%, shops with 20%）
-				<?php
-					if($_GET["mall_id"]){
-						$query="select id,name from mall where id=$_GET[mall_id]";
-						$result=mysql_query($query);
-						$row=mysql_fetch_array($result);
-				?>
-				<p>Markting belong：
-				<select class="in1" name="mall" id="mall"></p>				
-				<?php
-
-						echo"<option value='{$_GET[mall_id]}'>{$row['name']}</option>";
-				?>
-				<?php
-					}else{
-				?>
-				<p>Markting belong：
-				<select class="in1" name="mall" id="mall"></p>
-				<?php 
-					$select="select * from mall".$area;
-					$result=mysql_query($select);
-					while($row=mysql_fetch_array($result)){
-				?>
-					<option value=<?=$row['id']?> ><?=$row['name']?></option>
-				<?php
-						}
-					}
-				?>
-				</select>
+				<p>earnings ratio：<input class="in1" type="text" name="ratio" id="ratio"/></p>（For example: 80 indicates a pay market 80%, shops with 20%）	
 				<p>Store logo Uploading: 
 				 <input type="hidden" name="img_url" id="image_url">
 				 <span id="shop_images" name=""></span>
