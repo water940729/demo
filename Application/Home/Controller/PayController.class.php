@@ -10,6 +10,36 @@
             vendor('Alipay.Submit');    
         }
         
+        // dopay方法
+        // 直接跳转至支付成功 
+        // by liuyicheng
+        public function dopay(){
+            $out_trade_no   = $_POST['trade_no'];          //商户订单号
+            $trade_no       = "invalid_alipay_trade_no";   //支付宝交易号（无效）
+            $trade_status   = "TRADE_SUCCESS";             //交易状态（无效）
+            $total_fee      = $_POST['ordtotal_fee'];      //交易金额（用户付款金额）
+            $notify_id      = "invalid_notify_id";         //通知校验ID（无效）
+            $notify_time    = "invalid_notify_time";       //通知的发送时间（无效）
+            $buyer_email    = "invalid_buyer_email";       //买家支付宝帐号（无效）
+            
+            $p = array(
+                "out_trade_no"     => $out_trade_no, //商户订单编号；
+                "trade_no"     => $trade_no,     //支付宝交易号；
+                "total_fee"     => $total_fee,    //交易金额；
+                "trade_status"     => $trade_status, //交易状态
+                "notify_id"     => $notify_id,    //通知校验ID。
+                "notify_time"   => $notify_time,  //通知的发送时间。
+                "buyer_email"   => $buyer_email,  //买家支付宝帐号；
+                );
+            // 检测订单号有效性
+            if(!checkorderstatus($out_trade_no)){
+                // 对订单进行处理
+                orderhandle($p);
+                // 跳转页面
+                $this->redirect(C('alipay.successpage'),array("out_trade_no"=>$out_trade_no));
+            }
+        }
+
         //doalipay方法
             /*该方法其实就是将接口文件包下alipayapi.php的内容复制过来
               然后进行相关处理
