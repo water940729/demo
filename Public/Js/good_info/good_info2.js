@@ -6,18 +6,43 @@ $(function(){
 	//选择数量
 	$("#decrease").click(function(){
 		var oTxt=$("#num").val();
-		if(oTxt<=1){
-			$("#num").val("1");
-		}else{
-			$("#num").val(--oTxt);
+
+		if (isLegalNumber(oTxt)) {
+			if(oTxt == 1){
+				$("#num").val("1");
+			} else {
+				$("#num").val(--oTxt);
+			}
 		}
-		
 	})
 	
 	$("#add").click(function(){
 		var oTxt=$("#num").val();
-		$("#num").val(++oTxt);
+		if (isLegalNumber(oTxt)) {
+			if(oTxt == 999) {
+				$("#num").val("999");
+			} else {
+				$("#num").val(++oTxt);
+			}
+		}
 	})
+
+	function isLegalNumber(num) {
+		if (isNaN(num)) {
+			alert("Please input right number!");
+			return false;
+		} else {
+			if (num < 1) {
+				alert("Number should bigger than 0!");
+				return false;
+			} else if (num > 999) {
+				alert("Sorry, we don't have enough goods");
+				return false;
+			} else {
+				return true;
+			}
+		}
+	}
 	
 //	//热销排行榜的切换
 //	$("#first_goods").mouseover(function(){

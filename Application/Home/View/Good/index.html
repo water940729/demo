@@ -6,7 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 		<meta name="keywords" content="<{$result['goods_keywords']}>"/>
 		<meta name="description" content="<{$result['goods_desc']}>" />
-		<title><{$result["goods_keywords"]}>-Kuihua Mall</title>
+		<title><{$result["goods_keywords"]}>-ParkNShop</title>
 		<link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
 		<link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
 		<link href="__PUBLIC__/Css/good_info.css"  rel="stylesheet" type="text/css">
@@ -20,8 +20,23 @@
 		<script src="__PUBLIC__/Js/good_info/good_info.js"></script>
 		<script src="__PUBLIC__/Js/good_info/good_info2.js"></script>
 		<script>
+				function isLegalNumber(num) {
+					if (isNaN(num)) {
+						alert("Please input right number!");
+						return false;
+					} else {
+						if (num < 1) {
+							alert("Number should bigger than 0!");
+							return false;
+						} else if (num > 999) {
+							alert("Sorry, we don't have enough goods");
+							return false;
+						} else {
+							return true;
+						}
+					}
+				}
 			window.onload = function() {
-				
 				var onOff = true;
 				var str = "";
 				//判断是否完全选取了所有条件
@@ -105,16 +120,17 @@
 				$(function() {
 					//点击加入购物车事件
 					$(".shopCar").click(function() {
+						//判断是否选择类别
 						judge();
-						var width = document.body.clientWidth ;
-						var height = document.body.clientHeight;
+						var width = window.screen.width;//document.body.clientWidth ;
+						var height = window.screen.height;//document.body.clientHeight;
 						var top = (height - $(".shopCar_mask_div").height())/2;
 						var left = (width - $(".shopCar_mask_div").width()) / 2;
 						var type = $("#already_choose").text();
 						var id = $("#number").text();
 						var num = $("#num").val();
 						var data = "type=" + type + "&id=" + id + "&num=" + num;
-						if (onOff) {
+						if (onOff && isLegalNumber(num)) {
 							$.ajax({
 								type : "POST",
 								url : "__APP__/order/addcart",
@@ -144,14 +160,16 @@
                             var type = $("#already_choose").text();
                             var id = $("#number").text();
                             var num = $("#num").val();
-                            document.write('<form name=myForm><input type=hidden name=num><input type=hidden name=id><input type=hidden name=type></form>');
-                            var myForm = document.forms['myForm'];
-                            myForm.action = '__APP__/order/buy';
-                            myForm.method = 'POST';
-                            myForm.num.value = num;
-                            myForm.id.value = id;
-                            myForm.type.value = type;
-                            myForm.submit();
+                            if (isLegalNumber(num)) {
+                            	document.write('<form name=myForm><input type=hidden name=num><input type=hidden name=id><input type=hidden name=type></form>');
+                            	var myForm = document.forms['myForm'];
+                            	myForm.action = '__APP__/order/buy';
+                            	myForm.method = 'POST';
+                            	myForm.num.value = num;
+                            	myForm.id.value = id;
+                            	myForm.type.value = type;
+                            	myForm.submit();
+                            }
                         }
 
 					});
@@ -482,7 +500,7 @@
 				<span id="back_span">×</span>
 			</div>
 			<div class="success_add">
-				Item has added to Cart
+				&nbsp;&nbsp;&nbsp;Item has added to Cart
 			</div>
 			<div class="shopCar_btn">
 				<a href="__APP__/index/index" class="go_shopping">Continue Shopping</a>
