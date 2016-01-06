@@ -5,7 +5,7 @@
 		protected $_map=array(
 		);
 		protected $_validate = array(
-			 array('verify','require','验证码必须！'), //默认情况下用正则进行验证
+			// array('verify','require','验证码必须！'), //默认情况下用正则进行验证
 			 array('username','','手机号已经存在！',0,'unique',1), // 在新增的时候验证name字段是否唯一
 			 array("username","/[a-zA-Z0-9]+$/","用户名只能为数字或字母",0,"regex",1),
 			 array("username","require","手机号不能为空"),

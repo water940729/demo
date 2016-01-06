@@ -72,7 +72,7 @@
 				});
 		});
 		
-		$("#change").click(function(){
+		/*$("#change").click(function(){
 			var that=$(this);
 			var phone=$("#username").val()
 
@@ -107,7 +107,7 @@
 			if(ev.keyCode==13){
 				$("#btn").click();
 			}
-		});
+		});*/
 	});
 </script>
 </head>
@@ -115,12 +115,12 @@
 <div class="container">
 	<!--logo区域-->
 		<div class="logo_container">
-			<img src="__PUBLIC__/image/reg_image/logo.png" />
+			<a href="__APP__/index"><img src="__PUBLIC__/image/reg_image/logo.png" /></a>
 		</div>
 		
 		<div class="per_container">
 			<div class="per_div">Personal Account</div>
-			<span class="per_span">Already Register<a href="__APP__/user/login" style="color:#E30B82;text-decoration:none;">Login</a></span>
+			<span class="per_span">Already Register?<a href="__APP__/user/login" style="color:#E30B82;text-decoration:none;">&nbsp;Login</a></span>
 		</div>
 		<!--主体区域-->
 		<div class="body_container">
@@ -133,12 +133,12 @@
 				<label><span>*</span>Comfrim Password</label>
 				<input type="password" name="password2"></br/>
 				<input type="hidden" name="false" id="flag">
-				<label><span>*</span>Identifying Code</label>
-				<input type="text" id="verify" name="verify"/>
+				<!--label><span>*</span>Identifying Code</label>
+				<input type="text" id="verify" name="verify"/-->
 				<!--<img src="__MODULE__/user/verify" alt="无法显示验证码，请刷新"/>-->
-				<a href="#" id="change">Send</a><br/>
+				<!--a href="#" id="change">Send</a><br/-->
 				
-				<input type="checkbox" ><label for="checkbox">I already read and agree with<a href="__APP__/article/alist/n/protocol">《Kuihua Mall User Registration Protocol》</a></label></br/>
+				<input type="checkbox" checked="checked"><label for="checkbox">I already read and agree with<a href="__APP__/article/alist/n/protocol">《Kuihua Mall User Registration Protocol》</a></label></br/>
 				
 				<input type="button" id="btn" value="Register Now" />
 			</form>

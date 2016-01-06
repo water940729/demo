@@ -83,7 +83,7 @@
 		}
 		public function sms(){
 			//注册时发送的验证码
-			vendor('Sms.Sms');
+			//vendor('Sms.Sms');
 			$phone=$_POST["username"];
 			$method=$_POST["method"];
 			
@@ -125,30 +125,30 @@
 						echo "手机号已经注册";
 					}else{
 						
-						$verify=rand(1000,9999);
+						//$verify=rand(1000,9999);
 						
-						vendor('Msg.msg');
-			            $msg=new \msg(M());
-			            $m = $msg->createMsg(0,'login',array('validNum'=>$verify));
+						//vendor('Msg.msg');
+			            //$msg=new \msg(M());
+			            //$m = $msg->createMsg(0,'login',array('validNum'=>$verify));
 						
-						$sms=new \Sms();
-						$tag=$sms->sendSMS($phone,$m);
-						if($tag==1){
+						//$sms=new \Sms();
+						//$tag=$sms->sendSMS($phone,$m);
+						//if($tag==1){
 							$result=$user->where("username=$phone and state=1")->find();
 							if($result){
-								//数据库中改手机号已经注册，但未注册成功
+								//数据库中该手机号已经注册，但未注册成功
 								$data["validity"]=time();
 								$data["verify"]=$verify;
 								$user->where("username=$phone")->save($data);
 							}else{
-								//数据库改手机号未注册过
+								//数据库该手机号未注册过
 								$data["username"]=$phone;
 								$data["state"]=0;
 								$data["verify"]=$verify;
 								$data["validity"]=time();
 								$user->add($data);	
 							}
-						}
+						//}
 						echo $tag;
 					}
 				}
@@ -234,10 +234,10 @@
 			
 			$data["username"]=$_POST["username"];
 			$data["password"]=$_POST["password"];
-			$data["verify"]=$_POST["verify"];
+			//$data["verify"]=$_POST["verify"];
 			$user=M("user_manage");
 			$_validate = array(
-				array('verify','require','验证码必须！'), //默认情况下用正则进行验证
+				//array('verify','require','验证码必须！'), //默认情况下用正则进行验证
 				array("username","require","手机号不能为空"),
 				array('username','/^1[34578]\d{9}$/','手机号码错误！','0','regex',1),
 				array("password","/[a-zA-Z0-9]+$/","密码只能为数字或字母",0,"regex",3),
@@ -252,6 +252,18 @@
 				//验证码有效期是300s
 				$result=$user->where("username=$data[username]")->find();
 				if($result){
+					echo "This phone number has been registed.";
+				}else{
+					$data["state"]=1;
+					$data["password"]=md5($data["password"]);
+					$user->add($data);
+					echo 1;					
+				}
+				/*$result=$user->where("username=$data[username]")->find();
+				if($result){
+					if($result["state"]==1){
+						echo "手机号已经注册过";
+					}
 					if($result["verify"]!=$data["verify"]){
 						//验证码不正确
 						echo "验证码不正确";
@@ -270,7 +282,7 @@
 					}
 				}else{
 					echo "请选择发送验证码";
-				}
+				}*/
 			}
 		}
 		public function logout(){
