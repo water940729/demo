@@ -20,8 +20,23 @@
 		<script src="__PUBLIC__/Js/good_info/good_info.js"></script>
 		<script src="__PUBLIC__/Js/good_info/good_info2.js"></script>
 		<script>
+				function isLegalNumber(num) {
+					if (isNaN(num)) {
+						alert("Please input right number!");
+						return false;
+					} else {
+						if (num < 1) {
+							alert("Number should bigger than 0!");
+							return false;
+						} else if (num > 999) {
+							alert("Sorry, we don't have enough goods");
+							return false;
+						} else {
+							return true;
+						}
+					}
+				}
 			window.onload = function() {
-				
 				var onOff = true;
 				var str = "";
 				//判断是否完全选取了所有条件
