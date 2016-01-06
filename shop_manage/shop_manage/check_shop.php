@@ -70,7 +70,7 @@
 							<td>
 							<?php
 								if($role<3){
-									echo "<a href='../goods_manage/add_goods.php?shop_id={$id}'>Add Merchandise</a>|";
+									echo "<a href='../goods_manage/add_goods.php?shop_id={$id}'>Add Goods</a>|";
 								}
 							?>
 								<a href="check_shop_goods.php?shop_id=<?=$id?>&shop_name=<?=$name?>&from=shop">View Product </a>|

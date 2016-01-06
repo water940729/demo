@@ -60,10 +60,10 @@
 			   </div>
 			</div>
 			<div class="menu_content">
-				<div class="menu_h menu_h3">Merchandise Management</div>
+				<div class="menu_h menu_h3">Goods Management</div>
 				<div class="menu_intor">
-					<p><a href="goods_manage/add_goods.php" target="mainFrame">Add Merchandise</a></p>
-					<p><a href="goods_manage/check_goods.php" target="mainFrame">List Merchandise</a></p>
+					<p><a href="goods_manage/add_goods.php" target="mainFrame">Add Goods</a></p>
+					<p><a href="goods_manage/check_goods.php" target="mainFrame">List Goods</a></p>
 			   </div>
 			</div>
 			<div class="menu_content">

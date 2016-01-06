@@ -45,11 +45,11 @@
 			   </div>
 			</div>
 			<div class="menu_content">
-				<div class="menu_h menu_h3">Merchandise</div>
+				<div class="menu_h menu_h3">Goods</div>
 				<div class="menu_intor">
-					<p><a href="goods_manage/add_goods.php" target="mainFrame">Add Merchandise</a></p>
-					<p><a href="goods_manage/check_goods.php" target="mainFrame">View Merchandise</a></p>
-					<p><a href="goods_manage/goods_type1.php" target="mainFrame">Merchandise Classify</a></p>
+					<p><a href="goods_manage/add_goods.php" target="mainFrame">Add Goods</a></p>
+					<p><a href="goods_manage/check_goods.php" target="mainFrame">View Goods</a></p>
+					<p><a href="goods_manage/goods_type1.php" target="mainFrame">Goods Classify</a></p>
 			   </div>
 			</div>
 			<div class="menu_content">
@@ -69,7 +69,7 @@
 				</div>
 			</div>
 			<div class="menu_content">
-				<div class="menu_h menu_h3">Administritor Account</div>
+				<div class="menu_h menu_h3">Ad Account</div>
 				<div class="menu_intor">
 					<p><a href="add_manage_account/add_manage_account.php" target="mainFrame">Add Count</a></p>
 					<p><a href="add_manage_account/manage_account.php" target="mainFrame">View Count</a></p>
