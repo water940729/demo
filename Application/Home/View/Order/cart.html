@@ -10,7 +10,7 @@
 		<script src="__PUBLIC__/Js/jquery/jquery1.8.js"></script>
 		<![endif]-->
 		<!--[if gte IE 9]><!-->
-		<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+		<script src="__PUBLIC__/Js/jquery/jquery.js"></script>
 		<!--<![endif]-->
 		<script src="__PUBLIC__/Js/shopCar/shopCar.js" ></script>
 		<script>
@@ -29,18 +29,19 @@
 				});
 				$(".delete").click(function(){
 					if(confirm("Are you sure about DELETE？")){
-						var id=$(this).parents(".consult").children(".checkbox_div").children(":checkbox").val();
-						//alert(id);
+						var id=$(this).closest(".consult").find(".checkbox_id").val();
 						$.ajax({
 							url:"clearcart",
 							data:"id="+id+",",
 							type:"POST",
 							success:function(msg){
 								if(msg==1){
-									alert("DELETE Success！");
+									//alert("DELETE Success！");
+									location.reload();
 								}
 							}
 						})
+					
 					}
 				});
 				$(".delete_all").click(function(){
@@ -129,7 +130,7 @@
 						<foreach name="result" item="vo">
 							<if condition="$vo[shop_name] eq $vi[shop_name]">
 								<div class="consult">
-									<div class="checkbox_div"><input type="checkbox" value="<{$vo.id}>"/></div>
+									<div class="checkbox_div"><input class="checkbox_id" type="checkbox" value="<{$vo.id}>"/></div>
 									<div class="img_div" style="overflow:hidden;"><a href="__APP__/good/index/id/<{$vo.good_id}>"><img src="<{$vo.photo}>"></a></div>
 									<div class="img_span"><a href="__APP__/good/index/id/<{$vo.good_id}>"><{$vo.good_name}></a></div>
 									<div class="unit_price">￥<span><{$vo.price}></span></div>
@@ -140,7 +141,7 @@
 									</div>
 									<div class="all_price">￥<span><{$vo["price"]*$vo["num"]}></span></div>
 									<div class="a_div">
-										<a href="javascript:void(0)" class="to_collect">To Favorites</a>
+										<!--a href="javascript:void(0)" class="to_collect">To Favorites</a-->
                                         <!-- 加上一个隐藏的商品id -->
                                         <span id="good_id" hidden><{$vo.good_id}></span>
 										<a href="javascript:void(0)" class="delete">Delete</a>
