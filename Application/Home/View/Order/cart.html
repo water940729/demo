@@ -135,7 +135,7 @@
 									<div class="unit_price">￥<span><{$vo.price}></span></div>
 									<div class="btn_div"><input type="button" value="-" />
 									<!--后端添加了num class-->
-										<input type="text" class="num" value="<{$vo.num}>" />
+										<input type="text" class="num" value="<{$vo.num}>" maxlength="2" onkeyup="value=value.replace(/[^\d]/g,'') " />
 										<input type="button" value="+" />
 									</div>
 									<div class="all_price">￥<span><{$vo["price"]*$vo["num"]}></span></div>
