@@ -105,9 +105,10 @@
 				$(function() {
 					//点击加入购物车事件
 					$(".shopCar").click(function() {
+						//判断是否选择类别
 						judge();
-						var width = document.body.clientWidth ;
-						var height = document.body.clientHeight;
+						var width = window.screen.width;//document.body.clientWidth ;
+						var height = window.screen.height;//document.body.clientHeight;
 						var top = (height - $(".shopCar_mask_div").height())/2;
 						var left = (width - $(".shopCar_mask_div").width()) / 2;
 						var type = $("#already_choose").text();
@@ -482,7 +483,7 @@
 				<span id="back_span">×</span>
 			</div>
 			<div class="success_add">
-				Item has added to Cart
+				&nbsp;&nbsp;&nbsp;Item has added to Cart
 			</div>
 			<div class="shopCar_btn">
 				<a href="__APP__/index/index" class="go_shopping">Continue Shopping</a>
