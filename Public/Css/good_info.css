@@ -215,8 +215,8 @@ img{border:0;}
 .shopCar_mask_div .success_add{width:300px;height:60px;margin:30px auto;line-height:60px;font-family:"microsoft yahei";padding-left:10px;color:#666;font-size:20px;text-align:center;background:url(../image/good_info/add.jpg) left center no-repeat;}
 .shopCar_btn{width:100%;height:50px;}
 .shopCar_btn a{display:inline-block;border-radius:5px;text-align:center;height:40px;text-decoration:none;line-height:40px;font-family: "microsoft yahei";font-size:20px;cursor:pointer;}
-.shopCar_btn a.go_shopping{width:120px;background-color:#ECECEC;border:solid 1px #ccc;margin-left:70px;}
-.shopCar_btn a.go_shopCar{width:170px;background-color:#E3007F;color:white;}
+.shopCar_btn a.go_shopping{width:200px;background-color:#ECECEC;border:solid 1px #ccc;margin-left:70px;}
+.shopCar_btn a.go_shopCar{width:150px;background-color:#E3007F;color:white;}
 /*添加到收藏夹的蒙版效果*/
 .collect_mask_div{position:fixed;top:100px;left:100px;width:470px;height:350px;border:solid 10px #575657;background-color:white;font-family:"microsoft yahei";display:none;}
 .collect_mask_div .collect_mask_back{width:100%;height:30px;line-height:30px;font-size:25px;text-align:right;}
