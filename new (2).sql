@@ -4158,14 +4158,14 @@ CREATE TABLE IF NOT EXISTS `goods` (
 --
 
 INSERT INTO `goods` (`id`, `name`, `state`, `shop_id`, `shop_name`, `mall_id`, `mall_name`, `price`, `original_price`, `goodsnum`, `discount`, `sell`, `monthly_sales`, `quarterly_sales`, `type1`, `type1_name`, `type2`, `type2_name`, `type3`, `type3_name`, `image_url`, `goods_keywords`, `goods_desc`, `goods_info`, `package_info`, `sales_support`, `time`, `mtime`, `attribute1`, `attribute2`, `attribute3`, `attribute4`, `extattribute1`, `extattribute2`, `extattribute3`, `extattribute4`, `commentnum`, `score`, `freight`) VALUES
-(1, 'demo1', 1, 60, 'sunflowerbaby', 0, '', 89, 89, 500, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', 'http://localhost/images/2016/01/upload_1452077901371.jpg', 'demo', 'demo', '', '', '', 1452077905, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
-(2, 'demo2', 1, 60, 'sunflowerbaby', 0, '', 102, 102, 80, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', 'http://localhost/images/2016/01/upload_1452077947417.jpg', 'demo', 'demo', '', '', '', 1452077950, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
-(3, 'demo3', 1, 60, 'sunflowerbaby', 0, '', 70, 70, 80, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', 'http://localhost/images/2016/01/upload_1452077984163.jpg', 'demo', 'demo', '', '', '', 1452077987, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
-(4, 'demo4', 1, 60, 'sunflowerbaby', 0, '', 70, 70, 500, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', 'http://localhost/images/2016/01/upload_1452078014891.jpg', 'demo', 'demo', '', '', '', 1452078018, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
-(5, 'demo5', 1, 61, 'jackjones', 0, '', 199, 199, 5000, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', 'http://localhost/images/2016/01/upload_1452078187720.jpg', 'demo', 'demo', '', '', '', 1452078190, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
-(6, 'demo6', 1, 61, 'jackjones', 0, '', 166, 166, 80, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', 'http://localhost/images/2016/01/upload_1452078227340.jpg', 'demo', 'demo', '', '', '', 1452078230, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
-(7, 'demo7', 1, 61, 'jackjones', 0, '', 666, 666, 800, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', 'http://localhost/images/2016/01/upload_1452078261854.jpg', 'demo', 'demo', '', '', '', 1452078264, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
-(8, 'demo8', 1, 61, 'jackjones', 0, '', 900, 900, 500, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', 'http://localhost/images/2016/01/upload_1452078313387.jpg', 'demo', 'demo', '', '', '', 1452078316, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00);
+(1, 'demo1', 1, 60, 'sunflowerbaby', 0, '', 89, 89, 500, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452077901371.jpg', 'demo', 'demo', '', '', '', 1452077905, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
+(2, 'demo2', 1, 60, 'sunflowerbaby', 0, '', 102, 102, 80, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452077947417.jpg', 'demo', 'demo', '', '', '', 1452077950, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
+(3, 'demo3', 1, 60, 'sunflowerbaby', 0, '', 70, 70, 80, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452077984163.jpg', 'demo', 'demo', '', '', '', 1452077987, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
+(4, 'demo4', 1, 60, 'sunflowerbaby', 0, '', 70, 70, 500, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452078014891.jpg', 'demo', 'demo', '', '', '', 1452078018, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
+(5, 'demo5', 1, 61, 'jackjones', 0, '', 199, 199, 5000, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452078187720.jpg', 'demo', 'demo', '', '', '', 1452078190, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
+(6, 'demo6', 1, 61, 'jackjones', 0, '', 166, 166, 80, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452078227340.jpg', 'demo', 'demo', '', '', '', 1452078230, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
+(7, 'demo7', 1, 61, 'jackjones', 0, '', 666, 666, 800, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452078261854.jpg', 'demo', 'demo', '', '', '', 1452078264, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
+(8, 'demo8', 1, 61, 'jackjones', 0, '', 900, 900, 500, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452078313387.jpg', 'demo', 'demo', '', '', '', 1452078316, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00);
 
 -- --------------------------------------------------------
 
@@ -4273,14 +4273,14 @@ INSERT INTO `goods_pictures` (`gp_id`, `goods_id`, `pic_url`, `time`) VALUES
 (237, 118, 'http://112.124.3.197:8006/images/2015/07/upload_1437894314902.jpg', 1437894324),
 (236, 117, 'http://112.124.3.197:8006/images/2015/07/upload_1437892474136.jpg', 1437892483),
 (240, 119, 'http://112.124.3.197:8006/images/2015/07/upload_1437902116673.jpg', 1437902124),
-(251, 1, 'http://localhost/images/2016/01/upload_1452077901371.jpg', 1452077905),
-(252, 2, 'http://localhost/images/2016/01/upload_1452077947417.jpg', 1452077950),
-(253, 3, 'http://localhost/images/2016/01/upload_1452077984163.jpg', 1452077987),
-(254, 4, 'http://localhost/images/2016/01/upload_1452078014891.jpg', 1452078018),
-(255, 5, 'http://localhost/images/2016/01/upload_1452078187720.jpg', 1452078190),
-(256, 6, 'http://localhost/images/2016/01/upload_1452078227340.jpg', 1452078230),
-(257, 7, 'http://localhost/images/2016/01/upload_1452078261854.jpg', 1452078264),
-(258, 8, 'http://localhost/images/2016/01/upload_1452078313387.jpg', 1452078316);
+(251, 1, '/images/2016/01/upload_1452077901371.jpg', 1452077905),
+(252, 2, '/images/2016/01/upload_1452077947417.jpg', 1452077950),
+(253, 3, '/images/2016/01/upload_1452077984163.jpg', 1452077987),
+(254, 4, '/images/2016/01/upload_1452078014891.jpg', 1452078018),
+(255, 5, '/images/2016/01/upload_1452078187720.jpg', 1452078190),
+(256, 6, '/images/2016/01/upload_1452078227340.jpg', 1452078230),
+(257, 7, '/images/2016/01/upload_1452078261854.jpg', 1452078264),
+(258, 8, '/images/2016/01/upload_1452078313387.jpg', 1452078316);
 
 -- --------------------------------------------------------
 
@@ -4311,9 +4311,9 @@ INSERT INTO `goods_type1` (`id`, `name`, `weight`, `logo`, `display`, `typebelon
 (7, 'maternal and infants', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584036880.jpg', 1, 0, '1430968396'),
 (9, 'test', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584086606.jpg', 1, 0, '1431410826'),
 (11, 'xxx', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584105893.jpg', 1, 0, '1433559277'),
-(22, '董时贤的分类', 100, 'http://localhost/images/2015/07/upload_1437724970659.jpg', 1, 2, '1437724975'),
+(22, '董时贤的分类', 100, '/images/2015/07/upload_1437724970659.jpg', 1, 2, '1437724975'),
 (13, '测试11', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433572225842.jpg', 1, 1, '1433569439'),
-(23, '董时贤的分类2', 1, 'http://localhost/images/2015/07/upload_1437725000860.jpg', 1, 2, '1437725003'),
+(23, '董时贤的分类2', 1, '/images/2015/07/upload_1437725000860.jpg', 1, 2, '1437725003'),
 (24, 'cesahi', 1, 'http://112.124.3.197:8006/images/2015/07/upload_1437790891412.jpg', 1, 11, '1437790893'),
 (16, 'ceshi222', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584295154.jpg', 1, 0, '1433584251'),
 (17, '红宝儿1', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584295154.jpg', 1, 11, '1434168219'),
@@ -4408,7 +4408,7 @@ CREATE TABLE IF NOT EXISTS `homefocus` (
 --
 
 INSERT INTO `homefocus` (`id`, `image_url`, `link_url`, `weight`, `role`) VALUES
-(24, 'http://localhost/images/2016/01/upload_1452071239292.jpg', 'http://localhost/index/index', 111, 0),
+(24, '/images/2016/01/upload_1452071239292.jpg', 'http://localhost/index/index', 111, 0),
 (8, 'http://112.124.3.197:8006/images/2015/06/upload_1434855450546.jpg', 'http://112.124.3.197:8006/mall/index/id/11', 86, 11),
 (9, '', 'www.baidu.com', 9, 2),
 (13, 'http://112.124.3.197:8006/images/2015/07/upload_1437895338940.jpg', 'http://www.baidu.com', 21, 0),
@@ -6200,7 +6200,7 @@ INSERT INTO `shop_pictures` (`sp_id`, `shop_id`, `pic_url`, `time`) VALUES
 (39, 47, 'http://112.124.3.197:8006/images/2015/07/upload_1437206568310.jpg', '1437206568'),
 (40, 47, 'http://112.124.3.197:8006/images/2015/07/upload_1437211405815.jpg', '1437211405'),
 (44, 49, 'http://112.124.3.197:8006/images/2015/07/upload_1437793398750.jpg', '1437793398'),
-(43, 49, 'http://localhost/images/2015/07/upload_1437722719948.gif', '1437722719'),
+(43, 49, '/images/2015/07/upload_1437722719948.gif', '1437722719'),
 (45, 51, 'http://112.124.3.197:8006/images/2015/07/upload_1437890898257.jpg', '1437890898'),
 (50, 52, 'http://112.124.3.197:8006/images/2015/07/upload_1437892565675.jpg', '1437892565'),
 (49, 53, 'http://112.124.3.197:8006/images/2015/07/upload_1437892493562.jpg', '1437892493'),
@@ -6766,7 +6766,7 @@ CREATE TABLE IF NOT EXISTS `system_info` (
 --
 
 INSERT INTO `system_info` (`id`, `web_name`, `web_url`, `key_word`, `pics`, `hot_word`, `description`, `phone`, `email`, `email_pass`, `balanceMoney`, `useMoney`, `qq`, `wangwang`, `lifetime`, `copyright`) VALUES
-(0, '葵花商城', 'fds', '测试，商城', 'http://localhost/images/system/logo/2016/01/upload_1451704904462.jpg', '奶粉，手机', '00000', '110', '1107745359@qq.com', '123456', 10010001.16, 10010001.16, '1107745359', '少年狂气', 3000, 'Copyright 2002-2015版权所有 苏ICP备10207551号 苏B1-20130131 苏B1-20130131 苏B2-20130376');
+(0, '葵花商城', 'fds', '测试，商城', '/images/system/logo/2016/01/upload_1451704904462.jpg', '奶粉，手机', '00000', '110', '1107745359@qq.com', '123456', 10010001.16, 10010001.16, '1107745359', '少年狂气', 3000, 'Copyright 2002-2015版权所有 苏ICP备10207551号 苏B1-20130131 苏B1-20130131 苏B2-20130376');
 
 -- --------------------------------------------------------
 
