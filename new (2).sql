@@ -4304,11 +4304,11 @@ CREATE TABLE IF NOT EXISTS `goods_type1` (
 --
 
 INSERT INTO `goods_type1` (`id`, `name`, `weight`, `logo`, `display`, `typebelong`, `time`) VALUES
-(2, 'electrical equipment', 12, 'http://112.124.3.197:8006/images/2015/07/upload_1437796835288.jpg', 1, 0, '1430816699'),
-(3, 'clothing', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433583818111.jpg', 1, 0, '1430816750'),
+(2, 'Electrical', 12, 'http://112.124.3.197:8006/images/2015/07/upload_1437796835288.jpg', 1, 0, '1430816699'),
+(3, 'Clothing', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433583818111.jpg', 1, 0, '1430816750'),
 (4, 'Restaurant', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433583831665.jpg', 1, 0, '1430968329'),
 (6, 'Cosmetics', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584020907.jpg', 1, 0, '1430968382'),
-(7, 'maternal and infants', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584036880.jpg', 1, 0, '1430968396'),
+(7, 'Babies&Kids', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584036880.jpg', 1, 0, '1430968396'),
 (9, 'test', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584086606.jpg', 1, 0, '1431410826'),
 (11, 'xxx', 1, 'http://112.124.3.197:8006/images/2015/06/upload_1433584105893.jpg', 1, 0, '1433559277'),
 (22, '董时贤的分类', 100, '/images/2015/07/upload_1437724970659.jpg', 1, 2, '1437724975'),
