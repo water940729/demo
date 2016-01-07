@@ -98,7 +98,7 @@
 												</li>
 
 												<elseif condition="$vi.ordstatus eq 2"/>
-												Payment Success
+												Delivering
 												<br/>
 											<!--	<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span> -->
 												</li>
@@ -116,15 +116,15 @@
                                                     <input type="button" value="Return" class="order_return"><br/>
                                                     <a href="__APP__/good/index/id/<{$vi.productid}>">Buy it Again</a></br>
                                                 </li>
-                                                <elseif condition="$vi.ordstatus eq 9" />
-                                               Already applyed Returnning , Please Return the Page to Submit your Detailed Information
+                                                <elseif condition="$vi.ordstatus eq 4" />
+												Returning...
                                                 </br>
 										<!--		<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span> -->
                                                <!-- </li>-->
                                                 <li style="border:0;">
                                                     <a href="__APP__/good/index/id/<{$vi.productid}>">Buy it Again</a></br>
                                                 </li>
-                                                 <elseif condition="$vi.ordstatus eq 8" />
+                                                 <elseif condition="$vi.ordstatus eq 6" />
                                                 Commented
                                                 </br>
 										<!--		<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span> -->
@@ -134,14 +134,15 @@
                                                     <a href="__APP__/good/index/id/<{$vi.productid}>">Buy it Again</a></br>
                                                 </li>
                                                <!-- </li>-->
-												<else/>
-											   Returning in Processing
+												<elseif condition="$vi.ordstatus eq 5" />
+											   Returned
 												<br/>
 										<!--		<span><a href="__APP__/order/order_info/ordid/<{$vi.ordid}>">订单详情</a></span> -->
 												<!-- </li>-->
 												<li style="border:0;">
 													<a href="__APP__/good/index/id/<{$vi.productid}>">Buy it Again</a><br/>
 												</li>
+												<else/>
 												</if>
 											</ul>
 											</div>

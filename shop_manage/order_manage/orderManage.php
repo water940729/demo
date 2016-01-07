@@ -63,7 +63,6 @@ $result = mysql_fetch_row(mysql_query($sql));
 					 if(dataObj['status'] == 1){
 						 $('#pageConDiv').empty();
 						 $("#pageConDiv").append(dataObj['constr']);
-						 
 						 $("#orderTable").empty();
 						//var headStr ='<tr><td colspan=11 >'+dataObj['headStr']+'</td></tr>';
 						 //$("#orderTable").append(headStr);
@@ -80,11 +79,16 @@ $result = mysql_fetch_row(mysql_query($sql));
 							'<td>Courier name</td>'+
 							'<td>Delivery order no.</td>'+
 							'<td >Order Status</td>'+
-							'<td >Delete</td>'+
-							'<td >Operation</td>'+
-						    '</tr>';
+							//'<td >Delete</td>'+
+							'<td >Operation</td>';//+
+						    //'</tr>';
+							if(type == 4){
+								str = str + '<td>Deadline</td>';
+							}
+							str = str + '</tr>';
 						  $("#orderTable").append(str);
 						  if(!dataObj['data']) return;
+						  //alert(dataObj['data'][1]['deadline']);
 						   for(var i=0;i<dataObj['data'].length;i++){
 							  str ="<tr tag='' style='background-color:' name='"+dataObj['data'][i]['id']+"'>"+
 							        "<td>"+dataObj['data'][i]['ordid']+"</td>"+
@@ -97,16 +101,20 @@ $result = mysql_fetch_row(mysql_query($sql));
 									"<td>"+dataObj['data'][i]['ordfee']+"</td>"+
 									"<td>"+dataObj['data'][i]['expressName']+"</td>"+
 									"<td>"+dataObj['data'][i]['expressNum']+"</td>"+
-									"<td>"+dataObj['data'][i]['stausStr']+"</td>"+
-                                    "<td onclick='deleteOrder(this)' style='cursor:pointer'>Delete</td>";
+									"<td>"+dataObj['data'][i]['stausStr']+"</td>";//+
+                                    //"<td onclick='deleteOrder(this)' style='cursor:pointer'>Delete</td>";
 							    if(dataObj['data'][i]['ordstatus'] == 1){
-								   str = str + '<td onclick="sendGoods(this)" style="cursor:pointer" >Confirm</td></tr>';
+								   str = str + '<td onclick="sendGoods(this)" style="cursor:pointer" >Confirm</td>';
 							     }
 								 else if(dataObj['data'][i]['ordstatus'] == 4){
-									 str = str + '<td onclick="confirmReturn(this)" style="cursor:pointer" name="'+dataObj['data'][i]['ordid'] + ','+dataObj['data'][i]['productid']+'">Confirm</td></tr>';
+									 str = str + '<td onclick="confirmReturn(this)" style="cursor:pointer" name="'+dataObj['data'][i]['ordid'] + ','+dataObj['data'][i]['productid']+'">Confirm</td>';
 								 }else{
-								    str = str+'<td onclick="" style="cursor:pointer" ></td></tr>';
+								    str = str+'<td onclick="" style="cursor:pointer" ></td>';
 							    }
+								if(type == 4){
+									str = str + "<td>"+dataObj['data'][i]['deadline']+"</td>";
+								}
+								str = str + "</tr>"
 						      $("#orderTable").append(str);						
 					    }}
 					 }
@@ -183,7 +191,7 @@ $result = mysql_fetch_row(mysql_query($sql));
 			$(ele).parent().parent().remove();
 		}
 		function sendGoodsDo(ele,id){
-			var r=confirm("Confirm Operation");
+			var r=confirm("Confirm Operation?");
 			if(r==false){
 				return ;
 			}
@@ -227,7 +235,7 @@ $result = mysql_fetch_row(mysql_query($sql));
 <style>
 .mytable
 {
-   width:1200px;
+   width:1500px;
    border:1px;  
 }
 table,th,td{ 

@@ -114,6 +114,8 @@ if($action == 'search'){
 	$sql= 'select id,ordid,mall_id,shop_id,username,ordtime,productid,productname,ordbuynum,ordprice,freight,ordfee,ordstatus,recname,recaddress,expressName,expressNum from '.$tableName.$condition.' order by '.$orderBy.' '.$order.' limit '.(-1+$page)*$pageNum.','.$pageNumber;
 	if($res = mysql_query($sql)){
 		while($row = mysql_fetch_assoc($res)){
+			$deadline = $row['ordtime'] + 10*60*60;
+			$row['deadline'] = date('Y-m-d h:ia',$deadline);//date('Y-m-d h:i:s',strtotime("+10hours",strtotime($row['ordtime']));
 			$row['ordtime'] = date('Y-m-d',$row['ordtime']);
 			$row['stausStr'] = $statusArr[$row['ordstatus']];
 			$row['mall'] = $shopLocation[$row['mall_id']];
