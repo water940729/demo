@@ -22,16 +22,21 @@
 				var message=$(".leave_message").val();
 				var num=$(".good_num span").text();
 				var type=$(".goodstype").text();
-                document.write('<form name=myForm><input type=hidden name=address_id><input type=hidden name=num><input type=hidden name=goodstype><input type=hidden name=cart_item><input type=hidden name=message></form>'); 
-                var myForm=document.forms['myForm']; 
-                myForm.action='__APP__/order/buy_confirm'; 
-                myForm.method='POST'; 
-                myForm.address_id.value=address_id; 
-				myForm.num.value=num; 
-				myForm.goodstype.value=JSON.stringify(type); 
-				myForm.cart_item.value=JSON.stringify(cart_item); 
-				myForm.message.value=JSON.stringify(message);
-				myForm.submit();
+
+                if (address_id == "") {
+                    alert("Please select your address.");
+                } else {
+                    document.write('<form name=myForm><input type=hidden name=address_id><input type=hidden name=num><input type=hidden name=goodstype><input type=hidden name=cart_item><input type=hidden name=message></form>'); 
+                    var myForm=document.forms['myForm']; 
+                    myForm.action='__APP__/order/buy_confirm'; 
+                    myForm.method='POST'; 
+                    myForm.address_id.value=address_id; 
+                    myForm.num.value=num; 
+                    myForm.goodstype.value=JSON.stringify(type); 
+                    myForm.cart_item.value=JSON.stringify(cart_item); 
+                    myForm.message.value=JSON.stringify(message);
+                    myForm.submit();
+                }
 			});
 			//添加新地址
 			$(".confirm_info").click(function(){
