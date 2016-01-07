@@ -340,6 +340,7 @@
 		public function buy_confirm(){
 			//立即购买的确认
 			$user_id=session("id");
+			//date_default_timezone_set(PRC);
 			if(isset($_POST["address_id"])&&isset($user_id)){
 				$cart_item=json_decode($_POST["cart_item"]);
 				$address_id=$_POST["address_id"];
