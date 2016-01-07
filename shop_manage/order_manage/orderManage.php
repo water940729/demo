@@ -103,7 +103,7 @@ $result = mysql_fetch_row(mysql_query($sql));
 								   str = str + '<td onclick="sendGoods(this)" style="cursor:pointer" >Confirm</td></tr>';
 							     }
 								 else if(dataObj['data'][i]['ordstatus'] == 4){
-									 str = str + '<td onclick="sendGoods(this)" style="cursor:pointer" >Confirm</td></tr>';
+									 str = str + '<td onclick="confirmReturn(this)" style="cursor:pointer" name="'+dataObj['data'][i]['ordid'] + ','+dataObj['data'][i]['productid']+'">Confirm</td></tr>';
 								 }else{
 								    str = str+'<td onclick="" style="cursor:pointer" ></td></tr>';
 							    }
@@ -162,6 +162,21 @@ $result = mysql_fetch_row(mysql_query($sql));
 			$(ele).attr('tag',1);
 			var str = "<tr style='background-color:#FFF5EE'><td colspan=15 >The order no. :<input name='expressNum' value=''  type='text' /> ----- Courier name:<input name='expressName' type='text' /> ---- <input type='button' onclick ='sendGoodsDo(this,"+$(ele).parent().attr('name')+")' value='Confirm' /><input onclick='sendGoodsCancel(this)' type='button' value='Cancel' /></td></tr>"
 		    $(ele).parent().after(str);
+		}
+		
+		function confirmReturn(ele){
+			name = $(ele).attr('name');
+			order_num = name.split(',')[0];
+			good_id = name.split(',')[1];
+			$.post("../../Widget/confirm_returned", {"order_num":order_num, "good_id":good_id, "type":"1"}, function(data){
+				if(data.status){
+					//alert("confirm success");
+					window.location.reload();
+				} else {
+					alert("something wrong");
+				}
+				//$('#right').load('../TabChange/order.html');
+			}, "json")
 		}
 		function sendGoodsCancel(ele){
 			$(ele).parent().parent().prev().children('td').attr('tag',0);
