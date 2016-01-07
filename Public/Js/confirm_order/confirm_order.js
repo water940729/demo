@@ -59,7 +59,8 @@ $(function(){
     $(".leave_message").blur(function(){
         var length=$(this).val().length;
         if(length>90){
-            alert("亲，意见的字数要在90字以内");
+            //alert("亲，意见的字数要在90字以内");
+            alert("Dear, the length of suggestion should be less than 90.");
             $(this).val($(this).val().substr(0,90));
         }
         $(this).siblings("span").find(".message_num").text($(this).val().length);
@@ -88,7 +89,7 @@ $(function(){
 		var text2=$("#Country").val();
 		var text3=$("#Town").val();
         if(text1=="省名"||text2=="地市"||text3=="县市"){
-            alert("请选择完整的地址");
+            alert("Please finish address completely.");
         }else{
             str=text1+text2+text3;
             $("#detail_add").text(str);
