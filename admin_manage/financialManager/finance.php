@@ -11,9 +11,20 @@
 		$shopPage = $_SESSION['mall_id'];	
 	}
 	
-	$result=mysql_query("select id,name,ratio,balanceMoney,useMoney from mall") or die(mysql_error());
-	 while($array=mysql_fetch_array($result)){
-		  $mallList[]=$array;
+	// 总体数组
+	$total_result = array();
+	$i = 0;
+	// 店铺名数组
+	$shop_owners = mysql_query("select id,name from shop") or die(mysql_error());
+	foreach($shop_owners as $shop_owner){
+		// 获取佣金比率
+		$r = mysql_fetch_row(mysql_query("select ratio from shop where id=".$shop_owner['id']))[0];
+		// 对每一个shop_owner查找所有相关的订单并计算佣金值
+		$sql = "select sum(ordfee) from orderlist where shop_id=".$shop_owner['id'] * (1 - $r/100);
+		$total_result[]
+	}
+	while($array = mysql_fetch_array($shop_owners)){
+		  
 	 }
 	
 ?>
@@ -113,12 +124,11 @@ margin: 0px;
 				<table class='mytable' width="100%" style="float:left;" id='orderTable'>
 
 				<tr style='background-color:white;'><td colspan=4 style='font-size:16px;'>total balance：<?php  echo $siteMoney['useMoney'];  ?></td></tr>
-				<tr style='background-color:#B0E0E6;'><td>name</td><td>revenue ratio</td><td>balance</td><td>available balance</td></tr>
+				<tr style='background-color:#B0E0E6;'><td> Shop Owner</td><td>Commission Ratio</td><td>Total Commission</td></tr>
 				   
 				<?php
 				   foreach($mallList as $val){
-					   
-					   echo "<tr><td>$val[name]</td><td>$val[ratio]</td><td>$val[balanceMoney]</td><td>$val[useMoney]</td></tr>";
+					   echo "<tr><td>$val[name]</td><td>$val[ratio]</td><td>$val[balanceMoney]</td></tr>";
 				   }
 				
 				?>

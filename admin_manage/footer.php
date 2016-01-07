@@ -8,7 +8,7 @@
  </head>
  <body>
 	
-	<div class="footer">Designed & Developed By <a href="#" target="_blank"></a></div>
+	<div class="footer">Designed & Developed By parknshop<a href="#" target="_blank"></a></div>
 
 	</body>
 </html>
