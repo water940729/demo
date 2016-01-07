@@ -29,7 +29,7 @@ while($array=mysql_fetch_array($result)){
 		$shopLocation[$array['id']]=$array['name'];
 	 }
 	 
-$statusArr= array('Have order','Paid','Delivered','Received','To be replace','Replaced','For a refund','Returned','Have evaluation');
+$statusArr= array('Paying','Paid','Delivering','Received','Returning','Returned','Finished');
 
 $controllArr = array('delete');
 

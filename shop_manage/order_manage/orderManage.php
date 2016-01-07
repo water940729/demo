@@ -100,16 +100,13 @@ $result = mysql_fetch_row(mysql_query($sql));
 									"<td>"+dataObj['data'][i]['stausStr']+"</td>"+
                                     "<td onclick='deleteOrder(this)' style='cursor:pointer'>Delete</td>";
 							    if(dataObj['data'][i]['ordstatus'] == 1){
-								   str = str + '<td onclick="sendGoods(this)" style="cursor:pointer" >Set up the delivery</td></tr>';
+								   str = str + '<td onclick="sendGoods(this)" style="cursor:pointer" >Confirm</td></tr>';
 							     }
 								 else if(dataObj['data'][i]['ordstatus'] == 4){
-									 str = str + '<td onclick="sendGoods(this)" style="cursor:pointer" >Set up the replacement</td></tr>';
-								 }else if(dataObj['data'][i]['ordstatus'] == 6){
-									 str = str + '<td onclick="changeStatus(this)" style="cursor:pointer" >Set up the return</td></tr>';
-								 }
-								 else{
+									 str = str + '<td onclick="sendGoods(this)" style="cursor:pointer" >Confirm</td></tr>';
+								 }else{
 								    str = str+'<td onclick="" style="cursor:pointer" ></td></tr>';
-							       }
+							    }
 						      $("#orderTable").append(str);						
 					    }}
 					 }
@@ -140,7 +137,7 @@ $result = mysql_fetch_row(mysql_query($sql));
 			searchGoods();
 		}
 		function deleteOrder(ele){
-			var r=confirm("确认删除");
+			var r=confirm("confirm deletion");
 			if(r==false){
 				return ;
 			}
@@ -283,31 +280,29 @@ margin: 0px;
 		<div class="bgintor" style='height:800px'>
 				<div class="tit1">
 					<ul>				
-						<li style='text-align:center;line-height:35px;'>Order Management</li>
+						<li style='text-align:center;line-height:35px;'>Order Manage</li>
 					</ul>		
 
 				</div>
 				<div class="header1"><img src="../images/square.gif" width="6" height="6" alt="" />
-					<span>Location: the order management ----  <strong><?php echo  $result[0].':'.$tableNameArr[$cat] ;?></strong></span>	
+					<span>Location: Order Management ----   <strong><?php echo  $result[0];?></strong></span>	
 					<!-- <span style='font-size:16px;'><a href='./orderManage.php?cat=0'>-----------------商城</a ></span><span style='font-size:16px;'><a href='./orderManage.php?cat=1' >---团购</a></span><span style='font-size:16px;' ><a href='./orderManage.php?cat=2' >---秒杀</a></span> -->
 				</div>				
 			<div class="listintor">
 
 				<div class="content" style='height:1000px'>
 				<div class='controllDiv'>
-				<span id='orginOrder' name='DESC' onclick='chooseOrder(this)' style='background-color:#87ceeb;'>In descending order according to time</span>
-				<span name='ASC' onclick='chooseOrder(this)'>In ascending order according to time</span>
+				<span id='orginOrder' name='DESC' onclick='chooseOrder(this)' style='background-color:#87ceeb;'>DESC Order</span>
+				<span name='ASC' onclick='chooseOrder(this)'>ASC Order</span>
 				
 				<span id='orginType' style='margin-left:40px; background-color:#87ceeb;' onclick='chooseStatus(this)' name='' >All</span>
-				<span name=0 onclick='chooseStatus(this)'>Have order</span>
+				<span name=0 onclick='chooseStatus(this)'>Paying</span>
 				<span name=1 onclick='chooseStatus(this)'>Paid</span>
-				<span name=2 onclick='chooseStatus(this)'>Delivered</span>
-				<span name=3 onclick='chooseStatus(this)'>Have the goods</span>
-				<span name=4 onclick='chooseStatus(this)'>To be a replacement</span>
-				<span name=5 onclick='chooseStatus(this)'>Have a replacement</span>
-				<span name=6 onclick='chooseStatus(this)'>For a refund</span>
-				<span name=7 onclick='chooseStatus(this)'>Have return</span>
-				<span name=8 onclick='chooseStatus(this)'>Have evaluation</span>
+				<span name=2 onclick='chooseStatus(this)'>Delivering</span>
+				<span name=3 onclick='chooseStatus(this)'>Received</span>
+				<span name=4 onclick='chooseStatus(this)'>Returing</span>
+				<span name=5 onclick='chooseStatus(this)'>Returned</span>
+				<span name=6 onclick='chooseStatus(this)'>Finished</span>
 				<div class='pageConDiv' id='pageConDiv' style='float:right'>
 
 				</div>

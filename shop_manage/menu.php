@@ -69,11 +69,11 @@
 			<div class="menu_content">
 				<div class="menu_h menu_h3">Order Management</div>
 				<div class="menu_intor">
-				<p><a href="order_manage/orderManage.php?cat=0" target="mainFrame">Mall orders</a></p>
-				<p><a href="order_manage/orderManage.php?cat=1" target="mainFrame">Bulk order</a></p>
+				<p><a href="order_manage/orderManage.php?cat=0" target="mainFrame">All Orders</a></p>
+				<!--<p><a href="order_manage/orderManage.php?cat=1" target="mainFrame">Bulk order</a></p>
 				<p><a href="order_manage/orderManage.php?cat=2" target="mainFrame">Seconds kill order</a></p>
 				<p><a href="order_manage/orderManage.php?cat=3" target="mainFrame">Trial order</a></p>
-				<p><a href="order_manage/orderManage.php?cat=4" target="mainFrame">Booking order</a></p>
+				<p><a href="order_manage/orderManage.php?cat=4" target="mainFrame">Booking order</a></p>-->
 				</div>
 			</div>
 			<div class="menu_content">
