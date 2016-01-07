@@ -14,7 +14,7 @@ class OrderModel extends Model{
     /*
      *查询某个用户的所有订单
      *@param int user_id  用户的id
-     *@param int $status 订单状态 0待付款 1已付款待发货 2待收货 3待评价 40无限制
+     *@param int $status 订单状态 0待付款 1已付款待发货 2待收货 3待评价 4退货中 5退货成功 40无限制
      *@param int $time 时间 1 最近三天 2 最近一周 3 最近30天 4 最近90天 5 无限制
      */
     public function search_order_by_user($user_id, $status, $time_flag, $search_text){

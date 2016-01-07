@@ -274,9 +274,9 @@ $(function(){
         good_id = $(this).parents(".order_inform_bottom").find(".productid").text();
         $.post("../Widget/confirm_rev", {"order_num":order_num, "good_id":good_id, "type":"1"}, function(data){
            if(data.status){
-                alert("已确认收货");
+                //alert("confirm success");
            } else {
-                alert("发生了一些问题");
+                alert("something wrong");
            }
            
            $('#right').load('../TabChange/order.html');
@@ -287,9 +287,9 @@ $(function(){
         good_id = $(this).parents(".order_inform_bottom").find(".productid").text();
         $.post("../Widget/confirm_rev", {"order_num":order_num, "good_id":good_id, "type":"2"}, function(data){
             if(data.status){
-                alert("已确认收货");
+                //alert("已确认收货");
             } else {
-                alert("发生了一些问题");
+                alert("something wrong");
             }
            $('#right').load('../TabChange/order.html');
         }, "json")
@@ -356,7 +356,7 @@ $(function(){
         order_num = $(this).parents(".order_inform").find(".ordid").text();
         $.post("../Widget/oper_return", {"order_num":order_num, "good_id":good_id,"type":1}, function(data){
             if(data.status){
-                alert("已记录该退换货，请在退换货页面填写详细信息");
+                //alert("已记录该退换货，请在退换货页面填写详细信息");
                 $("#right").load("../TabChange/return_good.html");
             } else {
                 alert("发生了一些问题");

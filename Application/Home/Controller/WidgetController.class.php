@@ -466,6 +466,32 @@ class WidgetController extends Controller{
             echo json_encode(array("status"=>"1"));
             return;
         } // end function
+		
+		public function confirm_return(){
+            $user_id = $this->check_user();
+            $order_num = $_REQUEST["order_num"];
+            $good_id = $_REQUEST["good_id"];
+            $type = $_REQUEST["type"];
+            switch($type){
+                case '1':$tableName='orderlist';break;
+                case '2':$tableName='seckill_orderlist';break;
+                case '3':$tableName='teambuy_orderlist';break;
+                case '4':$tableName='trial_orderlist';break;
+                case '5':$tableName='book_orderlist';break;
+                default: return false;
+            }
+            
+            $tableModel = M($tableName);
+            $ordstatus_data["ordstatus"] = 4;
+            $status = $tableModel->where("userid=$user_id and ordid=$order_num and productid=$good_id")->data($ordstatus_data)->save();
+            if(!$status){
+                echo json_encode(array("status"=>"0"));
+                return;
+            }
+            
+            echo json_encode(array("status"=>"1"));
+            return;
+        } // end function
 
         public function oper_return(){
             $user_id = $this->check_user();

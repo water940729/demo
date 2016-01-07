@@ -105,7 +105,8 @@ $(document).ready(function(){
                 </div>
                 <div><{$vo.ordtime|date="y-m-d",###}></div>
                 <div class="order_che">￥<{$vo.ordprice}></div>
-				<div class="order_com"><span>Return</span></div>
+				 <!--input type="button" value="Submit Application"  class="return_btn"/-->
+				<div class="order_com" ><span>Return</span></div>
             </div>
             <!-- 这是每个商品下面对应的填写信息的包含框-->
             <div class="return">
@@ -174,7 +175,7 @@ $(document).ready(function(){
 				<!--退货状态-->
 				<div style="color:#e3007f;"><span>
                 <if condition="$vo.ordstatus eq 4">
-                Already Applyed Changen Goods
+                Returning
                 <elseif condition="$vo.ordstatus eq 5" />
                 Already Changed
                 <elseif condition="$vo.ordstatus eq 6" />
