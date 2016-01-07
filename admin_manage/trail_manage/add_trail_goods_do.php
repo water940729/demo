@@ -1,7 +1,7 @@
 <?php
 //	print_r($_POST);
 /*
-Array ( [goodsName] => 测试 [price] => 329 [start] => 2015-06-18 13:00:00 [end] => 2015-06-18 23:00:00 [num] => 300 [extattribute1] => 颜色:红,蓝 [extattribute2] => [extattribute3] => [goodsDesc] => 测试 [pics] => Array ( [0] => http://112.124.3.197:8006/images/2015/06/upload_1434605984662.jpg [1] => http://112.124.3.197:8006/images/2015/06/upload_1434605988300.jpg ) [file] => 54052fefNc29254cb.jpg [filename] => [goods_desc] => [goods_info] =>
+Array ( [goodsName] => 测试 [price] => 329 [start] => 2015-06-18 13:00:00 [end] => 2015-06-18 23:00:00 [num] => 300 [extattribute1] => 颜色:红,蓝 [extattribute2] => [extattribute3] => [goodsDesc] => 测试 [pics] => Array ( [0] => /images/2015/06/upload_1434605984662.jpg [1] => /images/2015/06/upload_1434605988300.jpg ) [file] => 54052fefNc29254cb.jpg [filename] => [goods_desc] => [goods_info] =>
 
 测试
 ) */
