@@ -24,7 +24,7 @@
 			}
 			//echo $insert;
 			//print_r($_POST);
-			//Array ( [goods_type] => xxxxc [img_url] => [pics] => Array ( [0] => http://112.124.3.197:8006/images/2015/06/upload_1433559349317.jpg ) [file] => btn1.jpg [type] => 1 [id] => 0 ) 
+			//Array ( [goods_type] => xxxxc [img_url] => [pics] => Array ( [0] => /images/2015/06/upload_1433559349317.jpg ) [file] => btn1.jpg [type] => 1 [id] => 0 ) 
 			$url="goods_type1.php";
 		}else if($type==2){
 			$insert="insert into goods_type2(name,time,type1_id) values('$goods_type','$time','$id')";
@@ -70,7 +70,7 @@
 			}
 			//echo $insert;
 			//print_r($_POST);
-			//Array ( [goods_type] => xxxxc [img_url] => [pics] => Array ( [0] => http://112.124.3.197:8006/images/2015/06/upload_1433559349317.jpg ) [file] => btn1.jpg [type] => 1 [id] => 0 ) 
+			//Array ( [goods_type] => xxxxc [img_url] => [pics] => Array ( [0] => /images/2015/06/upload_1433559349317.jpg ) [file] => btn1.jpg [type] => 1 [id] => 0 ) 
 			$url="goods_type1.php";
 		}else if($type==2){
 			$insert="insert into goods_type2(name,time,type1_id) values('$goods_type','$time','$id')";

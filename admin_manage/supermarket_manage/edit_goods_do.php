@@ -57,7 +57,7 @@
 
     [addpics] => Array
         (
-            [0] => http://112.124.3.197:8006/images/2015/06/upload_1434076868160.jpg
+            [0] => /images/2015/06/upload_1434076868160.jpg
         )
 
     [file] => 542d0e29N76846b36.jpg
