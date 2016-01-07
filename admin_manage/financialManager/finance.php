@@ -99,10 +99,18 @@ margin: 0px;
 	while($shop_owners = mysql_fetch_array($res)){
 		// 获取佣金比率
 		$r = mysql_fetch_row(mysql_query("select ratio from shop where id=".$shop_owners['id']))[0];
-		// 对每一个shop_owner查找所有相关的订单并计算佣金值
-		$c = mysql_fetch_row(mysql_query("select sum(ordfee) from orderlist where shop_id=".$shop_owners['id']))[0] * (1 - $r/100);
+		// 对每一个shop_owner查找所有相关的订单
+		$t = mysql_query("select sum(ordfee),count(*) from orderlist where shop_id=".$shop_owners['id']);
+		// 查询结果只可能有一行，直接获取即可
+		$rr = mysql_fetch_row($t);
+		// 最初收入（没有扣去佣金）
+		$cc = $rr[0];
+		// 实际商家收入（扣去佣金后）
+		$c = $cc * (1 - $r/100);
+		// 此商家订单总量
+		$n = $rr[1];
 		// 创建内部数组表示每一个商家对应的名字、佣金比率以及总和
-		$a = array("name"=>$shop_owners[1],"ratio"=>$r,"commission"=>$c);
+		$a = array("name"=>$shop_owners[1],"ratio"=>$r,"commission"=>$c,"total"=>$cc,"ordnum"=>$n);
 		$total_result[$i] = $a;
 		$i += 1;
 		$total_income += $c;
@@ -125,11 +133,13 @@ margin: 0px;
 				<table class='mytable' width="100%" style="float:left;" id='orderTable'>
 
 				<tr style='background-color:white;'><td colspan=4 style='font-size:16px;'>Total Inconme：<?php  echo $total_income?></td></tr>
-				<tr style='background-color:#B0E0E6;'><td> Shop Owner</td><td>Commission Ratio(%)</td><td>Total Commission(￥)</td></tr>
+				<tr style='background-color:#B0E0E6;'>
+					<td> Shop Owner</td><td>Commission Ratio(%)</td><td>Commission(￥)</td><td>Actual Income(￥)</td><td>Order Count</td>
+				</tr>
 				   
 				<?php
 				   foreach($total_result as $result){
-					   echo "<tr><td>".$result['name']."</td><td>".$result['ratio']."</td><td>".$result['commission']."</td></tr>";
+					   echo "<tr><td>".$result['name']."</td><td>".(100 - $result['ratio'])."</td><td>".$result['commission']."</td><td>".$result['total']."</td><td>".$result['ordnum']."</td></tr>";
 				   }
 				
 				?>
