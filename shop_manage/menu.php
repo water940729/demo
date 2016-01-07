@@ -86,6 +86,7 @@
 				<div class="menu_h menu_h3">Financial Management</div>
 				<div class="menu_intor">
 					<p><a href="financeManage/finance.php" target="mainFrame">Withdrawal processing</a></p>
+					<p><a href="financeManage/finance_status.php" target="mainFrame">Financial Status</a></p>
 			   </div>
 			</div>
 		</div>
