@@ -37,8 +37,43 @@
                 myForm.address_id.value=address_id; 
 				myForm.cart_item.value=JSON.stringify(cart_item); 
 				myForm.message.value=JSON.stringify(message);
-				myForm.submit();
-			})
+                myForm.submit();
+            })
+
+            $(".confirm_info").click(function() {
+                var username = $(":input[name=username]").val();
+                var text1 = $("#Province").val();
+                var text2 = $("#Country").val();
+                var text3 = $("#Town").val();
+                var text4 = $("#cho_inp").val();
+                var phone = $(":input[name=phone]").val();
+                var address = $("#detail_add").text()+$(":input[name=address]").val();
+                var checked = $(".set_address").is(":checked");
+                var reg = /^13[0-9]{1}[0-9]{8}$|^15[012356789]{1}[0-9]{8}$|^18[0256789]{1}[0-9]{8}$/;
+                 var flag = false;
+               
+            if((username == "")||(!reg.test(phone))||($("#cho_inp").val()=="Detailed Address")||text1=="Provice"||text2=="City"||text3=="County"||text4==""){
+                     alert("Please input whole Information");
+                     return false;
+                 }else{
+                    $.ajax({
+                     type:"POST",
+                     url:"../user/add_address",
+                     data:"username="+username+"&phone="+phone+"&address="+address+"&tag="+checked,
+                     success:function(msg){
+                         if(msg==1){
+                             alert("Add address complete!");
+                             $(".address").load("/order/address_info");
+                             $(".add_information").hide();
+                         }else{
+                             alert(msg);
+                             //alert("请重试");
+                         }
+                        
+                     }
+                    });
+                 }
+            });
 		})
 	</script>
 </head>
