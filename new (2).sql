@@ -6766,7 +6766,7 @@ CREATE TABLE IF NOT EXISTS `system_info` (
 --
 
 INSERT INTO `system_info` (`id`, `web_name`, `web_url`, `key_word`, `pics`, `hot_word`, `description`, `phone`, `email`, `email_pass`, `balanceMoney`, `useMoney`, `qq`, `wangwang`, `lifetime`, `copyright`) VALUES
-(0, '葵花商城', 'fds', '测试，商城', '/images/system/logo/2016/01/upload_1451704904462.jpg', '奶粉，手机', '00000', '110', '1107745359@qq.com', '123456', 10010001.16, 10010001.16, '1107745359', '少年狂气', 3000, 'Copyright 2002-2015版权所有 苏ICP备10207551号 苏B1-20130131 苏B1-20130131 苏B2-20130376');
+(0, 'ParknShop', 'fds', 'Shop', '/images/system/logo/2016/01/upload_1451704904462.jpg', 'Phone', '00000', '110', '1107745359@qq.com', '123456', 10010001.16, 10010001.16, '1107745359', '少年狂气', 3000, 'Copyright XiDian');
 
 -- --------------------------------------------------------
 

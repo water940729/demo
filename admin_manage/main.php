@@ -5,7 +5,7 @@
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
-  <title> 管理首页 </title>
+  <title> Manage Home </title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="author" content="Jiangting@WiiPu -- http://www.wiipu.com" />
   <link rel="stylesheet" href="css/style2.css" type="text/css"/>
