@@ -111,7 +111,7 @@ if($action == 'search'){
 		$conStr.='<div onclick="changePage(this)"  name="'.($page+1).'">Next</div>';
 	}
 
-	$sql= 'select id,ordid,mall_id,shop_id,username,ordtime,productname,ordbuynum,ordprice,freight,ordfee,ordstatus,recname,recaddress,expressName,expressNum from '.$tableName.$condition.' order by '.$orderBy.' '.$order.' limit '.(-1+$page)*$pageNum.','.$pageNumber;
+	$sql= 'select id,ordid,mall_id,shop_id,username,ordtime,productid,productname,ordbuynum,ordprice,freight,ordfee,ordstatus,recname,recaddress,expressName,expressNum from '.$tableName.$condition.' order by '.$orderBy.' '.$order.' limit '.(-1+$page)*$pageNum.','.$pageNumber;
 	if($res = mysql_query($sql)){
 		while($row = mysql_fetch_assoc($res)){
 			$row['ordtime'] = date('Y-m-d',$row['ordtime']);
