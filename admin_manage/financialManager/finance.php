@@ -1,33 +1,3 @@
-<?php
-
-	 include ("../../conn/conn.php");
-	 
-	 if($_SESSION['role'] == 1){
-		$shopPage = isset($_GET['shopPage'])?$_GET['shopPage']:0;
-		$sql = 'select balanceMoney,useMoney from system_info ';
-		$result=mysql_query($sql) or die(mysql_error());
-		$siteMoney = mysql_fetch_array($result);
-	}else if($_SESSION['role'] == 2){
-		$shopPage = $_SESSION['mall_id'];	
-	}
-	
-	// 总体数组
-	$total_result = array();
-	$i = 0;
-	// 店铺名数组
-	$shop_owners = mysql_query("select id,name from shop") or die(mysql_error());
-	foreach($shop_owners as $shop_owner){
-		// 获取佣金比率
-		$r = mysql_fetch_row(mysql_query("select ratio from shop where id=".$shop_owner['id']))[0];
-		// 对每一个shop_owner查找所有相关的订单并计算佣金值
-		$sql = "select sum(ordfee) from orderlist where shop_id=".$shop_owner['id'] * (1 - $r/100);
-		$total_result[]
-	}
-	while($array = mysql_fetch_array($shop_owners)){
-		  
-	 }
-	
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -107,28 +77,59 @@ margin: 0px;
 </style>
 
 <body>
+	<?php
+		
+	 include ("../../conn/conn.php");
+	 
+	 if($_SESSION['role'] == 1){
+		$shopPage = isset($_GET['shopPage'])?$_GET['shopPage']:0;
+		$sql = 'select balanceMoney,useMoney from system_info ';
+		$result=mysql_query($sql) or die(mysql_error());
+		$siteMoney = mysql_fetch_array($result);
+	}else if($_SESSION['role'] == 2){
+		$shopPage = $_SESSION['mall_id'];	
+	}
+	// 总体数组
+	$total_result = array();
+	$i = 0;
+	// 总收入
+	$total_income = 0;
+	// 店铺名数组
+	$res = mysql_query("select id,name from shop");
+	while($shop_owners = mysql_fetch_array($res)){
+		// 获取佣金比率
+		$r = mysql_fetch_row(mysql_query("select ratio from shop where id=".$shop_owners['id']))[0];
+		// 对每一个shop_owner查找所有相关的订单并计算佣金值
+		$c = mysql_fetch_row(mysql_query("select sum(ordfee) from orderlist where shop_id=".$shop_owners['id']))[0] * (1 - $r/100);
+		// 创建内部数组表示每一个商家对应的名字、佣金比率以及总和
+		$a = array("name"=>$shop_owners[1],"ratio"=>$r,"commission"=>$c);
+		$total_result[$i] = $a;
+		$i += 1;
+		$total_income += $c;
+	}
+	?>
+
+
+
 		<div class="bgintor" style='height:800px'>				
 			<div class="listintor">
 				<div class="tit1">
 					<ul>				
-						<li style='text-align:center'>finance statistic</li>
+						<li style='text-align:center'>Statistic</li>
 					</ul>		
 				</div>
 				<div class="header1"><img src="../images/square.gif" width="6" height="6" alt="" />
-					<span>location：finance statistic ----  <strong id='titleMall'><?php echo  $shopLocation[$mallId] ;?></strong></span>	
-					
-
-					
+					<span>Location：Finance Statistic</span>	
 				</div>
 				<div class="content" style='height:1000px'>
 				<table class='mytable' width="100%" style="float:left;" id='orderTable'>
 
-				<tr style='background-color:white;'><td colspan=4 style='font-size:16px;'>total balance：<?php  echo $siteMoney['useMoney'];  ?></td></tr>
-				<tr style='background-color:#B0E0E6;'><td> Shop Owner</td><td>Commission Ratio</td><td>Total Commission</td></tr>
+				<tr style='background-color:white;'><td colspan=4 style='font-size:16px;'>Total Inconme：<?php  echo $total_income?></td></tr>
+				<tr style='background-color:#B0E0E6;'><td> Shop Owner</td><td>Commission Ratio(%)</td><td>Total Commission(￥)</td></tr>
 				   
 				<?php
-				   foreach($mallList as $val){
-					   echo "<tr><td>$val[name]</td><td>$val[ratio]</td><td>$val[balanceMoney]</td></tr>";
+				   foreach($total_result as $result){
+					   echo "<tr><td>".$result['name']."</td><td>".$result['ratio']."</td><td>".$result['commission']."</td></tr>";
 				   }
 				
 				?>
