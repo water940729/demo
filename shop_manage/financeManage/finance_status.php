@@ -4,6 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+		.x1{
+			color:red;
+			font-size:120%
+		}
+	</style>
 	</head>
 	<body>
 		<?php
@@ -27,10 +33,12 @@
 		$i = 0;
 		while($t = mysql_fetch_row($res)){
 			// $t[0]是当前商品id，根据此ID获取商品在订单表中总数
-			$n = mysql_fetch_row(mysql_query('select count(*),sum(ordfee) from orderlist where productid='.$t[0]));
+			$n = mysql_fetch_row(mysql_query('select count(*),sum(ordfee) from orderlist where productid='.$t[0].' and shop_id='.$shopId));
+			$g = mysql_fetch_row(mysql_query('select name,price from goods where id='.$t[0]));
+			$p = mysql_fetch_row(mysql_query('select pic_url from goods_pictures where goods_id='.$t[0]));
 			// 构造临时数组存这玩意
-			// 商品号、商品总卖出数量、商品总收入
-			$ta = array("productid"=>$t[0],"productcount"=>$n[0],"total"=>$n[1]);
+			// 商品号、商品总卖出数量、商品总收入、商品名称、商品价格、商品图片
+			$ta = array("productid"=>$t[0],"productcount"=>$n[0],"total"=>$n[1],"name"=>$g[0],"price"=>$g[1],"pic"=>$p[0]);
 			$products[$i] = $ta;
 			$i += 1;
 		}
@@ -40,13 +48,35 @@
 		// 获取与此商家关联的所有订单收入总额并减去给商场的钱，即此商家的所有收入
 		$sql = 'select sum(ordfee) from orderlist where shop_id='.$shopId.' and ordstatus in (1,2,3,4,6)';
 		$real_earning = mysql_fetch_row(mysql_query($sql))[0] * ($ratio/100);
-
-		// TODO: 计算每个商品的卖出数量以及带来的净收入
-		echo 'The number of all products sold is '.$good_num;?><br/>
-		<?php
-		echo 'The whole income is '.$real_earning;print_r($products);
+		
 		?>
+		
+		<p class='x1'>The commission rate is <?php echo $ratio;?>, </p>
+		<p class='x1'>The number of all products sold is <?php echo $good_num;?>, </p>
+		<p class='x1'>The whole income is  <?php echo $real_earning;?>,</p>
+		<table border="1" >
+		<tr>
+		<td>pro_id</td>
+		<td>pro_pic</td>
+		<td>pro_name</td>
+		<td>pro_price</td>
+		<td>pro_count</td>
+		<td>pro_total</td>
+		<td>pri_shop</td>
+		<td>pri_mall</td>
+		</tr>
+		<?php
+			
+			echo $products[$i][pic];
+			$c_pro=count($products);
+		
+			for($i=0;$i<$c_pro;$i++)
+			{
+				$profit_shop=$products[$i][total]*0.8;
+				$profit_mall=$products[$i][total]*0.2;
+				 echo '<tr><td>'.$products[$i][productid].'</td><td><img src="'.$products[$i][pic].'" height="50" width="50"></td><td>'.$products[$i][name].'</td><td>'.$products[$i][price].'</td><td>'.$products[$i][productcount].'</td><td>'.$products[$i][total].'</td><td>'.$profit_shop.'</td><td>'.$profit_mall.'</td></tr>';
+			}
+			?>
+		</table>
 	</body>
-	
-
 </html>
