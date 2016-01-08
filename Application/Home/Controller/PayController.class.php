@@ -33,10 +33,14 @@
                 );
             // 检测订单号有效性
             if(!checkorderstatus($out_trade_no)){
+                $r = orderhandle($p);
                 // 对订单进行处理
-                orderhandle($p);
-                // 跳转页面
-                $this->redirect(C('alipay.successpage'),array("out_trade_no"=>$out_trade_no));
+                if($r){
+                    // 跳转页面
+                    $this->redirect(C('alipay.successpage'),array("out_trade_no"=>$out_trade_no));
+                }else{
+                    $this->redirect(C('alipay.errorpage'),array("out_trade_no"=>$out_trade_no));
+                }
             }
         }
 
