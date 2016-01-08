@@ -4434,7 +4434,7 @@ CREATE TABLE IF NOT EXISTS `goods_type1` (
 --
 
 INSERT INTO `goods_type1` (`id`, `name`, `weight`, `logo`, `display`, `typebelong`, `time`) VALUES
-(2, '电器', 12, '/images/2015/07/upload_1437796835288.jpg', 1, 0, '1430816699'),
+(2, '电器', 12, '/images/2015/06/upload_1433583818111.jpg', 1, 0, '1430816699'),
 (3, '服装', 1, '/images/2015/06/upload_1433583818111.jpg', 1, 0, '1430816750'),
 (4, '餐饮', 1, '/images/2015/06/upload_1433583831665.jpg', 1, 0, '1430968329'),
 (6, '化妆品', 1, '/images/2015/06/upload_1433584020907.jpg', 1, 0, '1430968382'),
