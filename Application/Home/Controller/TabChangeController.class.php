@@ -394,4 +394,19 @@ class TabChangeController extends Controller{
             $this->assign("ordlist_done", $done_array_amend); 
             $this->display();
         } //end function
+		
+		
+		public function recharge_manage(){
+			$user_manage=M("user_manage");
+			$info=$user_manage->where("username=$_SESSION[username]")->find();
+			$this->assign("balance",$info["balance"]);
+			$this->display();
+		}
+		
+		public function recharge(){
+			$data['balance']=$_POST["balance"];
+			$username=$_SESSION["username"];
+			$user_manage=M("user_manage");
+			$user_manage->where("username=$username")->save($data);
+		}
 }
