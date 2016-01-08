@@ -1609,8 +1609,26 @@ function in_array_case($value,$array){
 				case 4:$ordlist="trial_orderlist";$goodstable="trial_goods";break;
 				case 5:$ordlist="book_orderlist";$goodstable="book_goods";break;
 			}
-			
-			
+            // by liuyicheng
+			// 获取账户余额
+            // 我只想说PHP真吊。是在下输了。完全看不懂这数据库怎么操作的。
+            $um = M("user_manage");
+            //$sql = "select balance from user_manage where user_id=".$_SESSION['id'];
+            $balance = $um->field("balance")->where('user_id='.$_SESSION['id'])->select()[0]['balance'];
+            //$balance = mysql_fetch_row(mysql_query($sql));
+            // $parameter['total_fee']表示此次交易总金额
+            $total_fee = $parameter['total_fee'];
+            // 余额不足则啥也不干直接返回
+            if($total_fee > $balance){
+                return false;
+            }
+            else
+            {
+            // 扣除余额
+            $sql = "update user_manage set balance=".($balance - $total_fee)." where user_id=".$_SESSION['id'];
+            $memeda = new \Think\Model();
+            $memeda->execute($sql);
+
 			$Ord=M($ordlist);
 			$model=new \Think\Model();
 		    if($Ord->where("merge_ordid=".$ordid)->find()){
@@ -1672,4 +1690,6 @@ function in_array_case($value,$array){
 					$model->execute("update shop set balanceMoney=balanceMoney+".$ordfee_temp2." ,useMoney=useMoney+".$ordfee_temp2." where id=".$result["shop_id"]);
 				}
 			}
+            return true;
+        }
 		}

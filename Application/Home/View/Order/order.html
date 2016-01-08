@@ -141,6 +141,10 @@
 				$("#address_manage").click(function(){
 					$("#right").load("../TabChange/address_manage.html");
 				})
+				
+				$("#recharge_manage").click(function(){
+					$("#right").load("../TabChange/recharge_manage.html");
+				})
 
            })
 		</script>
@@ -154,7 +158,7 @@
 				<div class="left_content_body">
 				<h3 style="background:url(__PUBLIC__/image/order_image/order3.jpg) no-repeat 10px center;padding-left:30px;">Account Management</h3>
 				<ul>
-					<!--<li><a href="javascript:;">个人信息</a></li>-->
+					<li><a href="javascript:void(0)" id="recharge_manage">recharge</a></li>
 					<li><a href="javascript:void(0);" id="address_manage">Address Management</a></li>
 				</ul>
 				</div>

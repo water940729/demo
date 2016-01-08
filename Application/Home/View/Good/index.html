@@ -20,22 +20,6 @@
 		<script src="__PUBLIC__/Js/good_info/good_info.js"></script>
 		<script src="__PUBLIC__/Js/good_info/good_info2.js"></script>
 		<script>
-				function isLegalNumber(num) {
-					if (isNaN(num)) {
-						alert("Please input right number!");
-						return false;
-					} else {
-						if (num < 1) {
-							alert("Number should bigger than 0!");
-							return false;
-						} else if (num > 999) {
-							alert("Sorry, we don't have enough goods");
-							return false;
-						} else {
-							return true;
-						}
-					}
-				}
 			window.onload = function() {
 				var onOff = true;
 				var str = "";
@@ -130,26 +114,43 @@
 						var id = $("#number").text();
 						var num = $("#num").val();
 						var data = "type=" + type + "&id=" + id + "&num=" + num;
-						if (onOff && isLegalNumber(num)) {
+						if (onOff) {
 							$.ajax({
 								type : "POST",
-								url : "__APP__/order/addcart",
-								data : data,
+								url : "__APP__/order/queryGoodsNum",
+								data : "id=" + id ,
 								success : function(msg) {
-									if (msg == 1) {
-										$(".shopCar_mask,.shopCar_mask_div").fadeIn(200);
-										$(".shopCar_mask_div").css({
-											top : top + "px",
-											left : left + "px"
-										});
+									if (msg == -1) {
+										alert("The goods have been off the shelf");
+										window.location="__APP__/Index/";
 									} else {
-										alert(msg);
+										if(parseInt(msg) < num){
+											alert("we have only "+ msg + " in storage");
+										}else{
+											$.ajax({
+												type : "POST",
+												url : "__APP__/order/addcart",
+												data : data,
+												success : function(msg) {
+													if (msg == 1) {
+														$(".shopCar_mask,.shopCar_mask_div").fadeIn(200);
+														$(".shopCar_mask_div").css({
+															top : top + "px",
+															left : left + "px"
+														});
+													} else {
+														alert(msg);
+													}
+													
+													var text=$(".shopCar_img div").text();
+													$(".shopCar_img div").text(parseInt(text)+parseInt($("#num").val()));
+												}
+											});
+										}
 									}
-									
-									var text=$(".shopCar_img div").text();
-									$(".shopCar_img div").text(parseInt(text)+parseInt($("#num").val()));
 								}
 							});
+							
 						}
 
 						//$("body").css("overflow","hidden");
@@ -160,16 +161,31 @@
                             var type = $("#already_choose").text();
                             var id = $("#number").text();
                             var num = $("#num").val();
-                            if (isLegalNumber(num)) {
-                            	document.write('<form name=myForm><input type=hidden name=num><input type=hidden name=id><input type=hidden name=type></form>');
-                            	var myForm = document.forms['myForm'];
-                            	myForm.action = '__APP__/order/buy';
-                            	myForm.method = 'POST';
-                            	myForm.num.value = num;
-                            	myForm.id.value = id;
-                            	myForm.type.value = type;
-                            	myForm.submit();
-                            }
+							var data = "id=" + id;
+							$.ajax({
+								type : "POST",
+								url : "__APP__/order/queryGoodsNum",
+								data : data,
+								success : function(msg) {
+									if (msg == -1) {
+										alert("The goods have been off the shelf");
+										window.location="__APP__/Index/";
+									} else {
+										if(parseInt(msg) < num ){
+											alert("we have only "+ msg + " in storage");
+										}else{
+											document.write('<form name=myForm><input type=hidden name=num><input type=hidden name=id><input type=hidden name=type></form>');
+											var myForm = document.forms['myForm'];
+											myForm.action = '__APP__/order/buy';
+											myForm.method = 'POST';
+											myForm.num.value = num;
+											myForm.id.value = id;
+											myForm.type.value = type;
+											myForm.submit();
+										}
+									}
+								}
+							});
                         }
 
 					});
@@ -302,7 +318,7 @@
 						<br />
 					</div>
 					<div class="two">
-						<span class="info_span"> Kui  Hua  Price </span>
+						<span class="info_span"> Price </span>
 						<div>
 							<span class="price">￥</span></span><span class="price" style="font-size:25px;margin-right:10px;"><{$result[0]["price"]}></span>Original Price<{$result[0]["original_price"]}>
 							<br />
@@ -310,9 +326,9 @@
 					</div>
 
 					<div class="five">
-						<span class="info_span">Service</span>
+						<span class="info_span">ParkNShop Service</span>
 						<div>
-							<span>Direct sales and shipments by the "Kuihua" and provide after-sales service and online customer service
+							<span>Direct sales and shipments by the "ParkNShop" and provide after-sales service and online customer service
 								<br/>
 								<img src="__PUBLIC__/image/good_info/cen2.jpg"  />Free Delivery<img src="__PUBLIC__/image/good_info/cen3.jpg"  />Pick Up by Self<img src="__PUBLIC__/image/good_info/cen4.jpg"  />Not support no reason to return </span>
 						</div>
@@ -337,7 +353,7 @@
 							<div id="decrease">
 								-
 							</div>
-							<input type="text" id="num" value="1" maxlength="2" onkeyup="value=value.replace(/[^\d]/g,'') "/>
+							<input type="text" id="num" value="1" onkeyup="value=value.replace(/[^\d]/g,'') "/>
 							<div id="add">
 								+
 							</div>
@@ -424,7 +440,7 @@
 										</div>
 										<div class="div_text">
 											<a href="__APP__/good/index/id/<{$vo.id}>" class="aClass" title="<{$vo.name}>"><{$vo.name}></a>
-											<span class="priceClass"><{$vo.price}>￥</span>
+											<span class="priceClass"> ¥ <{$vo.price}></span>
 											<br/>
 										</div>
 									</div>
@@ -447,10 +463,10 @@
 									arameter
 								</li>
 								<li>
-									Comment(<span></span>)
+									Comment (<span>0</span>)
 								</li>
 								<li>
-									After-sale Service
+									Service
 								</li>
 							</ul>
 						</div>

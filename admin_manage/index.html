@@ -18,7 +18,7 @@
 					<p>username：<input  class="txt" type="text" name="name"/></p>
 					<p>password：<input  class="txt" type="password" name="pwd"/></p>
 					<p>verify：<input class="txt txt1" type="text" name="code"/></p>
-					<p class="code"><img src="adminlogincode.php" height="24" width="60" alt="没看到图片请刷新页面"/></p>
+					<p class="code"><img src="adminlogincode.php" height="24" width="60" alt="Please refresh if you don't get the image."/></p>
 				    <p class="btn"><input type="image" src="images/submit.gif" onClick="return checkInput();"/>　
 					<input type="image" src="images/reset.gif" onClick="this.form.reset();return false;"/></p>
 					<script type="text/javascript">
@@ -26,19 +26,19 @@
 							var form=document.getElementById('loginform');
 							if(form.name.value=="")
 							{
-								alert('帐号不能为空');
+								alert('Manager ID should not be empty.');
 								form.name.focus();
 								return false;
 							}
 							if(form.pwd.value=="")
 							{
-								alert('密码不能为空')
+								alert('Password should not be empty.')
 								form.pwd.focus();
 								return false;
 							}
 							if(form.code.value=="")
 							{
-								alert('验证码不能为空');
+								alert('Authenticode should not be empty.');
 								form.code.focus();
 								return false;
 							}

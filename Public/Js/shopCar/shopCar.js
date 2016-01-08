@@ -129,7 +129,7 @@ $(function(){
 					data:"id="+id+"&value="+value,
 					success:function(msg){
 						if(msg!=1){
-							alert("网络加载缓慢，请重试");
+							alert("Slow network loading, please retry.");
 							return false;
 						}else{
 							that.siblings("input[type='text']").val(value);
@@ -147,7 +147,7 @@ $(function(){
 					//
 					var value=$(this).siblings("input[type='text']").val();
 					value--;
-					alert(value);
+					// alert(value);
 					var id=$(this).parents(".consult").find(":checkbox").val();
 					$.ajax({
 						type:"POST",
@@ -317,7 +317,7 @@ $(function(){
 		})
 		
 	    $(".to_collect").click(function(){
-            if(confirm("移到收藏操作将从购物车删除该商品，确认？")){
+            if(confirm("This operation will delete this good from shopping cart, confirm?")){
                 var good_id=$(this).next().text();
                 //加入收藏
                 $.post("../Widget/collect", {"type":"1", "id":good_id}, function(data){
@@ -332,7 +332,7 @@ $(function(){
                     type:"POST",
                     success:function(msg){
                         if(msg==1){
-                            alert("成功移动到收藏!");
+                            alert("Collection success!");
                         }                    }
                 })
 		        $(this).parent().parent().remove();

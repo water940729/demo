@@ -350,7 +350,7 @@ $(function(){
 			<div class="middle_goods_right_first" id="first_goods">Goods</div>
 			<div class="middle_goods_right_second" id="second_goods">Goods</div>
 			<div class="bottom_first" id="bottom_first">
-				<for start="0" end="2">
+				<for start="0" end="1">
 					<div>
 						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods1.jpg" class="posi_img"/></div>
 						<div class="div_img">
@@ -364,9 +364,23 @@ $(function(){
 						</div>
 					</div>
 				</for>
+				<for start="1" end="2">
+					<div>
+						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods2.jpg" class="posi_img"/></div>
+						<div class="div_img">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" ><img src="<{$data6[$i]['image_url']}>" /></a></div>
+						<div class="div_text">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" style="color:#666;font-size:13px;text-decoration:none;height:45px;overflow:hidden;width:100px;display:inline-block;" title="<{$data6[$i]["name"]}>"><{$data6[$i]["name"]}></a><br/>
+						<span style="color:red;font-size:18px;font-weight:bold;">￥<{$data6[$i]["price"]}></span><br/>
+						<if condition="$data6[$i][sell] neq 0">
+							<span style="color:#666;font-size:12px;">Sell<span style="color:red;"><{$data6[$i]["sell"]}></span></span>
+						</if>
+						</div>
+					</div>
+				</for>
 				<for start="2" end="3">
 					<div class="middle_goods_right_spec">
-						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods1.jpg" class="posi_img"/></div>
+						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods3.jpg" class="posi_img"/></div>
 						<div class="div_img">
 						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" ><img src="<{$data6[$i]['image_url']}>" /></a></div>
 						<div class="div_text">
@@ -381,7 +395,7 @@ $(function(){
 			</div>
 			<!--改过-->
 			<div class="bottom_second" id="bottom_second" style="display:none;">
-				<for start="4" end="6">
+				<for start="3" end="4">
 					<div>
 						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods1.jpg" class="posi_img"/></div>
 						<div class="div_img">
@@ -395,9 +409,23 @@ $(function(){
 						</div>
 					</div>
 				</for>
-				<for start="6" end="7">
+				<for start="4" end="5">
+					<div>
+						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods2.jpg" class="posi_img"/></div>
+						<div class="div_img">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" ><img src="<{$data6[$i]['image_url']}>" /></a></div>
+						<div class="div_text">
+						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" style="color:#666;font-size:13px;text-decoration:none;height:45px;overflow:hidden;width:100px;display:inline-block;" title="<{$data6[$i]["name"]}>"><{$data6[$i]["name"]}></a><br/>
+						<span style="color:red;font-size:18px;font-weight:bold;">￥<{$data6[$i]["price"]}></span><br/>
+						<if condition="$data6[$i][sell] neq 0">
+							<span style="color:#666;font-size:13px;text-decoration:none;height:45px;overflow:hidden;width:100px;display:inline-block;">Sell<span style="color:red;"><{$data6[$i]["sell"]}></span></span>
+						</if>
+						</div>
+					</div>
+				</for>
+				<for start="5" end="6">
 					<div class="middle_goods_right_spec">
-						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods1.jpg" class="posi_img"/></div>
+						<div class="posi_img"><img src="__PUBLIC__/image/shangcheng_image//goods3.jpg" class="posi_img"/></div>
 						<div class="div_img">
 						<a href="__APP__/good/index/id/<{$data6[$i]['id']}>" ><img src="<{$data6[$i]['image_url']}>" /></a></div>
 						<div class="div_text">

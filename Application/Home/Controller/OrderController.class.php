@@ -106,6 +106,19 @@
 				}			
 			}
 		}
+		
+		public function queryGoodsNum(){
+			$id=$_POST["id"];
+			$goods=M("goods");
+			$result = $goods->where("id=$id")->select();//[0]['goodsnum']
+			if($result == null){
+				echo(-1);
+			}else{
+				echo($result[0]['goodsnum']);
+			}
+		}
+		
+		
 		public function clearcart(){
 			$id=session("id");
 			if(isset($id)){
@@ -810,7 +823,7 @@
 			$this->redirect("index/index");
 		}		
 
-
+		
 
 
 	}
