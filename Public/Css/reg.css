@@ -31,7 +31,7 @@ ul{list-style:none;}
 
 .form_div form a:hover{text-decoration:underline}
 
-.body_container .form_div  input[type="checkbox"]{width:auto;height:auto;margin-left:100px;}
+.body_container .form_div  input[type="checkbox"]{width:auto;height:auto;margin-left:px;}
 
 .body_container .form_div  label[for="checkbox"]{width:auto;height:auto;margin-left:10px;}
 
