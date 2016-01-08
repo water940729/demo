@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="css/style2.css" type="text/css"/>
   <style>
   .menu_h3{cursor:pointer;}
+  .menu_contentlist{
+	margin-left: -20px;
+    }
   </style>
   <script src="js/jquery-1.6.min.js">
   </script>
@@ -43,8 +46,7 @@
 			<div class="menu_content">
 				<div class="menu_h menu_h3">Merchant Information</div>
 				<div class="menu_intor">
-					<p><a href="info_manage/info.php" target="mainFrame">Merchant Information</a></p>
-			   </div>
+					<p><a style="margin-left: 40px;" href="info_manage/info.php" target="mainFrame">Merchant Infomation</a></p>
 			</div>
 			<div class="menu_content">
 				<div class="menu_h menu_h3">Posts Management</div>
@@ -56,7 +58,7 @@
 				<div class="menu_h menu_h3">Shop Management</div>
 				<div class="menu_intor">
 					<p><a href="homepage_manage/add_focus.php" target="mainFrame">Add Focus Picture</a></p>
-					<p><a href="homepage_manage/manage_focus.php" target="mainFrame">Focus Picture Management</a></p>
+					<p><a style="margin-left: 15px;"href="homepage_manage/manage_focus.php" target="mainFrame">Focus Picture Management</a></p>
 			   </div>
 			</div>
 			<div class="menu_content">
