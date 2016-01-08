@@ -125,7 +125,7 @@
 										window.location="__APP__/Index/";
 									} else {
 										if(parseInt(msg) < num){
-											alert("storage:" + num);
+											alert("we have only "+ msg + " in storage");
 										}else{
 											$.ajax({
 												type : "POST",
@@ -172,7 +172,7 @@
 										window.location="__APP__/Index/";
 									} else {
 										if(parseInt(msg) < num ){
-											alert("storage:" + msg);
+											alert("we have only "+ msg + " in storage");
 										}else{
 											document.write('<form name=myForm><input type=hidden name=num><input type=hidden name=id><input type=hidden name=type></form>');
 											var myForm = document.forms['myForm'];
