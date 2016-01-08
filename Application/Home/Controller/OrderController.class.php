@@ -110,7 +110,7 @@
 		public function queryGoodsNum(){
 			$id=$_POST["id"];
 			$goods=M("goods");
-			$result = $goods->where("id=10")->select();//[0]['goodsnum']
+			$result = $goods->where("id=$id")->select();//[0]['goodsnum']
 			if($result == null){
 				echo(-1);
 			}else{
