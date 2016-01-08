@@ -15,7 +15,7 @@ ul{list-style: none;}
 /*Í¼Æ¬°üº¬¿ò*/
 .bank_sel{width:1010px;}
 .sel_way{width:1010px;height:40px;}
-.sel_way div{width:100px;height:39px;border:solid 1px #ccc;border-bottom:0;text-align:center;line-height:38px;float:left;cursor:pointer;}
+.sel_way div{width:200px;height:39px;border:solid 1px #ccc;border-bottom:0;text-align:center;line-height:38px;float:left;cursor:pointer;}
 .sel_way div.selected_way{border-top:5px #e3007f solid;height:35px;line-height:35px;background-color:white;}
 .sel_way div.right_bor{border-right:0;}
 .bank_con{border:solid 1px #ccc;width:1008px;margin-top:-1px;padding-bottom:30px;}

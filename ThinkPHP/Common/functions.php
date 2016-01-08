@@ -1609,7 +1609,10 @@ function in_array_case($value,$array){
 				case 4:$ordlist="trial_orderlist";$goodstable="trial_goods";break;
 				case 5:$ordlist="book_orderlist";$goodstable="book_goods";break;
 			}
-			
+			// 获取账户余额并判断是否充足
+            // by liuyicheng
+            $sql = "select balance from user_manage where user_id=".$_SESSION['id'];
+            $balance = mysql_fetch_row(mysql_query($sql));
 			
 			$Ord=M($ordlist);
 			$model=new \Think\Model();
