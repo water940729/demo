@@ -13,17 +13,17 @@
    }else{
 	$cat = 0;
     }
-    $tableNameArr = array('商城','团购','秒杀','试用','预售','超市');
+    $tableNameArr = array('Mall','TeamBuy','SecKill','Trial','PreSell','SuperMarket');
 	$tableArr = array('orderlist','teambuy_orderlist','seckill_orderlist','trial_orderlist','book_orderlist',' super_orderlist');
-	
-	$result=mysql_query("select id,name from mall") or die("数据库异常");
-	    $shopLocation[0]='葵花商城';
+
+	$result=mysql_query("select id,name from mall") or die("Database Error");
+	    $shopLocation[0]='PARKNSHOP';
 	 while($array=mysql_fetch_array($result)){
 		  $shopLocation[$array['id']]=$array['name'];
 	 }
 	 
 	mysql_free_result($result);
-	$result=mysql_query("select * from adLocation where pageLocation =$shopPage") or die("数据库异常");
+	$result=mysql_query("select * from adLocation where pageLocation =$shopPage") or die("Database Error");
 		while($array=mysql_fetch_array($result)){
 		  $adLocation[]=$array;
 	 }
@@ -78,7 +78,6 @@
 						    ' <tr class="t1" id="adTableLine">'+
 							'<td >order number</td>'+
 							'<td >order user</td>'+
-							'<td >commodities_mall</td>'+
 							'<td >store</td>'+								
 							'<td >product name</td>'+					
 							'<td >price</td>'+
@@ -97,7 +96,6 @@
 							  str ="<tr tag='' style='background-color:' name='"+dataObj['data'][i]['id']+"'>"+
 							        "<td>"+dataObj['data'][i]['ordid']+"</td>"+
 									"<td>"+dataObj['data'][i]['username']+"</td>"+
-									"<td>"+dataObj['data'][i]['mall']+"</td>"+
 									"<td>"+dataObj['data'][i]['shop']+"</td>"+
 									"<td>"+dataObj['data'][i]['productname']+"</td>"+
 									"<td>"+dataObj['data'][i]['ordprice']+"</td>"+
