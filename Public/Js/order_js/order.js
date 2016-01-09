@@ -168,7 +168,7 @@ $(function(){
             }
         })
 
-        var score = $(this).parents("div.score").find("span.score_span").text();    
+        var score = $(this).parents("div.score").find("span.score_span").text();  
         var content = $(this).parents("div.score").find("textarea.text").val();
 
         var img_url = new Array();
