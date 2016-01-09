@@ -168,7 +168,7 @@ $(function(){
             }
         })
 
-        var score = $(this).parents("div.score").find("span.score_span").text();    
+        var score = $(this).parents("div.score").find("span.score_span").text();  
         var content = $(this).parents("div.score").find("textarea.text").val();
 
         var img_url = new Array();
@@ -199,9 +199,9 @@ $(function(){
             contentType:"application/json",
             success:function(data){
                if(data.status == "0"){
-                    alert("出现了一些问题。");
+                    alert("Something wrong");
                } else {
-                    alert("成功评价");
+                    alert("Comment success");
                     $('#right').load('../TabChange/score.html');
                }
             },

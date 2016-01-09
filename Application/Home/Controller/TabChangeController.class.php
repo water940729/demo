@@ -312,7 +312,7 @@ class TabChangeController extends Controller{
             $done_array_amend = array();
             foreach($orderTableArray as $tablePiece){
                 $Model = M($tablePiece);
-                $done_result_array = array_merge($done_result_array, $Model->where("ordstatus=8 and userid=$id")->select());
+                $done_result_array = array_merge($done_result_array, $Model->where("ordstatus=6 and userid=$id")->select());
             }
             $BaskModel = new \Home\Model\BaskModel();
             $CommentModel = new \Home\Model\CommentModel();
@@ -404,9 +404,10 @@ class TabChangeController extends Controller{
 		}
 		
 		public function recharge(){
-			$data['balance']=$_POST["balance"];
-			$username=$_SESSION["username"];
-			$user_manage=M("user_manage");
+			$user_manage = M("user_manage");
+            $info = $user_manage->where("username=$_SESSION[username]")->find();
+            $data['balance'] = $_POST["balance"] + $info['balance'];
+			$username = $_SESSION["username"];
 			$user_manage->where("username=$username")->save($data);
 		}
 }

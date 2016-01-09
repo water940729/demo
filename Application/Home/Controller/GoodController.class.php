@@ -114,6 +114,7 @@
                 //加入商品的样式
                 $good_type_info = $OrderModel->get_good_type_info($piece["user_id"], $piece["good_id"],  $piece["order_time"]);
                 $piece["good_type_info"] = $good_type_info;
+                $piece["order_time"] = date("Y-m-d",$piece["order_time"]);
                 array_push($pass_comments_info, $piece);
             }
             //print_r($pass_comments_info);

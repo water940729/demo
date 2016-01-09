@@ -350,7 +350,7 @@ class WidgetController extends Controller{
                     default: return false;
                 }
                 $tableModel = M($tableName);
-                $ordstatus_data["ordstatus"]=8;
+                $ordstatus_data["ordstatus"]=6;
                 $status = $tableModel->where("userid=$user_id and ordtime='$order_time' and ordertype=$good_type_id and productid=$good_id")->data($ordstatus_data)->save();
                 if(!$status){
                     echo json_encode(array("status"=>"0"));
@@ -480,7 +480,6 @@ class WidgetController extends Controller{
                 case '5':$tableName='book_orderlist';break;
                 default: return false;
             }
-            
             $tableModel = M($tableName);
             $ordstatus_data["ordstatus"] = 4;
             $status = $tableModel->where("userid=$user_id and ordid=$order_num and productid=$good_id")->data($ordstatus_data)->save();
@@ -507,8 +506,17 @@ class WidgetController extends Controller{
                 case '5':$tableName='book_orderlist';break;
                 default: return false;
             }
-            
+             // 查询用户当前余额
+            $user_manage = M('user_manage');
+            $old_balance = $user_manage->field("balance")->where("user_id=$user_id")->find()['balance'];
+            // 获取本次订单钱数
             $tableModel = M($tableName);
+            $ordfee = $tableModel->field("ordfee")->where("userid=$user_id and ordid=$order_num and productid=$good_id")->find()['ordfee'];
+            // 应该更新的值
+            $new_balance = $old_balance + $ordfee;
+            // 更新数据库
+            $up['balance'] = $new_balance;
+            $user_manage->where("user_id=$user_id")->data($up)->save();
             $ordstatus_data["ordstatus"] = 5;
             $status = $tableModel->where("userid=$user_id and ordid=$order_num and productid=$good_id")->data($ordstatus_data)->save();
             if(!$status){

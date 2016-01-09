@@ -18,11 +18,11 @@ class  CommentModel extends Model{
             }
             $data["comment_tag"]=$comment;
             switch($score){
-                case '很好':$score_num=5;break;
-                case '好':$score_num=4;break;
-                case '良好':$score_num=3;break;
-                case '差':$score_num=2;break;
-                case '很差':$score_num=1;break;
+                case 'too bad':$score_num=5;break;
+                case 'bad':$score_num=4;break;
+                case 'not bad':$score_num=3;break;
+                case 'good':$score_num=2;break;
+                case 'pretty good':$score_num=1;break;
             }
             $data["score"] =$score_num;
             $data["content"] = $content;

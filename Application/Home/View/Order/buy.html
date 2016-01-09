@@ -19,6 +19,7 @@
 			$(".submit").click(function(){
 				var address_id=$(".address :checked").val();
 				var cart_item=$(".cart_item").attr("value");
+				var good_id=$(".good_id").attr("value");
 				var message=$(".leave_message").val();
 				var num=$(".good_num span").text();
 				var type=$(".goodstype").text();
@@ -26,7 +27,7 @@
                 if (address_id == "") {
                     alert("Please select your address.");
                 } else {
-                    document.write('<form name=myForm><input type=hidden name=address_id><input type=hidden name=num><input type=hidden name=goodstype><input type=hidden name=cart_item><input type=hidden name=message></form>'); 
+                    document.write('<form name=myForm><input type=hidden name=address_id><input type=hidden name=num><input type=hidden name=goodstype><input type=hidden name=cart_item><input type=hidden name=message><input type=hidden name=good_id></form>'); 
                     var myForm=document.forms['myForm']; 
                     myForm.action='__APP__/order/buy_confirm'; 
                     myForm.method='POST'; 
@@ -35,6 +36,7 @@
                     myForm.goodstype.value=JSON.stringify(type); 
                     myForm.cart_item.value=JSON.stringify(cart_item); 
                     myForm.message.value=JSON.stringify(message);
+					myForm.good_id.value=good_id;
                     myForm.submit();
                 }
 			});
@@ -171,7 +173,7 @@
             <div>Service Information</div>
         </div>
 			<span class="title_name"><{$result["shop_name"]}></span>
-			
+			<input class="good_id" type=hidden value="<{$good_id}>">
 			<div class="shop_info"><!--每个商铺对应的一项内容-->
 						<div class="good_con">
 						<div class="cart_item" value="<{$result['id']}>">

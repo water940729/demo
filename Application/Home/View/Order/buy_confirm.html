@@ -4,6 +4,28 @@
 <link href="__PUBLIC__/Css/header.css" rel="stylesheet" type="text/css">
 <link href="__PUBLIC__/Css/footer.css" rel="stylesheet" type="text/css">
 	<link href="__PUBLIC__/Css/buy_confirm.css" rel="stylesheet" type="text/css" />
+	<script src="__PUBLIC__/Js/jquery/jquery.js"><</script>
+	<script type="text/javascript">
+		function check(){
+			var id = $(".good_id").attr("value");
+			var flag = true;
+			$.ajax({
+					type : "POST",
+					async:false,
+					url : "__APP__/order/queryGoodsNum",
+					data : "id=" + id ,
+					success : function(msg) {
+						if (msg == -1) {
+							alert("The goods have been off the shelf");
+							flag = false;
+						} else {
+							flag = true;
+						}
+					}
+			});
+			return flag;
+		}
+	</script>
 </head>
 <body>
 
@@ -35,13 +57,14 @@
                         <!--<span>网上银行 （需要开通网银，跳转银行页面）<a href="#">选择银行></a></span>-->
                     </div>
                 </div>
+			<input class="good_id" type=hidden value="<{$good_id}>">
 			<form action="__APP__/Pay/dopay" method="post" style="width:200px;margin:10px auto;">
 				<input name="trade_no" type="hidden" value="<{$trade_no}>"/>
 				<input name="ordsubject" type="hidden" value="<{$ordsubject}>"/>
 				<input name="ordtotal_fee" type="hidden" value="<{$ordtotal_fee}>"/>
 				<input size="30" name="ordbody" type="hidden"/>
 				<input size="30" name="ordshow_url" type="hidden"/>
-				<input type="submit" name="submit" value="Confirm" class="next_step" style="border:0;"/>
+				<input type="submit" name="submit" onclick="return check();" value="Confirm" class="next_step" style="border:0;"/>
 			</form>
             </div>
 
