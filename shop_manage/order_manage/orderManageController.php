@@ -53,7 +53,7 @@ if($action == 'search'){
 	$page = isset($_POST['page'])?intval($_POST['page']):1;
 	$type = isset($_POST['type'])||!empty($_POST['type'])?$_POST['type']:'';
     $shopId = isset($_POST['shopId'])||!empty($_POST['shopId'])?$_POST['shopId']:'';
-	
+	//$type = '';
 	if($_SESSION['shop_id'] != $shopId){
 		exit(json_encode(array('status'=>0)));
 	}

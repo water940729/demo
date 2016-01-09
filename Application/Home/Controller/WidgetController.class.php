@@ -350,7 +350,7 @@ class WidgetController extends Controller{
                     default: return false;
                 }
                 $tableModel = M($tableName);
-                $ordstatus_data["ordstatus"]=8;
+                $ordstatus_data["ordstatus"]=6;
                 $status = $tableModel->where("userid=$user_id and ordtime='$order_time' and ordertype=$good_type_id and productid=$good_id")->data($ordstatus_data)->save();
                 if(!$status){
                     echo json_encode(array("status"=>"0"));
