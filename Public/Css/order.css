@@ -8,6 +8,7 @@ img{border:0;}
 /*logo和搜索框设置*/
 .logo_search{width:100%;height:155px;}
 .logo_search .logo{width:290px;height:100px;float:left;overflow:hidden;}
+.logo_search .logo img{width:290px;height: 120px;}
 .search{width:500px;float:left;padding-top:40px;margin-left:50px;}
 .search input[type="text"]{width:270px;height:25px;border:solid #E3007F 2px;border-right:0;background:url(../image/order_image/search.jpg)  left center no-repeat;padding-top:3px;padding-bottom:3px;padding-left:28px;font-size:13px;float:left;}
 .search input[type="button"]{width:90px;border:0;height:35px;color:white;font-size:15px;font-weight:bold;margin-top:0px;cursor:pointer;}
@@ -28,16 +29,16 @@ img{border:0;}
 .route span a{color:#666;text-decoration:none;font-size:14px;}
 /*左边的选项卡页面*/
 .content{width:1190px; margin: 0 auto;height:100%;clear:both;}
-.content .left_content{width:150px;background-color:#FDF0F8;border:solid 1px #D4D4D4;float:left;font-family:microsoft yahei;}
+.content .left_content{width:200px;background-color:#FDF0F8;border:solid 1px #D4D4D4;float:left;font-family:microsoft yahei;}
 .content .left_content .left_content_body{border-bottom:solid 1px #D4D4D4;}
 .content .left_content .left_content_body h3{margin-top:3px;}
-.content .left_content ul li{width:146px;height:30px;text-align:center;margin:5px 3px 5px 3px;line-height:30px;font-size:14px;cursor:pointer;}
+.content .left_content ul li{width:180px;height:30px;margin:5px 3px 5px 40px;line-height:30px;font-size:14px;cursor:pointer;}
 .content .left_content .left_content_spec{border-bottom:0;}
 .content .left_content ul li a{text-decoration: none;color:#666;}
 .content .addClass{background-color:#E3007F;}
 
 /*右侧部分*/
-.content .right_content{width:1020px;margin-left:10px; float:left;}
+.content .right_content{width:900px;margin-left:10px; float:left;}
 .right_content .right_top_ul ul{width:850px;height:40px;text-align:center;line-height:40px;float:left;}
 .right_top_ul li,.right_top_ul span{float:left;}
 .right_top_ul span{float:left;color:#ccc;}
@@ -45,7 +46,7 @@ img{border:0;}
 .right_top_ul li{width:80px;height:37px;margin-top:3px;cursor:pointer;font-family:microsoft yahei;}
 .right_top_ul li.right_li_spec{border-top:solid 3px #E3007F;color:#E3007F;margin-top:0;}
 .right_top_clear{width:120px;float:right;height:40px;line-height:40px;padding-left:30px;background:url(../image/order_image/clear.jpg) no-repeat 10px 13px;margin-right:20px;margin-top:5px;}
-.query_order{float:left;width:820px;margin-top:20px;}
+.query_order{float:left;width:820px;margin-top:50px;}
 .query_order select{float:left;width:150px;height:30px;color:#ccc;border:solid 1px #ccc;}
 .query_order .right_search{margin-left:20px;float:left;}
 .right_search input[type="text"]{width:300px;height:30px;color:#ccc;border:solid #ccc 1px;float:left;padding-left:5px;}
