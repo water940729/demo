@@ -8,9 +8,9 @@ img{border:0;}
 /*logo和购物车*/
 .logo_search{width:100%;height:135px;border-bottom:solid 1px #CDCDCD;}
 .logo_search .logo{width:290px;height:100px;float:left;margin-top:15px;overflow:hidden;}
-.logo_search .logo_shop_name{float:left;width:200px;height:65px;padding-left:10px;margin-top:35px;border-left:solid 1px #EEEEEE;}
+.logo_search .logo_shop_name{position:absolute;float:left;width:200px;height:65px;left:100px;top:140px;}
 .logo_shop_name .shop_name{font-family:"microsoft yahei";color:#666666;font-weight:bold;}
-.search{width:500px;float:left;padding-top:40px;}
+.search{width:500px;float:left;padding-top:40px;margin-left: 100px;}
 .search input[type="text"]{width:370px;height:25px;border:solid #E3007F 2px;border-right:0;background:url(../image/shangcheng_image/search.jpg)  left center no-repeat;padding-top:3px;padding-bottom:3px;padding-left:28px;font-size:13px;float:left;}
 .search input[type="button"]{width:90px;border:0;height:35px;color:white;font-size:15px;font-weight:bold;margin-top:0px;cursor:pointer;}
 .shopCar{width:90px;height:25px;float:left;margin-top:39px;margin-left:20px;position:relative;}
