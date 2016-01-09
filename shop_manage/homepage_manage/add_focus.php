@@ -120,13 +120,14 @@
 	</head>
 	<body>
 		<div class="bgintor">				
-			<div class="listintor">
+			<div class="listintor" style="border: none;">
 				<div class="tit1">
 					<ul>				
 						<li><a href="#">Homepage management</a></li>
 					</ul>		
 				</div>
-				<div class="header1">
+				<div class="warp-border" style="border:1px solid #ccc;">
+				<div class="header1" style="margin-top:10px;">
 					<span>Location: home page management －&gt; <strong>Add focus figure</strong></span>
 				</div>
 				<div class="content">
@@ -147,6 +148,8 @@
 						<br/>
 						<input type="submit" value="Add" class="confirm"></p>
 					</form>
+				</div>
+				</div>
 				</div>
 			</div>	
 		</div>

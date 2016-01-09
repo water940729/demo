@@ -23,8 +23,8 @@ img{border:0;}
 
 .div_attention{width:100%;height:110px;overflow:hidden}
 .div_attention .hulu_baby{width:360px;height:95px;margin-top:10px;float:left;margin-left:415px;}
-.div_attention .attention_collect {float:right;margin-top:75px;margin-right:20px;}
-.div_attention .attention_collect  span{background-color:#E3017F;width:70px;height:25px;display:inline-block;color:white;text-align:center;line-height:23px;font-family:microsoft yahei;margin-left:10px;cursor:pointer;}
+.div_attention .attention_collect {float:right;}
+.div_attention .attention_collect  span{margin-top:75px;margin-right:20px;background-color:#E3017F;width:70px;height:55px;display:block;color:white;text-align:center;line-height:53px;font-family:microsoft yahei;margin-left:10px;cursor:pointer;}
 /*������*/
 .navigator{width:100%;height:55px;border-top:solid 1px #D5D5D5;background-color:#979797;}
 .navigator ul li{float:left;width:100px;height:55px;line-height:55px;text-align:center;font-family:microsoft yahei;color:white;font-weight:bold;margin-right:20px;cursor:pointer;}
@@ -88,7 +88,7 @@ img{border:0;}
 /*分页效果*/
 .page_chos{width:1170px;margin-top:30px;height:35px;padding:10px;text-align:center;}
 .page_chos span{display:inline-block;cursor:pointer;}
-.page_chos>span{width:50px;height:25px;border:solid 1px #353535;text-align:center;line-height:25px;color:#353535;}
+.page_chos>span{width:100px;height:25px;border:solid 1px #353535;text-align:center;line-height:25px;color:#353535;}
 .page_num{display:inline-block;max-width:600px;height:27px;overflow:hidden;vertical-align: bottom;}
 .page_num span{width:25px;height:25px;border:solid 1px #353535;text-align:center;line-height:25px;color:#353535;}
 

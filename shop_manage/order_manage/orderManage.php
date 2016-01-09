@@ -301,13 +301,13 @@ margin: 0px;
 
 <body>
 		<div class="bgintor" style='height:800px'>
-				<div class="tit1">
+				<div class="tit1" >
 					<ul>				
 						<li style='text-align:center;line-height:35px;'>Order Manage</li>
 					</ul>		
 
 				</div>
-				<div class="header1"><img src="../images/square.gif" width="6" height="6" alt="" />
+				<div class="header1" style="float:right;"><img src="../images/square.gif" width="6" height="6" alt="" />
 					<span>Location: Order Management ----   <strong><?php echo  $result[0];?></strong></span>	
 					<!-- <span style='font-size:16px;'><a href='./orderManage.php?cat=0'>-----------------商城</a ></span><span style='font-size:16px;'><a href='./orderManage.php?cat=1' >---团购</a></span><span style='font-size:16px;' ><a href='./orderManage.php?cat=2' >---秒杀</a></span> -->
 				</div>				

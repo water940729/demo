@@ -16,14 +16,15 @@
 		<script type="text/javascript" src="../js/upload.js"></script>
 	</head>
 	<body>
-		<div class="bgintor">				
-			<div class="listintor">
+		<div class="bgintor" style="width:98%;">				
+			<div class="listintor" style="border:none;">
 				<div class="tit1">
 					<ul>				
 						<li><a href="#">Home page management</a></li>
 					</ul>		
 				</div>
-				<div class="header1">
+				<div class="warp-border" style="border:1px solid #ccc;">
+				<div class="header1" style="margin-top:10px;">
 					<span>Location: business information －&gt; <strong>Information management </strong></span>
 				</div>
 				<div class="content">
@@ -42,6 +43,7 @@
 					</form>
 				</div>
 			</div>	
+			</div>
 		</div>
 	</body>
 </html>
