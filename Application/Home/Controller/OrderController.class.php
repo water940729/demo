@@ -230,11 +230,20 @@
 			//立刻购买
 			$user_id=session("id");
 			if(isset($_POST["id"])&&isset($user_id)){
+				$goods=M("goods");
+				$id = $_POST["id"];
+				$res = $goods->where("id=$id")->select();//[0]['goodsnum']
+				if($res == null){
+					echo "<script>alert('The goods have been off the shelf');window.location='__APP__/Index/';</script>";
+					//$this->redirect("__APP__/Index/");
+				}else{
+					//return $result[0]['goodsnum'];
 				$good=M("goods");
 				$result=$good->where("id=$_POST[id]")->find();
 				$this->assign("result",$result);
 				$this->assign("type",$_POST["type"]);
 				$this->assign("num",$_POST["num"]);
+				$this->assign("good_id",$id);
 				
 				//地址部分
 				$user=M("User_manage");
@@ -245,6 +254,7 @@
 				$default=$address->where("user_id=$userinfo[user_id] and address_id=$userinfo[default_address]")->find();
 				$this->assign("default",$default);
 				$this->display();
+				}
 			}else{
 				session("redirectURL","good/index/id/$_POST[id]");
 				$this->redirect("user/login");
@@ -351,53 +361,61 @@
 		}
 
 		public function buy_confirm(){
-			//立即购买的确认
-			$user_id=session("id");
-			//date_default_timezone_set(PRC);
-			if(isset($_POST["address_id"])&&isset($user_id)){
-				$cart_item=json_decode($_POST["cart_item"]);
-				$address_id=$_POST["address_id"];
-				$message=json_decode($_POST["message"]);
-				$goodstype=json_decode($_POST["goodstype"]);
-				$num=$_POST["num"];
-                $address=M("address"); 
-			    $address_result = $address->where("address_id=$address_id")->find();	
-				//订单编号
-				$r1=rand(0,9);
-				$r2=rand(0,9);
-				$now=time();
-				$ordid="0".$r1.$r2.$now.session("id");
-				$dataitem["ordid"]=$ordid;
-				$dataitem["ordtime"]=time();
-				$dataitem["message"]=$message[$i];
-				
-				$dataitem["recname"]=$address_result["username"];
-				$dataitem["recaddress"]=$address_result["address"];
-				$dataitem["recphone"]=$address_result["phone"];
-				
-				$goods=M("goods");
-				$temp=$goods->where("id=$cart_item")->find();
-				$dataitem["productimage"]=$temp["image_url"];
-				$dataitem["userid"]=$user_id;
-				$dataitem["username"]=session("username");
-				$dataitem["productid"]=$cart_item;
-				$dataitem["mall_id"]=$temp["mall_id"];
-				$dataitem["mall_name"]=$temp["mall_name"];
-				$dataitem["productname"]=$temp["name"];
-				$dataitem["shop_id"]=$temp["shop_id"];
-				$dataitem["ordfee"]=$temp["price"]*$num;
-				$dataitem["ordbuynum"]=$num;
-				$dataitem["ordprice"]=$temp["price"];
-				$dataitem["ordstatus"]=0;
-				$dataitem["producttype"]=$goodstype;
-				$orderlist=M("orderlist");
-				$orderlist->add($dataitem);//添加到订单表中	
-				$this->assign("trade_no",$ordid);
-				$this->assign("ordsubject","葵花商城商品");
-				$this->assign("ordtotal_fee",$dataitem["ordfee"]);
-				$this->display();
+			$goods=M("goods");
+			$id = $_POST["good_id"];
+			$result = $goods->where("id=$id")->select();//[0]['goodsnum']
+			if($result == null){
+				echo "<script>alert('The goods have been off the shelf');window.location='__APP__/Index/';</script>";
 			}else{
-				$this->redirect("index/index");
+					//立即购买的确认
+					$user_id=session("id");
+					//date_default_timezone_set(PRC);
+					if(isset($_POST["address_id"])&&isset($user_id)){
+						$cart_item=json_decode($_POST["cart_item"]);
+						$address_id=$_POST["address_id"];
+						$message=json_decode($_POST["message"]);
+						$goodstype=json_decode($_POST["goodstype"]);
+						$num=$_POST["num"];
+						$address=M("address"); 
+						$address_result = $address->where("address_id=$address_id")->find();	
+						//订单编号
+						$r1=rand(0,9);
+						$r2=rand(0,9);
+						$now=time();
+						$ordid="0".$r1.$r2.$now.session("id");
+						$dataitem["ordid"]=$ordid;
+						$dataitem["ordtime"]=time();
+						$dataitem["message"]=$message[$i];
+						
+						$dataitem["recname"]=$address_result["username"];
+						$dataitem["recaddress"]=$address_result["address"];
+						$dataitem["recphone"]=$address_result["phone"];
+						
+						$goods=M("goods");
+						$temp=$goods->where("id=$cart_item")->find();
+						$dataitem["productimage"]=$temp["image_url"];
+						$dataitem["userid"]=$user_id;
+						$dataitem["username"]=session("username");
+						$dataitem["productid"]=$cart_item;
+						$dataitem["mall_id"]=$temp["mall_id"];
+						$dataitem["mall_name"]=$temp["mall_name"];
+						$dataitem["productname"]=$temp["name"];
+						$dataitem["shop_id"]=$temp["shop_id"];
+						$dataitem["ordfee"]=$temp["price"]*$num;
+						$dataitem["ordbuynum"]=$num;
+						$dataitem["ordprice"]=$temp["price"];
+						$dataitem["ordstatus"]=0;
+						$dataitem["producttype"]=$goodstype;
+						$orderlist=M("orderlist");
+						$orderlist->add($dataitem);//添加到订单表中	
+						$this->assign("trade_no",$ordid);
+						$this->assign("ordsubject","shop");
+						$this->assign("ordtotal_fee",$dataitem["ordfee"]);
+						$this->assign("good_id",$id);
+						$this->display();
+					}else{
+						$this->redirect("index/index");
+					}
 			}
 		}
         

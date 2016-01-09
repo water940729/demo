@@ -3,7 +3,7 @@
  */
 $(function(){
 
-    var arr=["很差", "差", "良好", "好", "很好"];
+    var arr=["too bad", "bad", "not bad", "good", "pretty good"];
   $(".order_che").click(function(){
         var $score=$(this).parents("div.goods_bot").next("div.score");
         if($score.is(":hidden")){
