@@ -74,7 +74,8 @@ img{border:0;}
 #comment{width:50px;border-radius:5px;height:20px;border:solid 1px #ccc;}
 #delete{width:50px;border-radius:5px;height:20px;border:solid 1px #ccc;background-color:skyblue;color:white;}
 
-.order_delete,.seckill_delete,.teambuy_delete,.book_delete,.trial_delete{width:60px;height:25px;border:0;background-color:#3CA9EE;color:white;float:right;margin-right:-150px;border-radius:5px;cursor:pointer;margin-top:3px;}
+.seckill_delete,.teambuy_delete,.book_delete,.trial_delete{width:60px;height:25px;border:0;background-color:#3CA9EE;color:white;float:right;margin-right:-150px;border-radius:5px;cursor:pointer;margin-top:3px;}
+.order_delete{width:100px;height:25px;border:0;background-color:#3CA9EE;color:white;float:right;margin-right:-150px;border-radius:5px;cursor:pointer;margin-top:3px;}
 .status_li{cursor:pointer;}
 .status_li ul{border:solid 1px #ccc;border-top:0;text-align:center;}
 
