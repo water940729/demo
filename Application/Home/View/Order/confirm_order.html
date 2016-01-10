@@ -18,26 +18,30 @@
 		$(function(){
 			$(".submit").click(function(){
 				var address_id=$(".address :checked").val();
-				var cart_item=[];
-				var message=[];
-				var $shop_info=$(".shop_info");
-				var cart_item_child;
-				$shop_info.each(function(){
-					message.push($(this).find(".leave_message").val());
-					cart_item_child=[];
-					$(this).find(".cart_item").each(function(){
-						cart_item_child.push($(this).attr('value'));
-					});
-					cart_item.push(cart_item_child);
-				});
-                document.write('<form name=myForm><input type=hidden name=address_id><input type=hidden name=cart_item><input type=hidden name=message></form>'); 
-                var myForm=document.forms['myForm']; 
-                myForm.action='submit_order'; 
-                myForm.method='POST'; 
-                myForm.address_id.value=address_id; 
-				myForm.cart_item.value=JSON.stringify(cart_item); 
-				myForm.message.value=JSON.stringify(message);
-                myForm.submit();
+                if (address_id == "") {
+                    alert("Please select your address.");
+                } else {
+                    var cart_item=[];
+                    var message=[];
+                    var $shop_info=$(".shop_info");
+                    var cart_item_child;
+                    $shop_info.each(function(){
+                        message.push($(this).find(".leave_message").val());
+                        cart_item_child=[];
+                        $(this).find(".cart_item").each(function(){
+                            cart_item_child.push($(this).attr('value'));
+                        });
+                        cart_item.push(cart_item_child);
+                    });
+                    document.write('<form name=myForm><input type=hidden name=address_id><input type=hidden name=cart_item><input type=hidden name=message></form>'); 
+                    var myForm=document.forms['myForm']; 
+                    myForm.action='submit_order'; 
+                    myForm.method='POST'; 
+                    myForm.address_id.value=address_id; 
+                    myForm.cart_item.value=JSON.stringify(cart_item); 
+                    myForm.message.value=JSON.stringify(message);
+                    myForm.submit();
+                }
             })
 
             $(".confirm_info").click(function() {
@@ -74,6 +78,11 @@
                     });
                  }
             });
+
+            if ($(".radio_in").val() == "") {
+                $(".radio_in").hide();
+            }
+
 		})
 	</script>
 </head>
