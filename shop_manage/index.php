@@ -47,7 +47,7 @@
 	<div class="inner_con">
 		<div class="form_contain">
 			<div>
-				<label for="buss_name">Merchant Name </label>
+				<label for="buss_name">Merchant</label>
 				<input type="text" id="buss_name" />
 			</div>
 			<div>
