@@ -27,12 +27,13 @@
 		}
 		
 	})
-	$(".menu_content").hover(function(){
+	/*$(".menu_content").hover(function(){
 		$(this).find(".menu_h3").addClass("spec");
 	},function(){
 		$(this).find(".menu_h3").removeClass("spec");
 	})
-	
+	 菜单效果有BUG，暂时注释
+	 */
 	$(".menu_intor").find("p").hover(function(){
 		$(this).find("a").css("color","orange");
 	},function(){
