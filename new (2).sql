@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-01-06 12:08:22
+-- Generation Time: 2016-01-10 09:40:44
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -25,8 +25,6 @@ SET time_zone = "+00:00";
 --
 -- 表的结构 `address`
 --
-create database sunflowermall;
-use sunflowermall;
 
 CREATE TABLE IF NOT EXISTS `address` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -36,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `address` varchar(30) NOT NULL COMMENT '地址',
   PRIMARY KEY (`address_id`),
   KEY `fk_add_user` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
 -- 转存表中的数据 `address`
@@ -87,7 +85,8 @@ INSERT INTO `address` (`address_id`, `user_id`, `username`, `phone`, `address`) 
 (54, 8, '赛赛', '15529308832', '福建省龙岩市龙岩市西安'),
 (55, 30, '闫亚兵', '13149230139', '安徽省安庆市大观区西安电子科技大学'),
 (56, 30, '闫亚兵', '13149230139', '安徽省安庆市大观区西安电子科技大学'),
-(57, 30, '孙晓娟', '13468605437', '陕西省西安市西安市西安电子科技大学老校区');
+(57, 30, '孙晓娟', '13468605437', '陕西省西安市西安市西安电子科技大学老校区'),
+(58, 33, 'Boss', '18610259348', '北京市县密云县4鹿');
 
 -- --------------------------------------------------------
 
@@ -170,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `admin_manage` (
 INSERT INTO `admin_manage` (`id`, `name`, `username`, `phone`, `email`, `passwd`, `role`, `mall_id`, `shop_id`, `time`, `last_ip`, `now_ip`, `log_num`, `now_time`) VALUES
 (10, 'water', '', '', '', 'e10adc3949ba59abbe56e057f20f883e', 1, 0, 0, '2016-01-05 10:52:54', '::1', '::1', 274, '2016-01-06 16:02:48'),
 (70, 'jack', '', '', '', 'e10adc3949ba59abbe56e057f20f883e', 3, 0, 61, '2016-01-06 17:45:55', '::1', '::1', 2, '2016-01-06 19:02:39'),
-(71, 'sun', '', '', '', 'e10adc3949ba59abbe56e057f20f883e', 3, 0, 60, '0000-00-00 00:00:00', '', '::1', 1, '2016-01-06 17:46:36');
+(71, 'sun', '', '', '', 'e10adc3949ba59abbe56e057f20f883e', 3, 0, 60, '2016-01-10 14:31:41', '::1', '::1', 3, '2016-01-10 15:46:10');
 
 -- --------------------------------------------------------
 
@@ -538,9 +537,8 @@ INSERT INTO `cart` (`id`, `photo`, `user_id`, `shop_id`, `shop_name`, `mall_id`,
 (116, '/images/2015/06/upload_1434357492259.jpg', 8, 1, 'jackjones', 0, '', 58, '       XL', '\n											L										 \n											黄										 ', 0.01, 1, 0.00, '', '1436632224'),
 (124, '/images/2015/06/upload_1434357492259.jpg', 19, 1, 'jackjones', 1, '怡丰城', 58, '       XL', '\n											L										 \n											蓝										 ', 0.01, 1, 0.00, '', '1437211638'),
 (125, '/images/2015/06/upload_1434357492259.jpg', 8, 1, 'jackjones', 1, '怡丰城', 58, '       XL', '\n											XL										 \n											蓝										 ', 0.01, 1, 0.00, '', '1437213074'),
-(126, '/images/2015/06/upload_1434357492259.jpg', 9, 1, 'jackjones', 1, '怡丰城', 58, '- XL', '\n											L										 \n											黄										 ', 0.01, 4, 0.00, '', '1451922479'),
+(126, '/images/2015/06/upload_1434357492259.jpg', 9, 1, 'jackjones', 1, '怡丰城', 58, '- XL', '\n											L										 \n											黄										 ', 0.01, 3, 0.00, '', '1451922479'),
 (127, '/images/2015/06/upload_1434357829628.jpg', 9, 1, 'jackjones', 1, '怡丰城', 59, 'Windtour/', '', 0.01, 1, 0.00, '', '1437876673'),
-(128, '/images/2015/06/upload_1434357492259.jpg', 9, 1, 'jackjones', 1, '怡丰城', 58, ' XL', '\n											X										 \n											红										 ', 0.01, 1, 0.00, '', '1437876688'),
 (129, '/images/2015/06/upload_1435552905815.jpg', 8, 1, 'jackjones', 0, '', 107, '      （Canon）IXUS170 2000 12', '', 0.01, 1, 0.00, '', '1438233481'),
 (130, '/images/2015/06/upload_1434357492259.jpg', 9, 1, 'jackjones', 1, '怡丰城', 58, 'weidirui XL', '\n											XL										 \n											蓝										 ', 0.01, 1, 0.00, '', '1451922521'),
 (132, '/images/2015/06/upload_1434357363495.jpg', 9, 1, 'jackjones', 1, '怡丰城', 57, 'windtour', '', 0.01, 2, 0.00, '', '1451960991'),
@@ -3968,7 +3966,7 @@ CREATE TABLE IF NOT EXISTS `footprint` (
   `time` int(12) NOT NULL,
   `good_id` int(11) NOT NULL,
   PRIMARY KEY (`footprint_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=gbk COMMENT='用户的商品浏览历史' AUTO_INCREMENT=114 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=gbk COMMENT='用户的商品浏览历史' AUTO_INCREMENT=116 ;
 
 --
 -- 转存表中的数据 `footprint`
@@ -4087,7 +4085,9 @@ INSERT INTO `footprint` (`footprint_id`, `user_id`, `time`, `good_id`) VALUES
 (110, 30, 1444880077, 65),
 (111, 30, 1444918319, 59),
 (112, 30, 1444960773, 106),
-(113, 32, 1448847037, 58);
+(113, 32, 1448847037, 58),
+(114, 33, 1452411081, 3),
+(115, 33, 1452412106, 6);
 
 -- --------------------------------------------------------
 
@@ -4160,7 +4160,7 @@ CREATE TABLE IF NOT EXISTS `goods` (
 INSERT INTO `goods` (`id`, `name`, `state`, `shop_id`, `shop_name`, `mall_id`, `mall_name`, `price`, `original_price`, `goodsnum`, `discount`, `sell`, `monthly_sales`, `quarterly_sales`, `type1`, `type1_name`, `type2`, `type2_name`, `type3`, `type3_name`, `image_url`, `goods_keywords`, `goods_desc`, `goods_info`, `package_info`, `sales_support`, `time`, `mtime`, `attribute1`, `attribute2`, `attribute3`, `attribute4`, `extattribute1`, `extattribute2`, `extattribute3`, `extattribute4`, `commentnum`, `score`, `freight`) VALUES
 (1, 'demo1', 1, 60, 'sunflowerbaby', 0, '', 89, 89, 500, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452077901371.jpg', 'demo', 'demo', '', '', '', 1452077905, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
 (2, 'demo2', 1, 60, 'sunflowerbaby', 0, '', 102, 102, 80, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452077947417.jpg', 'demo', 'demo', '', '', '', 1452077950, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
-(3, 'demo3', 1, 60, 'sunflowerbaby', 0, '', 70, 70, 80, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452077984163.jpg', 'demo', 'demo', '', '', '', 1452077987, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
+(3, 'demo3', 1, 60, 'sunflowerbaby', 0, '', 70, 70, 79, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452077984163.jpg', 'demo', 'demo', '', '', '', 1452077987, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
 (4, 'demo4', 1, 60, 'sunflowerbaby', 0, '', 70, 70, 500, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452078014891.jpg', 'demo', 'demo', '', '', '', 1452078018, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
 (5, 'demo5', 1, 61, 'jackjones', 0, '', 199, 199, 5000, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452078187720.jpg', 'demo', 'demo', '', '', '', 1452078190, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
 (6, 'demo6', 1, 61, 'jackjones', 0, '', 166, 166, 80, 10, 0, 0, 0, 2, 'electrical', 53, 'demo', 0, '', '/images/2016/01/upload_1452078227340.jpg', 'demo', 'demo', '', '', '', 1452078230, 0, '', '', '', '', '', '', '', NULL, 0, 0.0, 0.00),
@@ -4759,7 +4759,7 @@ CREATE TABLE IF NOT EXISTS `orderlist` (
   `expressNum` varchar(128) NOT NULL DEFAULT '',
   `ordertype` int(11) NOT NULL DEFAULT '1' COMMENT '订单类型1普通2秒杀3团购4试用5预售',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=570 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=571 ;
 
 --
 -- 转存表中的数据 `orderlist`
@@ -4893,8 +4893,7 @@ INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `or
 (131, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (132, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (133, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
-(134, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1);
-INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `ordtime`, `checktime`, `productid`, `productname`, `productimage`, `producttype`, `shop_id`, `mall_id`, `mall_name`, `ordtitle`, `ordbuynum`, `ordprice`, `freight`, `cashback`, `ordfee`, `ordstatus`, `reason`, `requesttime`, `handletime`, `handlename`, `payment_type`, `payment_trade_no`, `payment_trade_status`, `payment_notify_id`, `payment_notify_time`, `payment_buyer_email`, `isused`, `usetime`, `checkuser`, `message`, `recname`, `recaddress`, `recphone`, `deliverydate`, `deliverytime`, `invoicetype`, `invoicetitle`, `invoicecontent`, `expressName`, `expressNum`, `ordertype`) VALUES
+(134, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (135, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (136, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (137, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
@@ -4903,7 +4902,8 @@ INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `or
 (140, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (141, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (142, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
-(143, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
+(143, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1);
+INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `ordtime`, `checktime`, `productid`, `productname`, `productimage`, `producttype`, `shop_id`, `mall_id`, `mall_name`, `ordtitle`, `ordbuynum`, `ordprice`, `freight`, `cashback`, `ordfee`, `ordstatus`, `reason`, `requesttime`, `handletime`, `handlename`, `payment_type`, `payment_trade_no`, `payment_trade_status`, `payment_notify_id`, `payment_notify_time`, `payment_buyer_email`, `isused`, `usetime`, `checkuser`, `message`, `recname`, `recaddress`, `recphone`, `deliverydate`, `deliverytime`, `invoicetype`, `invoicetitle`, `invoicecontent`, `expressName`, `expressNum`, `ordertype`) VALUES
 (144, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (145, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (146, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
@@ -5025,8 +5025,7 @@ INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `or
 (262, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (263, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (264, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
-(265, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1);
-INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `ordtime`, `checktime`, `productid`, `productname`, `productimage`, `producttype`, `shop_id`, `mall_id`, `mall_name`, `ordtitle`, `ordbuynum`, `ordprice`, `freight`, `cashback`, `ordfee`, `ordstatus`, `reason`, `requesttime`, `handletime`, `handlename`, `payment_type`, `payment_trade_no`, `payment_trade_status`, `payment_notify_id`, `payment_notify_time`, `payment_buyer_email`, `isused`, `usetime`, `checkuser`, `message`, `recname`, `recaddress`, `recphone`, `deliverydate`, `deliverytime`, `invoicetype`, `invoicetitle`, `invoicecontent`, `expressName`, `expressNum`, `ordertype`) VALUES
+(265, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (266, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (267, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (268, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
@@ -5044,7 +5043,8 @@ INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `or
 (280, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (281, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (282, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
-(283, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
+(283, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1);
+INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `ordtime`, `checktime`, `productid`, `productname`, `productimage`, `producttype`, `shop_id`, `mall_id`, `mall_name`, `ordtitle`, `ordbuynum`, `ordprice`, `freight`, `cashback`, `ordfee`, `ordstatus`, `reason`, `requesttime`, `handletime`, `handlename`, `payment_type`, `payment_trade_no`, `payment_trade_status`, `payment_notify_id`, `payment_notify_time`, `payment_buyer_email`, `isused`, `usetime`, `checkuser`, `message`, `recname`, `recaddress`, `recphone`, `deliverydate`, `deliverytime`, `invoicetype`, `invoicetitle`, `invoicecontent`, `expressName`, `expressNum`, `ordertype`) VALUES
 (284, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (285, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (286, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
@@ -5157,8 +5157,7 @@ INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `or
 (393, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (394, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (395, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
-(396, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1);
-INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `ordtime`, `checktime`, `productid`, `productname`, `productimage`, `producttype`, `shop_id`, `mall_id`, `mall_name`, `ordtitle`, `ordbuynum`, `ordprice`, `freight`, `cashback`, `ordfee`, `ordstatus`, `reason`, `requesttime`, `handletime`, `handlename`, `payment_type`, `payment_trade_no`, `payment_trade_status`, `payment_notify_id`, `payment_notify_time`, `payment_buyer_email`, `isused`, `usetime`, `checkuser`, `message`, `recname`, `recaddress`, `recphone`, `deliverydate`, `deliverytime`, `invoicetype`, `invoicetitle`, `invoicecontent`, `expressName`, `expressNum`, `ordertype`) VALUES
+(396, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (397, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (398, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (399, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
@@ -5185,7 +5184,8 @@ INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `or
 (420, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (421, 9, '15249243295', '511435245431', '', 1435245431, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 199.00, 0.00, 0.00, 199.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '', '', '', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (424, 9, '15249243295', '0181435635522', '', 1435635522, 0, 104, '      佳能（Canon） PowerShot SX700 HS 数码相机 ', '/images/2015/06/upload_1435552682873.jpg', '', 1, 1, '怡丰城', NULL, 1, 1589.00, 0.00, 0.00, 1589.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', 'water', '陕西省　西安市　长安区西安电子科技大学', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
-(425, 9, '15249243295', '0951435635678', '', 1435635678, 0, 104, '      佳能（Canon） PowerShot SX700 HS 数码相机 ', '/images/2015/06/upload_1435552682873.jpg', '', 1, 1, '怡丰城', NULL, 2, 1589.00, 0.00, 0.00, 3178.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', 'water', '陕西省　西安市　长安区西安电子科技大学', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
+(425, 9, '15249243295', '0951435635678', '', 1435635678, 0, 104, '      佳能（Canon） PowerShot SX700 HS 数码相机 ', '/images/2015/06/upload_1435552682873.jpg', '', 1, 1, '怡丰城', NULL, 2, 1589.00, 0.00, 0.00, 3178.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', 'water', '陕西省　西安市　长安区西安电子科技大学', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1);
+INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `ordtime`, `checktime`, `productid`, `productname`, `productimage`, `producttype`, `shop_id`, `mall_id`, `mall_name`, `ordtitle`, `ordbuynum`, `ordprice`, `freight`, `cashback`, `ordfee`, `ordstatus`, `reason`, `requesttime`, `handletime`, `handlename`, `payment_type`, `payment_trade_no`, `payment_trade_status`, `payment_notify_id`, `payment_notify_time`, `payment_buyer_email`, `isused`, `usetime`, `checkuser`, `message`, `recname`, `recaddress`, `recphone`, `deliverydate`, `deliverytime`, `invoicetype`, `invoicetitle`, `invoicecontent`, `expressName`, `expressNum`, `ordertype`) VALUES
 (443, 9, '15249243295', '02014358397289', '', 1435839728, 0, 104, '      佳能（Canon） PowerShot SX700 HS 数码相机 ', '/images/2015/06/upload_1435552682873.jpg', '', 1, 1, '怡丰城', NULL, 1, 1599.00, 0.00, 0.00, 1599.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', 'water', '陕西省　西安市　长安区西安电子科技大学', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (444, 9, '15249243295', '08514358397369', '', 1435839736, 0, 104, '      佳能（Canon） PowerShot SX700 HS 数码相机 ', '/images/2015/06/upload_1435552682873.jpg', '', 1, 1, '怡丰城', NULL, 1, 1599.00, 0.00, 0.00, 1599.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', 'water', '陕西省　西安市　长安区西安电子科技大学', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (445, 9, '15249243295', '03414358408899', '', 1435840889, 0, 104, '      佳能（Canon） PowerShot SX700 HS 数码相机 ', '/images/2015/06/upload_1435552682873.jpg', '', 1, 1, '怡丰城', NULL, 1, 1599.00, 0.00, 0.00, 1599.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', 'water', '陕西省　西安市　长安区西安电子科技大学', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
@@ -5263,8 +5263,7 @@ INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `or
 (547, 9, '15249243295', '09014366280109', '', 1436628010, 0, 58, '      威迪瑞秋冬户外防风防水保暖透气男女款三合一冲锋衣 雪松绿-男款 XL', '/images/2015/06/upload_1434357492259.jpg', '\n											X										 \n											红										 ', 1, 1, '怡丰城', NULL, 1, 0.01, 0.00, 0.00, 0.01, 1, '', 0, 0, '', NULL, '2015071100001000270076989515', 'TRADE_SUCCESS', 'fea406fb0e18e2db4794a377415599af3i', '2015-07-11 23:20:45', '1107745359@qq.com', 0, NULL, NULL, '', '张三', '广东省广州市广州市', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (550, 9, '15249243295', '03014371875429', '', 1437187542, 0, 109, '测试', '/images/2015/07/upload_1435819568623.jpg', '\n											红										  ', 17, 11, '商城自营', NULL, 1, 0.01, 0.00, 0.00, 0.01, 1, '', 0, 0, '', NULL, '2015080700001000270079496639', 'TRADE_SUCCESS', '95390fe749700e6ccf34dbb15c4163a13i', '2015-08-07 21:53:53', '1107745359@qq.com', 0, NULL, NULL, '', '张三', '广东省广州市广州市', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (553, 19, '18629063048', '091143720948419', '', 1437209484, 0, 17, 'ipad', '/images/2015/06/upload_1434080406316.jpg', '', 0, 2, '', NULL, 1, 100.00, 0.00, 0.00, 100.00, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '吕嘉琪', '安徽省安庆市怀宁县西安电子科技大学', '18629063048', '0000-00-00', '', '普通发票', '', '', '', '', 1),
-(552, 19, '18629063048', '069143720737619', '020143720737619', 1437207376, 0, 106, '卡西欧（CASIO）EX-TR550 数码相机 金色 （1110万像素 21mm', '/images/2015/06/upload_1435552834992.jpg', '', 1, 1, '怡丰城', NULL, 1, 0.01, 0.00, 0.00, 0.01, 8, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '吕嘉琪', '安徽省安庆市怀宁县西安电子科技大学', '18629063048', '0000-00-00', '', '普通发票', '', '', '', '', 1);
-INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `ordtime`, `checktime`, `productid`, `productname`, `productimage`, `producttype`, `shop_id`, `mall_id`, `mall_name`, `ordtitle`, `ordbuynum`, `ordprice`, `freight`, `cashback`, `ordfee`, `ordstatus`, `reason`, `requesttime`, `handletime`, `handlename`, `payment_type`, `payment_trade_no`, `payment_trade_status`, `payment_notify_id`, `payment_notify_time`, `payment_buyer_email`, `isused`, `usetime`, `checkuser`, `message`, `recname`, `recaddress`, `recphone`, `deliverydate`, `deliverytime`, `invoicetype`, `invoicetitle`, `invoicecontent`, `expressName`, `expressNum`, `ordertype`) VALUES
+(552, 19, '18629063048', '069143720737619', '020143720737619', 1437207376, 0, 106, '卡西欧（CASIO）EX-TR550 数码相机 金色 （1110万像素 21mm', '/images/2015/06/upload_1435552834992.jpg', '', 1, 1, '怡丰城', NULL, 1, 0.01, 0.00, 0.00, 0.01, 8, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '吕嘉琪', '安徽省安庆市怀宁县西安电子科技大学', '18629063048', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (554, 19, '18629063048', '014143720955719', '', 1437209557, 0, 17, 'ipad', '/images/2015/06/upload_1434080406316.jpg', '', 0, 2, '', NULL, 1, 0.10, 0.00, 0.00, 0.10, 1, '', 0, 0, '', NULL, '2015071800001000790061264654', 'TRADE_SUCCESS', '57181ec25b30d48f02a974539eaba6a56e', '2015-07-18 16:52:57', '405164649@qq.com', 0, NULL, NULL, '', '吕嘉琪', '安徽省安庆市怀宁县西安电子科技大学', '18629063048', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (555, 19, '18629063048', '005143721040419', '', 1437210404, 0, 17, 'ipad', '/images/2015/06/upload_1434080406316.jpg', '', 7, 2, '', NULL, 1, 0.10, 0.00, 0.00, 0.10, 1, '', 0, 0, '', NULL, '2015071800001000790061265671', 'TRADE_SUCCESS', '9f20dba62fec49d7528edbad7b84a14e6e', '2015-07-18 17:07:00', '405164649@qq.com', 0, NULL, NULL, '', '吕嘉琪', '安徽省安庆市怀宁县西安电子科技大学', '18629063048', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (557, 8, '15529308832', '08114382382588', '03114382382588', 1438238258, 0, 58, '      威迪瑞秋冬户外防风防水保暖透气男女款三合一冲锋衣 雪松绿-男款 XL', '/images/2015/06/upload_1434357492259.jpg', '											X										 \r\n											蓝										 ', 1, 1, '怡丰城', NULL, 1, 0.01, 0.00, 0.00, 0.01, 9, '', 0, 0, '', NULL, '2015073000001000030072183995', 'TRADE_SUCCESS', 'c01dfce3112898089ceab4db636f6b4726', '2015-07-30 14:38:41', '15529308832', 0, NULL, NULL, '', '赛赛', '福建省龙岩市龙岩市西安', '15529308832', '0000-00-00', '', '普通发票', '', '', '', '', 1),
@@ -5274,7 +5273,7 @@ INSERT INTO `orderlist` (`id`, `userid`, `username`, `ordid`, `merge_ordid`, `or
 (564, 30, '13468605437', '091144491833030', '', 1444918330, 0, 59, 'Windtour/威迪瑞 新款冲锋衣三合一', '/images/2015/06/upload_1434357829628.jpg', '', 1, 1, '怡丰城', NULL, 1, 0.01, 0.00, 0.00, 0.01, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', '孙晓娟', '陕西省西安市西安市西安电子科技大学老校区', '13468605437', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (566, 9, '15249243295', '05014519226049', '02814519226049', 1451922604, 0, 103, 'lianxiang  K3 Note（K50-t5）16G ', '/images/2015/06/upload_1435552420916.jpg', '', 1, 1, '怡丰城', NULL, 1, 0.01, 0.00, 0.00, 0.01, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', 'water', 'aaaaa', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
 (567, 9, '15249243295', '04914519610709', '', 1451961070, 0, 57, 'windtour', '/images/2015/06/upload_1434357363495.jpg', '', 1, 1, '怡丰城', NULL, 1, 0.01, 0.00, 0.00, 0.01, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', 'water', 'aaaaa', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
-(568, 9, '15249243295', '01414519617369', '', 1451961736, 0, 107, '      （Canon）IXUS170 （2000 12', '/images/2015/06/upload_1435552905815.jpg', '', 1, 1, '怡丰城', NULL, 1, 0.01, 0.00, 0.00, 0.01, 0, '', 0, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '', 'water', 'aaaaa', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1),
+(570, 33, '18610259348', '046145241114133', '', 1452411141, 0, 3, 'demo3', '/images/2016/01/upload_1452077984163.jpg', '', 60, 0, '', NULL, 1, 70.00, 0.00, 0.00, 70.00, 3, '', 0, 0, '', NULL, 'invalid_alipay_trade_no', 'TRADE_SUCCESS', 'invalid_notify_id', 'invalid_notify_time', 'invalid_buyer_email', 0, NULL, NULL, 'F', 'Boss', '北京市县密云县4鹿', '18610259348', '0000-00-00', '', '普通发票', '', '', 'JN', '456123', 1),
 (569, 9, '15249243295', '09014520680699', '', 1452068069, 0, 58, 'weidirui XL', '/images/2015/06/upload_1434357492259.jpg', '\n											L										 \n											黄										 ', 1, 1, '怡丰城', NULL, 999999999, 0.01, 0.00, 0.00, 10000000.00, 1, '', 0, 0, '', NULL, 'invalid_alipay_trade_no', 'TRADE_SUCCESS', 'invalid_notify_id', 'invalid_notify_time', 'invalid_buyer_email', 0, NULL, NULL, '', '测试2', '江苏省无锡市江阴市测试', '15249243295', '0000-00-00', '', '普通发票', '', '', '', '', 1);
 
 -- --------------------------------------------------------
@@ -6766,7 +6765,7 @@ CREATE TABLE IF NOT EXISTS `system_info` (
 --
 
 INSERT INTO `system_info` (`id`, `web_name`, `web_url`, `key_word`, `pics`, `hot_word`, `description`, `phone`, `email`, `email_pass`, `balanceMoney`, `useMoney`, `qq`, `wangwang`, `lifetime`, `copyright`) VALUES
-(0, 'ParknShop', 'fds', 'Shop', '/images/system/logo/2016/01/upload_1451704904462.jpg', 'Phone', '00000', '110', '1107745359@qq.com', '123456', 10010001.16, 10010001.16, '1107745359', '少年狂气', 3000, 'Copyright XiDian');
+(0, 'ParknShop', 'fds', 'Shop', '/images/system/logo/2016/01/upload_1451704904462.jpg', 'Phone', '00000', '110', '1107745359@qq.com', '123456', 10010071.16, 10010071.16, '1107745359', '少年狂气', 3000, 'Copyright XiDian');
 
 -- --------------------------------------------------------
 
@@ -8055,38 +8054,40 @@ CREATE TABLE IF NOT EXISTS `user_manage` (
   `last_time` double NOT NULL,
   `baby_info` double NOT NULL COMMENT '宝宝日期',
   `baby_sex` tinyint(3) NOT NULL COMMENT '性别',
+  `balance` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 --
 -- 转存表中的数据 `user_manage`
 --
 
-INSERT INTO `user_manage` (`user_id`, `username`, `password`, `state`, `verify`, `validity`, `default_address`, `last_time`, `baby_info`, `baby_sex`) VALUES
-(1, 'test1', 'e10adc3949ba59abbe56e057f20f883e', 1, '', '', 41, 1438958294, 0, 0),
-(2, 'test2', 'e10adc3949ba59abbe56e057f20f883e', 1, '', '', 2, 2015, 0, 0),
-(3, 'test3', 'e10adc3949ba59abbe56e057f20f883e', -1, '', '', 3, 2015, 0, 0),
-(6, 'fadfds', 'e10adc3949ba59abbe56e057f20f883e', 0, '', '', 0, 0, 0, 0),
-(7, 'test05', 'e6cbd48a45f1c245ef39997543cba10c', 0, '', '', 0, 0, 0, 0),
-(8, '15529308832', 'e10adc3949ba59abbe56e057f20f883e', 1, '9685', '1436172221', 54, 1439622270, 0, 0),
-(9, '15249243295', 'e6cbd48a45f1c245ef39997543cba10c', 0, '6519', '1436172106', 47, 1452066990, 0, 0),
-(10, '13810105797', '4297f44b13955235245b2497399d7a93', 0, '', '', 0, 0, 0, 0),
-(20, 'wm100', 'e10adc3949ba59abbe56e057f20f883e', 0, '', '', 0, 0, 0, 0),
-(16, '17092931729', 'e6cbd48a45f1c245ef39997543cba10c', 1, '1984', '1434167214', 36, 1436065690, 0, 0),
-(19, '18629063048', '207310e95c402ad189362cb5bbc5fa45', 1, '3743', '1435202649', 45, 1437211632, 0, 0),
-(21, '18611899637', '748afd7a12cf24b98f6f376c37e150ae', 1, '6623', '1435657833', 29, 1435657966, 0, 0),
-(22, '15009299167', 'e10adc3949ba59abbe56e057f20f883e', 1, '1105', '1435658004', 0, 0, 0, 0),
-(23, 'ssww', 'e10adc3949ba59abbe56e057f20f883e', 0, '', '', 0, 0, 662745600, 0),
-(24, '18710890940', 'e10adc3949ba59abbe56e057f20f883e', 1, '7543', '1436194175', 0, 1444650098, 0, 0),
-(25, '15529309932', '', 0, '2054', '1436152865', 0, 0, 0, 0),
-(26, '18700586381', 'f6cca300ba7e30e444efaac93f885ee3', 1, '2403', '1436251219', 0, 1436251289, 0, 0),
-(27, 'zy', 'f9ec54d8e65bc9c38cf5e3f1a886d77c', 0, '', '', 0, 0, 0, 0),
-(28, '18709204224', '', 0, '9519', '1437791705', 0, 0, 0, 0),
-(29, '13149230139', 'e10adc3949ba59abbe56e057f20f883e', 1, '5921', '1445923800', 0, 1446020055, 0, 0),
-(30, '13468605437', 'e10adc3949ba59abbe56e057f20f883e', 1, '2933', '1444873503', 57, 1444960397, 0, 0),
-(31, '18710576187', 'e10adc3949ba59abbe56e057f20f883e', 1, '7034', '1446176902', 0, 1446176952, 0, 0),
-(32, '18729310851', 'bbee80fd7267af0dc3e687b8bbf857a9', 1, '4127', '1448846988', 0, 1448847037, 0, 0);
+INSERT INTO `user_manage` (`user_id`, `username`, `password`, `state`, `verify`, `validity`, `default_address`, `last_time`, `baby_info`, `baby_sex`, `balance`) VALUES
+(1, 'test1', 'e10adc3949ba59abbe56e057f20f883e', 1, '', '', 41, 1438958294, 0, 0, 0),
+(2, 'test2', 'e10adc3949ba59abbe56e057f20f883e', 1, '', '', 2, 2015, 0, 0, 0),
+(3, 'test3', 'e10adc3949ba59abbe56e057f20f883e', -1, '', '', 3, 2015, 0, 0, 0),
+(6, 'fadfds', 'e10adc3949ba59abbe56e057f20f883e', 0, '', '', 0, 0, 0, 0, 0),
+(7, 'test05', 'e6cbd48a45f1c245ef39997543cba10c', 0, '', '', 0, 0, 0, 0, 0),
+(8, '15529308832', 'e10adc3949ba59abbe56e057f20f883e', 1, '9685', '1436172221', 54, 1439622270, 0, 0, 0),
+(9, '15249243295', 'e6cbd48a45f1c245ef39997543cba10c', 0, '6519', '1436172106', 47, 1452066990, 0, 0, 0),
+(10, '13810105797', '4297f44b13955235245b2497399d7a93', 0, '', '', 0, 0, 0, 0, 0),
+(20, 'wm100', 'e10adc3949ba59abbe56e057f20f883e', 0, '', '', 0, 0, 0, 0, 0),
+(16, '17092931729', 'e6cbd48a45f1c245ef39997543cba10c', 1, '1984', '1434167214', 36, 1436065690, 0, 0, 0),
+(19, '18629063048', '207310e95c402ad189362cb5bbc5fa45', 1, '3743', '1435202649', 45, 1437211632, 0, 0, 0),
+(21, '18611899637', '748afd7a12cf24b98f6f376c37e150ae', 1, '6623', '1435657833', 29, 1435657966, 0, 0, 0),
+(22, '15009299167', 'e10adc3949ba59abbe56e057f20f883e', 1, '1105', '1435658004', 0, 0, 0, 0, 0),
+(23, 'ssww', 'e10adc3949ba59abbe56e057f20f883e', 0, '', '', 0, 0, 662745600, 0, 0),
+(24, '18710890940', 'e10adc3949ba59abbe56e057f20f883e', 1, '7543', '1436194175', 0, 1444650098, 0, 0, 0),
+(25, '15529309932', '', 0, '2054', '1436152865', 0, 0, 0, 0, 0),
+(26, '18700586381', 'f6cca300ba7e30e444efaac93f885ee3', 1, '2403', '1436251219', 0, 1436251289, 0, 0, 0),
+(27, 'zy', 'f9ec54d8e65bc9c38cf5e3f1a886d77c', 0, '', '', 0, 0, 0, 0, 0),
+(28, '18709204224', '', 0, '9519', '1437791705', 0, 0, 0, 0, 0),
+(29, '13149230139', 'e10adc3949ba59abbe56e057f20f883e', 1, '5921', '1445923800', 0, 1446020055, 0, 0, 0),
+(30, '13468605437', 'e10adc3949ba59abbe56e057f20f883e', 1, '2933', '1444873503', 57, 1444960397, 0, 0, 0),
+(31, '18710576187', 'e10adc3949ba59abbe56e057f20f883e', 1, '7034', '1446176902', 0, 1446176952, 0, 0, 0),
+(32, '18729310851', 'bbee80fd7267af0dc3e687b8bbf857a9', 1, '4127', '1448846988', 0, 1448847037, 0, 0, 0),
+(33, '18610259348', 'e10adc3949ba59abbe56e057f20f883e', 1, '', '', 0, 1452411078, 0, 0, 1130);
 
 -- --------------------------------------------------------
 
