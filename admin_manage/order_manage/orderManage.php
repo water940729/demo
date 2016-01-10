@@ -227,7 +227,7 @@
 <style>
 .mytable
 {
-  
+   margin-top:25px;
    border:1px;  
 }
 table,th,td{ 
@@ -271,6 +271,7 @@ margin: 0px;
 	float:left;
 }
 .controllDiv span{
+   margin-top:5px;
    float:left;
    margin-left:10px;
    background-color:#ffc0cb;
@@ -309,7 +310,7 @@ margin: 0px;
 				<span id='orginOrder' name='DESC' onclick='chooseOrder(this)' style='background-color:#87ceeb;'>In descending order according to time</span>
 				<span name='ASC' onclick='chooseOrder(this)'>In increasing order according to time</span>
 				
-				<span id='orginType' style='margin-left:40px; background-color:#87ceeb;' onclick='chooseStatus(this)' name='-1' >Total</span>
+				<span id='orginType' style='margin-left:10px; background-color:#87ceeb;' onclick='chooseStatus(this)' name='-1' >Total</span>
 				<span name=0 onclick='chooseStatus(this)'>ordered</span>
 				<span name=1 onclick='chooseStatus(this)'>Paid</span>
 				<span name=2 onclick='chooseStatus(this)'>Shipped</span>

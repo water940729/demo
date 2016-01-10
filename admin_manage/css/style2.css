@@ -140,6 +140,7 @@ a{
 	border-left:1px solid #476168;
 	border-right:1px solid #476168;
 	border-bottom:1px solid #476168;
+	border-top-left-radius: 4px;
 	padding-bottom:20px;
 }
 .listintor .header1{
