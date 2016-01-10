@@ -334,7 +334,7 @@ a{
 .bgintor .tit1 ul li{
 	float:left;
 	background:url('../images/adminbg1.gif') no-repeat;
-	width:100px;
+	width:120px;
 	height:32px;
 	margin-right:10px;
 	font-weight:bold;
@@ -345,8 +345,8 @@ a{
 }
 .bgintor .tit1 ul li a{
 	display:block;
-	text-align:center;
 	padding-top:13px;
+	text-align: center;
 	color:#000;
 }
 .bgintor .tit1 ul li.l1 a{
