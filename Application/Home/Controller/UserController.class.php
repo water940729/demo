@@ -238,13 +238,15 @@
 			$user=M("user_manage");
 			$_validate = array(
 				//array('verify','require','验证码必须！'), //默认情况下用正则进行验证
-				array("username","require","手机号不能为空"),
-				array('username','/^1[34578]\d{9}$/','手机号码错误！','0','regex',1),
-				array("password","/[a-zA-Z0-9]+$/","密码只能为数字或字母",0,"regex",3),
-				array("password","require","密码不能为空"),
-				array("password","6,20","密码长度为6-20",0,"length",1),
-				array('password2','password','确认密码不正确',0,'confirm'), // 验证确认密码是否和密码一致
+				array("username","require","Please input your phone number"),
+				array('username','/^1[34578]\d{9}$/','Wrong phone number！','0','regex',1),
+				array("password","/[a-zA-Z0-9]+$/","Password only can have numner and letter",0,"regex",3),
+				array("password","require","Please input your password"),
+				array("password","6,20","Password must length in 6 to 20",0,"length",1),
+				array('password2','password','Inconsistent password',0,'confirm'), // 验证确认密码是否和密码一致
 			);
+
+
 			//$user=D("User_manage");
 			if(!$user->validate($_validate)->create($data)){
 				echo $user->getError();
@@ -306,13 +308,13 @@
 			$data["password"]=$_POST["password"];
 			$data["verify"]=$_POST["verify"];
 			$rules = array(
-				array('verify','require','验证码必须！'), //默认情况下用正则进行验证
-				array("username","require","手机号不能为空"),
-				array('username','/^1[34578]\d{9}$/','手机号码错误！','0','regex',1),
-				array("password","/[a-zA-Z0-9]+$/","密码只能为数字或字母",0,"regex",3),
-				array("password","require","密码不能为空"),
-				array("password","6,20","密码长度为6-20",0,"length",1),
-				array('password2','password','两次密码不一致',0,'confirm'), // 验证确认密码是否和密码一致
+				array('verify','require','Please input Verification code！'), //默认情况下用正则进行验证
+				array("username","require","Please input your phone number"),
+				array('username','/^1[34578]\d{9}$/','Phone number wrong！','0','regex',1),
+				array("password","/[a-zA-Z0-9]+$/","Password only can have numner and letter",0,"regex",3),
+				array("password","require","Please input your password"),
+				array("password","6,20","Password must length in 6 to 20",0,"length",1),
+				array('password2','password','Inconsistent password',0,'confirm'), // 验证确认密码是否和密码一致
 			);
 			/*
 			$_auto=array(
