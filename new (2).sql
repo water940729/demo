@@ -4471,8 +4471,8 @@ CREATE TABLE IF NOT EXISTS `keyword_manage` (
 --
 
 INSERT INTO `keyword_manage` (`id`, `keyword`, `weight`, `time`, `role`) VALUES
-(4, '奶粉', 83, 1434855524, 11),
-(5, '高科技', 100, 1437726915, 2);
+(4, 'Powdered Milk', 83, 1434855524, 11),
+(5, 'high-tech', 100, 1437726915, 2);
 
 -- --------------------------------------------------------
 
