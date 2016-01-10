@@ -25,6 +25,15 @@
 				$("div.right_bot_body").find("div.right_bot_con:last-child").css("borderRight","solid 1px #ccc");
 				$("div.right_bot_body").find("div.right_bot_con:nth-child(4n)").css("borderRight","0");
 			}
+
+			$("#search").click(function(){
+				var name=$(this).prev("input").val();
+				if($.trim(name)==""){
+					alert("Please input key word");
+				}else{
+					window.location.href="/good/search/n/"+name;
+				}
+			});
 			
 			$(".change").click(function(){
 				var type=$(this).attr("name");
@@ -201,7 +210,7 @@
 			<div class="logo"><a href="__APP__/index/index"><img src="<{$array['pics']}>" /></a></div>
 			<div class="search">
 				<input type="text" name=""/>
-				<input type="button" value="Search" style="background-color:#E3007F;"/>
+				<input id="search" type="button" value="Search" style="background-color:#E3007F;"/>
 			</div>
 			<div class="shopCar">
 			<a href="__APP__/order/cart"><img src="__PUBLIC__/image/shangcheng_image/shopcar.jpg" />

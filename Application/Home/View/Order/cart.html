@@ -22,6 +22,7 @@
 							success:function(msg){
 								if(msg==1){
 									alert("DELETE Success！");
+									location.reload();
 								}
 							}
 						})
@@ -58,7 +59,8 @@
 							success:function(msg){
 								if(msg==1){
 									//删除购物车
-									$(".delete").parent().parent().remove();
+									location.reload();
+									//$(".delete").parent().parent().remove();
 								}
 							}
 						})
