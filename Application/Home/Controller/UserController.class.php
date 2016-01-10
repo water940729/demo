@@ -234,6 +234,7 @@
 			
 			$data["username"]=$_POST["username"];
 			$data["password"]=$_POST["password"];
+			$data["password2"]=$_POST["password2"];
 			//$data["verify"]=$_POST["verify"];
 			$user=M("user_manage");
 			$_validate = array(
@@ -251,7 +252,6 @@
 			if(!$user->validate($_validate)->create($data)){
 				echo $user->getError();
 			}else{
-				//验证码有效期是300s
 				$result=$user->where("username=$data[username]")->find();
 				if($result){
 					echo "This phone number has been registed.";
