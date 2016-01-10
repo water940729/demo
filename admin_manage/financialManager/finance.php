@@ -114,7 +114,7 @@ margin: 0px;
 		// 实际商家收入（扣去佣金后）
 		$c = $cc * (1 - $r/100);
 		// 创建内部数组表示每一个商家对应的名字、佣金比率以及总和
-		$a = array("name"=>$shop_owners[1],"ratio"=>$r,"commission"=>$c,"total"=>$cc,"total_ordnum"=>$t_o,"returned_ordnum"=>$rd);
+		$a = array("name"=>$shop_owners[1],"ratio"=>$r,"commission"=>$c,"total"=>$cc==null?0:$cc,"total_ordnum"=>$t_o,"returned_ordnum"=>$rd);
 		$total_result[$i] = $a;
 		$i += 1;
 		$total_income += $c;
