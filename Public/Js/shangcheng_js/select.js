@@ -2,7 +2,7 @@ $(function(){
 	
 	
 	
-	$("#list li:gt(0)").hover(function(){
+	/*$("#list li:gt(0)").hover(function(){
 		var index=$(this).index();
 		
 		var top=$(this).offset().top+$(this).height()/2;
@@ -25,7 +25,7 @@ $(function(){
 			
 			$(this).removeClass("addClass_cur");
 	});
-	
+	*/
 
 
 
