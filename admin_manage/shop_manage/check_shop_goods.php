@@ -40,7 +40,7 @@
 							<td width="10%">Sort1</td>
 							<td width="10%">Sort2</td>
 							<td width="10%">Merchant</td>
-							<td width="10%">Mail</td>
+							<td width="10%">Mall</td>
 							<td width="10%">Operation</td>
 						</tr>
 						<?php

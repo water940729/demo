@@ -74,9 +74,9 @@
 						 $("#orderTable").empty();
 						// var headStr ='<tr><td colspan=11 >'+dataObj['headStr']+'</td></tr>';
 						 //$("#orderTable").append(headStr);
-						 var str ='<tr><td colspan=15 >'+dataObj['headStr']+'</td></tr>'+
-						    ' <tr class="t1" id="adTableLine">'+
-							'<td >order number</td>'+
+						 //var str ='<tr><td colspan=15 >'+dataObj['headStr']+'</td></tr>'+
+						    //' <tr class="t1" id="adTableLine">'+
+							var str ='<td >order number</td>'+
 							'<td >order user</td>'+
 							'<td >store</td>'+								
 							'<td >product name</td>'+					
@@ -182,7 +182,7 @@
 			$(ele).parent().parent().remove();
 		}
 		function sendGoodsDo(ele,id){
-			var r=confirm("confirm");
+			var r=confirm("confirm to do this");
 			if(r==false){
 				return ;
 			}
@@ -205,7 +205,7 @@
 		
 		function changeStatus(ele){
 			
-			var r=confirm("confirm");
+			var r=confirm("confirm to do this");
 			if(r==false){
 				return ;
 			}

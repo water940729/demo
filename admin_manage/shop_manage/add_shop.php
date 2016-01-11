@@ -39,7 +39,8 @@
 				<p>Store logo Uploading: 
 				 <input type="hidden" name="img_url" id="image_url">
 				 <span id="shop_images" name=""></span>
-				 <input type="file" name="file" id="file_image"/>
+				 <input type="file" name="file" id="file_image" style="display:none;"/>
+				 	<input type="button" value="chose file" style="margin-right:100px;" onclick="file_image.click()"/>
 				 	<span id="loading_image" style="display:none;">
 				 	<img src="../images/loading.gif" alt="loading...">
 				 	</span>
