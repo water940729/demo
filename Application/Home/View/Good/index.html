@@ -380,16 +380,16 @@
 				<div class="good_display_right">
 					<div class="right_top">
 						<span> Free Shipping</span>
-						<span style="color:black;font-weight:bold;">Supplier：<span style="font-size:20px;color:black;"><{$result[0]["shop_name"]}></span></span>
+						<span style="color:black;font-weight:bold;">Shop Owner：<span style="font-size:20px;color:black;"><{$result[0]["shop_name"]}></span></span>
 						<br/>
 						<notempty name="custom_service.qq">
-						<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<{$custom_service['qq']}>&site=qq&menu=yes">
+						<!--a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<{$custom_service['qq']}>&site=qq&menu=yes">
 
-						<img border="0" src="__PUBLIC__/image/good_info/qq.png" alt="Contact Us" title="Contact Us"/></a>
+						<img border="0" src="__PUBLIC__/image/good_info/qq.png" alt="Contact Us" title="Contact Us"/></a
 						</notempty>
 						<notempty name="custom_service['wangwang']">
 						<a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid=<{$custom_service['wangwang']|urlencode}>&site=cnalichn&s=12&charset=UTF-8" >
-						<img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=%E5%B0%91%E5%B9%B4%E7%8B%82%E6%B0%94&site=cnalichn&s=12&charset=UTF-8" alt="Contact Us" /></a>
+						<img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=%E5%B0%91%E5%B9%B4%E7%8B%82%E6%B0%94&site=cnalichn&s=12&charset=UTF-8" alt="Contact Us" /></a-->
 						</notempty>
 						<if condition="($result[0][shop_name] eq 商城自营) or ($result[0][shop_name] eq 葵花自营)">
 						<else />
