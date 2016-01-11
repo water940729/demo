@@ -151,7 +151,7 @@
 			searchGoods();
 		}
 		function deleteOrder(ele){
-			var r=confirm("确认删除");
+			var r=confirm("confirm delete");
 			if(r==false){
 				return ;
 			}
@@ -182,7 +182,7 @@
 			$(ele).parent().parent().remove();
 		}
 		function sendGoodsDo(ele,id){
-			var r=confirm("确认操作");
+			var r=confirm("confirm");
 			if(r==false){
 				return ;
 			}
@@ -205,7 +205,7 @@
 		
 		function changeStatus(ele){
 			
-			var r=confirm("确认操作");
+			var r=confirm("confirm");
 			if(r==false){
 				return ;
 			}

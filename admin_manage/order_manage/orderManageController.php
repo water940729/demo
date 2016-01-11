@@ -13,13 +13,13 @@ echo mysql_error();
 exit();
 */
 
-$result=mysql_query("select id,name from mall") or die("数据库异常");
-	    $shopLocation[0]='葵花商城首页';
+$result=mysql_query("select id,name from mall") or die("Database Exception");
+	    $shopLocation[0]='shop';
 while($array=mysql_fetch_array($result)){
 		$shopLocation[$array['id']]=$array['name'];
 	 }
 	 
-$statusArr= array('已下单','已支付','已发货','已收货','待换货','已换货','待退货','已退货','已评价');
+$statusArr= array('Paying','Paid','Delivering','Received','Returning','Returned','Returning','Returned','Commented');
 
 $controllArr = array('delete');
 $tableName = 'orderlist';
@@ -107,7 +107,7 @@ if($action == 'search'){
 			$row['ordtime'] = date('Y-m-d',$row['ordtime']);
 			$row['stausStr'] = $statusArr[$row['ordstatus']];
 			$row['mall'] = $shopLocation[$row['mall_id']];
-			$row['shop'] = $row['shop_id']==0?'自营':'商店编号'.$row['shop_id'];
+			$row['shop'] = $row['shop_id']==0?'Self':'Shop No.'.$row['shop_id'];
 			$row['right'] = $row['mall_id']==$_SESSION['mall_id'] && $row['shop_id']==0 ?1:0; 
 			$data[] = $row;
 		}
