@@ -105,7 +105,8 @@
 				<p><font style="font-size:15px;color:red">Commodity image profile:</font></p>	
 				<p>Image upload: 
 					 <span id="upd_pics"></span>
-					 <input type="file" name="file" id="file" onchange="check_file()"/>
+					 <input type="file" name="file" id="file" onchange="check_file()" style="display:none;"/>
+					 <input type="button" value="chose file" onclick="file.click()" style="margin-right:50px"/>
 					 	<span id="loading" style="display:none;">
 					 	<img src="../images/loading.gif" alt="loading...">
 					 	</span>

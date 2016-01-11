@@ -137,7 +137,8 @@
 						<p>Focus figure to upload: 
 						 <input type="hidden" name="img1_url" id="image1_url">
 						 <span id="upd1_pics" name=""></span>
-						 <input type="file" name="file" id="file1_image"/>
+						 <input type="file" name="file" id="file1_image" style="display:none;"/>
+						 	<input type="button" value="chose file" style="margin-right:50px;" onclick="file1_image.click()"/>
 							<span id="loading1_image" style="display:none;">
 							<img src="../images/loading.gif" alt="loading...">
 							</span>
