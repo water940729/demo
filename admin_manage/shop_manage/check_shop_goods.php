@@ -24,24 +24,24 @@
 			<div class="listintor">
 				<div class="tit1">
 					<ul>				
-						<li><a href="#">商场管理 </a></li>
+						<li><a href="#">market management</a></li>
 					</ul>		
 				</div>
 				<div class="header1"><img src="../images/square.gif" width="6" height="6" alt="" />
-					<span>位置：商场管理 －&gt; <?php if($from=='mall'){ echo "查看商场"; } ?>－&gt; 查看店铺－&gt; <strong>查看店铺商品</strong></span>
+					<span>Location：Store Manager －&gt; <?php if($from=='mall'){ echo "查看商场"; } ?>－&gt; View  store－&gt; <strong>View  goods</strong></span>
 				</div>
 				<div class="content">
-					<p><h2>当期商家：<?=$shop_name?></h2><p><br>
+					<p><h2>Current Business：<?=$shop_name?></h2><p><br>
 					<table width="100%">
 						<tr class="t1">
-							<td width="5%">商品序号</td>
-							<td width="10%">名称</td>
-							<td width="10%">价格</td>
-							<td width="10%">分类1</td>
-							<td width="10%">分类2</td>
-							<td width="10%">所属商户</td>
-							<td width="10%">所属商场</td>
-							<td width="10%">操作</td>
+							<td width="5%">Goods_number</td>
+							<td width="10%">Name</td>
+							<td width="10%">Price</td>
+							<td width="10%">Sort1</td>
+							<td width="10%">Sort2</td>
+							<td width="10%">Merchant</td>
+							<td width="10%">Mail</td>
+							<td width="10%">Operation</td>
 						</tr>
 						<?php
 							$pagesize=20;							
@@ -96,8 +96,8 @@
 							<td><?php echo $shop_name?></td>
 							<td><?php echo $mall_name?></td>
 							<td>
-								<a href="../goods_manage/edit_goods.php?goods_id=<?=$id?>&shop_id=<?=$shop_id?>&shop_name=<?=$shop_name?>&from=shop">修改商品</a>|
-								<a href="javascript:void(0);" onclick="delete_goods(<?=$id?>)">删除</a>
+								<a href="../goods_manage/edit_goods.php?goods_id=<?=$id?>&shop_id=<?=$shop_id?>&shop_name=<?=$shop_name?>&from=shop">Edit Items</a>|
+								<a href="javascript:void(0);" onclick="delete_goods(<?=$id?>)">Delete</a>
 							</td>
 						</tr>
 						<?php
@@ -106,11 +106,11 @@
 					</table>
 					<?php	
 						if($count==0){
-							echo "<center><b>没有相关信息！</b></center>";
+							echo "<center><b>It has no information</b></center>";
 						}else{
 					?>
 					<div class="page">
-						<div class="pagebefore">当前页:<?php echo $page;?>/<?php echo $pagecount;?>页 每页 <?php echo $pagesize?> 条</div>
+						<div class="pagebefore">Current page:<?php echo $page;?>/<?php echo $pagecount;?>Page  Each page  <?php echo $pagesize?> one</div>
 						<div class="pageafter">
 						<?php echo showPage("../goods_manage/check_goods.php",$page,$pagecount,"../images");?>
 						<div class="clear"></div>
@@ -118,7 +118,7 @@
 					</div>
 					<?php }?>
 					<br>
-					<a href="<?=$url?>">返回查看店铺</a>
+					<a href="<?=$url?>">Back to view the shop</a>
 				</div>
 			</div>
 		</div>
@@ -126,17 +126,17 @@
 </html>
 <script>
 	function delete_goods(goods_id){
-		if(confirm("确认删除吗")){
+		if(confirm("Confirm to delete?")){
 			$.post("../goods_manage/delete_goods_do.php",
 				{
 					goods_id:goods_id
 				},
 				function(data,status){
 					if(data==1){
-						alert("删除成功!");
+						alert("DeleteSuccess!");
 						location.reload();
 					}else{
-						alert("删除失败");
+						alert("DeleteFail!");
 					}
 				}
 			);
