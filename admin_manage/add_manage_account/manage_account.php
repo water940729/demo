@@ -81,7 +81,7 @@
 					</form>
 					<?php	
 						if($count==0){
-							echo "<center><b>没有相关信息！</b></center>";
+							echo "<center><b>empty</b></center>";
 						}else{
 					?>
 					<div class="page">

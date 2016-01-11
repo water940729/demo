@@ -38,10 +38,10 @@
 			</div>
 			-->
 			<div class="menu_content">
-				<div class="menu_h menu_h3">Store</div>
+				<div class="menu_h menu_h3">Shop</div>
 				<div class="menu_intor">
-					<p><a href="shop_manage/add_shop.php" target="mainFrame">Add Store</a></p>
-					<p><a href="shop_manage/check_shop.php" target="mainFrame">View Store</a></p>
+					<p><a href="shop_manage/add_shop.php" target="mainFrame">Add Shop</a></p>
+					<p><a href="shop_manage/check_shop.php" target="mainFrame">View Shop</a></p>
 			   </div>
 			</div>
 			<div class="menu_content">
@@ -53,14 +53,15 @@
 			   </div>
 			</div>
 			<div class="menu_content">
-				<div class="menu_h menu_h3">User</div>
+				<div class="menu_h menu_h3">Customer</div>
 				<div class="menu_intor">
-				<p><a href="user_manage/search_user.php" target="mainFrame">View User</a></p>
+				<p><a href="user_manage/search_user.php" target="mainFrame">View Customer</a></p>
 			
 				<p><a href="user_manage/search_address.php" target="mainFrame">View Address</a></p>
 				
 			   </div>
 			</div>
+			<!--
 			<div class="menu_content">
 				<div class="menu_h menu_h3">Order</div>
 				<div class="menu_intor">
@@ -68,11 +69,12 @@
 				<p><a href="order_manage/sum_order.php" target="mainFrame">Order Count</a></p>
 				</div>
 			</div>
+			-->
 			<div class="menu_content">
 				<div class="menu_h menu_h3">Account Manage</div>
 				<div class="menu_intor">
-					<p><a href="add_manage_account/add_manage_account.php" target="mainFrame">Add Count</a></p>
-					<p><a href="add_manage_account/manage_account.php" target="mainFrame">View Count</a></p>
+					<p><a href="add_manage_account/add_manage_account.php" target="mainFrame">Add Account</a></p>
+					<p><a href="add_manage_account/manage_account.php" target="mainFrame">View Account</a></p>
 					<!--<p><a href="add_manage_account/edit_manage_account.php" target="mainFrame">Show</a></p>-->
 			   </div>
 			</div>
@@ -91,18 +93,6 @@
 					<p><a href="system_manage/system_log.php" target="mainFrame">System Log</a></p>
 			   </div>
 			</div>-->
-			<div class="menu_content">
-				<div class="menu_h menu_h3">HomePage </div>
-				<div class="menu_intor">
-					<!--<p><a href="homepage_manage/add_focus.php" target="mainFrame">add focus</a></p>
-					<p><a href="homepage_manage/manage_focus.php" target="mainFrame">focus manage</a></p>-->
-					<p><a href="homepage_manage/keyword_manage.php" target="mainFrame">keywords manage</a></p>
-					<p><a href="homepage_manage/add_keyword.php" target="mainFrame">add keywords</a></p>
-					<p><a href="homepage_manage/recommend.php" target="mainFrame">recommend</a></p>
-					<p><a href="homepage_manage/floor_manage.php" target="mainFrame">floor manage</a></p>
-					<p><a href="homepage_manage/add_floor.php" target="mainFrame">add floor</a></p>
-			   </div>
-			</div>	
 			<!--
 			<div class="menu_content">
 				<div class="menu_h menu_h3">supermarket</div>
@@ -167,11 +157,10 @@
 			</div>
 			-->
 			<div class="menu_content">
-				<div class="menu_h menu_h3">ad manage</div>
+				<div class="menu_h menu_h3">Ads manage</div>
 				<div class="menu_intor">
-					<p><a href="homepage_manage/add_focus.php" target="mainFrame">add focus</a></p>
-                    					<p><a href="homepage_manage/manage_focus.php" target="mainFrame">focus manage</a></p>
-					<p><a href="ad_manage/adManage.php" target="mainFrame">advertisement</a></p>
+					<p><a href="homepage_manage/add_focus.php" target="mainFrame">Add Ad</a></p>
+                    					<p><a href="homepage_manage/manage_focus.php" target="mainFrame">View Ads</a></p>
 					<!--<p><a href="ad_manage/ad_order.php" target="mainFrame">广告出售订单</a></p>-->
 				<!--
 			   </div>

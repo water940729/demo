@@ -1,11 +1,11 @@
 ﻿<?php 
 	function getRole($role){
 		if($role==1){
-			return "超级管理员";
+			return "Administrator";
 		}else if($role==2){
-			return "商场管理员";
+			return "Mall Owner";
 		}else if($role==3){
-			return "商户管理员";
+			return "Shop Owner";
 		}
 	}
 	function getRoleArea($role,$shop_id,$mall_id){
@@ -22,7 +22,7 @@
 			$row=mysql_fetch_array($result);
 			$shop_name=$row['name'];
 			$mall_name=$row['mall_name'];
-			$area=$mall_name."->".$shop_name;
+			$area=$shop_name;
 		}
 		//echo $select;
 		return $area;

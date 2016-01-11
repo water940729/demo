@@ -40,7 +40,7 @@
 				<div class="content">
 					<form action="add_type_do.php" method="post" id="doForm">
 						<p>classify name：<input class="in1" type="text" name="goods_type"/></p><br/>
-						<p>classify weight：<input class="in1 weight" type="text" name="weight" />(Input of arbitrary number 1-9999, the larger the numerical floor the top, the default is 1)</p><br/>
+						<p>classify weight：<input class="in1 weight" type="text" name="weight" />(Input should be an arbitrary number in 1-9999, the default is 1)</p><br/>
 						<p>Classify LOGO uploading: 
 						 <input type="hidden" name="img_url" id="image_url">
 						 <span id="upd_pics" name=""></span>
@@ -50,11 +50,11 @@
 							<img src="../images/loading.gif" alt="loading...">
 							</span>
 							<span id="logo_image"></span>
-							<input type="button" value="上传" onclick="return ajaxFileUpload('image');" 
+							<input type="button" value="upload" onclick="return ajaxFileUpload('image');" 
 							class="btn btn-large btn-primary" />(in *LOGO size：500*500)
 						</p>	
-						<p><input type="checkbox" name="display"/>According to whether the home page classification</p><br/>
-						<input type="button" value="sure add" onclick="return check()"></p>
+						<p><input type="checkbox" name="display"/>Displayed on home page</p><br/>
+						<input type="button" value="Confirm" onclick="return check()"></p>
 						<input type="hidden" value="<?=$type?>" name="type">
 						<input type="hidden" value="<?=$id?>" name="id">
 					</form>
@@ -102,7 +102,7 @@
 								<td class="name"><?php echo $type1_name?></td>
 								<td class="weight"><?php echo $row["weight"]?></td>
 								<td class="display"><?php echo $row["display"]==1?"show":"hind";?></td>
-								<td><a href="#" class="modify">edit</a>|<a href="goods_type2.php?id=<?=$type1_id?>&type1_name=<?=$type1_name?>">view child classification</a>|<a href="javascript:void(0);" onclick="delete_foods(<?php echo $type1_id?>)">delete</a></td>
+								<td><a href="#" class="modify">edit</a>|<a href="javascript:void(0);" onclick="delete_foods(<?php echo $type1_id?>)">delete</a></td>
 							</tr>
 						<?php
 						}
@@ -159,17 +159,17 @@ function check()
 	}	
 }
 function delete_foods(id){
-	if(confirm("确认删除吗")){
+	if(confirm("Confirm Deletion")){
 			$.post("delete_foods_do.php",
 				{
 					goods_id:id
 				},
 				function(data,status){
 					if(data==1){
-						alert("删除成功!");
+						alert("success!");
 						location.reload();
 					}else{
-						alert("删除失败");
+						alert("failed");
 					}
 				}
 			);
@@ -181,7 +181,7 @@ function ajaxFileUpload(file_type)
 	$("#loading"+"_"+file_type).ajaxStart(function()
 	{
 		$(this).show();
-		$("#logo"+"_"+file_type).html("上传中……");
+		$("#logo"+"_"+file_type).html("uploading……");
 	})
 	.ajaxComplete(function(){
 		$(this).hide();

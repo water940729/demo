@@ -45,7 +45,7 @@
 				 	<img src="../images/loading.gif" alt="loading...">
 				 	</span>
 				 	<span id="logo_image"></span>
-                    <input type="button" value="uploading" onclick="return ajaxFileUpload('image');" 
+                    <input type="button" value="upload" onclick="return ajaxFileUpload('image');" 
                     class="btn btn-large btn-primary" />(*Poster size：in 431*110)
 				</p>				
 				<p>Store description：<textarea  id="introduceInfo" name="introduceInfo" rows="10" ></textarea>
